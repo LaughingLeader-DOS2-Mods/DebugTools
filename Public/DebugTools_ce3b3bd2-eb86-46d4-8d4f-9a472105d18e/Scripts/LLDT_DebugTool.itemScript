@@ -1,0 +1,31 @@
+INIT
+	ITEM:__Me
+	EXTERN INT:%Notify = 1
+
+EVENTS
+
+EVENT GiveSpells
+VARS
+	CHARACTER:_Player
+ON
+	OnItemEquipped(_Player, __Me)
+ACTIONS
+	//CharacterAddSkill(_Player, Target_LLDT_GenerateTreasure, %Notify); Not yet implemented
+	//CharacterAddSkill(_Player, Target_LLDT_GenerateTradeTreasure, %Notify)
+	//CharacterAddSkill(_Player, Target_LLDT_ClearTradeTreasure, %Notify)
+	//CharacterAddSkill(_Player, Target_LLDT_ClearItems, %Notify)
+	//CharacterAddSkill(_Player, Target_LLDT_GenGold, %Notify)
+	
+EVENT RemoveSpells
+VARS
+	CHARACTER:_Player
+ON
+	OnItemUnequipped(_Player, __Me)
+ACTIONS
+	//CharacterAddSkill(_Player, Target_LLDT_GenerateTreasure, %Notify); Not yet implemented
+	CharacterRemoveSkill(_Player, Target_LLDT_GenerateTradeTreasure)
+	CharacterRemoveSkill(_Player, Target_LLDT_ClearTradeTreasure)
+	CharacterRemoveSkill(_Player, Target_LLDT_ClearItems)
+	CharacterRemoveSkill(_Player, Target_LLDT_GenGold)
+	CharacterRemoveSkill(_Player, Target_LLDT_LevelUp)
+	CharacterRemoveSkill(_Player, Shout_LLDT_LevelUpParty)

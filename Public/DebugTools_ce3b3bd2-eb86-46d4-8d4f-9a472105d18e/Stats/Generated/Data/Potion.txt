@@ -1,0 +1,6 @@
+new entry "Stats_LLDT_GoldMult"
+type "Potion"
+data "Act" "1"
+data "Act part" "0"
+data "Duration" "10"
+

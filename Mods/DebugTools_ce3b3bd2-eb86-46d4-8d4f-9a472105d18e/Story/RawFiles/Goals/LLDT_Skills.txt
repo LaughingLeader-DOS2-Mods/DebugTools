@@ -1,0 +1,208 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+//REGION TREASURE
+IF
+CharacterUsedSkillOnTarget(_Player, _Target, "Target_LLDT_GenerateTreasure", _)
+THEN
+//GenerateTreasure
+CharacterStatusText(_Player, "[DEBUG] Generate Treasure is not implemented yet!");
+DB_NOOP(1);
+
+IF
+CharacterUsedSkillOnTarget(_Player, (CHARACTERGUID)_Trader, "Target_LLDT_GenerateTradeTreasure", _)
+THEN
+CharacterStatusText(_Trader, "[DEBUG] Generated trade items.");
+GenerateItems(_Player, _Trader);
+
+IF
+CharacterUsedSkillOnTarget(_Player, (CHARACTERGUID)_Trader, "Target_LLDT_ClearTradeTreasure", _)
+THEN
+CharacterStatusText(_Trader, "[DEBUG] Cleared generated trade items.");
+CharacterClearTradeGeneratedItems(_Trader);
+//END_REGION
+
+//REGION CLEAR_ITEMS
+IF
+CharacterUsedSkillOnTarget(_Player, _Target, "Target_LLDT_ClearEquipment", _)
+AND
+ItemTemplateIsInCharacterInventory(_Player, "LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e", 0)
+THEN
+ItemTemplateAddTo("LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e", _Player, 1);
+
+IF
+CharacterUsedSkillOnTarget(_Player, (ITEMGUID)_Target, "Target_LLDT_ClearItems", _)
+AND
+ItemIsContainer(_Target, 0)
+THEN
+SetStoryEvent(_Target, "LLDT_Event_ItemDestroyed");
+ItemDestroy(_Target);
+
+IF
+CharacterUsedSkillOnTarget(_Player, _Target, "Target_LLDT_ClearItems", _)
+AND
+GetItemForItemTemplateInInventory(_Player, "LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e", _Destroyer)
+THEN
+CharacterStatusText(_Player, "[DEBUG] Destroyed all items.");
+MoveAllItemsTo(_Target, _Destroyer, 0, 0, 0);
+
+IF
+CharacterUsedSkillOnTarget(_Player, _Target, "Target_LLDT_ClearEquipment", _)
+AND
+GetItemForItemTemplateInInventory(_Player, "LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e", _Destroyer)
+THEN
+CharacterStatusText(_Player, "[DEBUG] Destroyed all items and equipment.");
+MoveAllItemsTo(_Target, _Destroyer, 1, 1, 0);
+
+IF
+ItemAddedToContainer(_Item, _Container)
+AND
+GetTemplate(_Container, _Template)
+AND
+_Template == "LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e"
+THEN
+SetStoryEvent(_Item, "LLDT_Event_ItemDestroyed");
+ItemDestroy(_Item);
+
+
+IF
+CharacterUsedSkillOnTarget(_Player, _Target, "Target_LLDT_ClearEquipment", _)
+AND
+ItemTemplateIsInCharacterInventory(_Player, "LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e", 0)
+THEN
+CharacterStatusText(_Player, "[DEBUG] No Backpack of Destruction found.");
+//END_REGION
+
+//REGION GOLD
+IF
+CharacterStatusApplied(_Char, "LLDT_GOLD_MULTIPLIER", _)
+AND
+CharacterGetInventoryGoldValue(_Char, _Amount)
+AND
+_Amount > 0
+AND
+IntegerProduct(_Amount, 2, _NewAmount)
+THEN
+CharacterAddGold(_Char, _NewAmount);
+CharacterStatusText(_Char, "[DEBUG] Multiplied Gold");
+
+IF
+CharacterStatusApplied(_Char, "LLDT_GOLD_MULTIPLIER", _)
+AND
+CharacterGetInventoryGoldValue(_Char, _Amount)
+AND
+_Amount <= 0
+THEN
+CharacterStatusText(_Char, "[DEBUG] Added Gold");
+CharacterAddGold(_Char, 256);
+//END_REGION
+
+//REGION LEVEL_UP
+IF
+CharacterUsedSkillOnTarget(_Player, (CHARACTERGUID)_Target, "Target_LLDT_LevelUp", _)
+THEN
+CharacterStatusText(_Target, "[DEBUG] Level +1");
+CharacterLevelUp(_Target);
+
+IF
+CharacterUsedSkill(_Caster, "Shout_LLDT_LevelUpParty", _)
+AND
+DB_IsPlayer(_Player)
+THEN
+CharacterStatusText(_Player, "[DEBUG] Level +1");
+CharacterLevelUp(_Player);
+
+PROC
+LLDT_EquipTemplate((CHARACTERGUID)_Player, (STRING)_Template)
+AND
+GetItemForItemTemplateInInventory(_Player, _Template, _Item)
+THEN
+CharacterEquipItem(_Player, _Item);
+//END_REGION
+
+//REGION FORK
+IF
+CharacterUsedSkill(_Player, "Shout_LLDT_EnableKillMode", _)
+AND
+GetItemForItemTemplateInInventory(_Player, "LLDT_Debug_DebugTool_Kill_1955e0c9-3272-48d0-88b9-db356ab921a9", _Existing)
+AND
+GetItemForItemTemplateInInventory(_Player, "LLDT_Debug_DebugTool_Peace_d53e549c-5003-47a8-b7cf-852f4711c076", _Item)
+THEN
+CharacterUnequipItem(_Player, _Item);
+ItemDestroy(_Item);
+CharacterEquipItem(_Player, _Existing);
+
+IF
+CharacterUsedSkill(_Player, "Shout_LLDT_EnableKillMode", _)
+AND
+ItemTemplateIsInCharacterInventory(_Player, "LLDT_Debug_DebugTool_Kill_1955e0c9-3272-48d0-88b9-db356ab921a9", _Count)
+AND
+_Count <= 0
+AND
+GetItemForItemTemplateInInventory(_Player, "LLDT_Debug_DebugTool_Peace_d53e549c-5003-47a8-b7cf-852f4711c076", _Item)
+THEN
+CharacterUnequipItem(_Player, _Item);
+ItemDestroy(_Item);
+ItemTemplateAddTo("LLDT_Debug_DebugTool_Kill_1955e0c9-3272-48d0-88b9-db356ab921a9", _Player, 1);
+LLDT_EquipTemplate(_Player, "LLDT_Debug_DebugTool_Kill_1955e0c9-3272-48d0-88b9-db356ab921a9");
+
+IF
+CharacterUsedSkill(_Player, "Shout_LLDT_DisableKillMode", _)
+AND
+GetItemForItemTemplateInInventory(_Player, "LLDT_Debug_DebugTool_Peace_d53e549c-5003-47a8-b7cf-852f4711c076", _Existing)
+AND
+GetItemForItemTemplateInInventory(_Player, "LLDT_Debug_DebugTool_Kill_1955e0c9-3272-48d0-88b9-db356ab921a9", _Item)
+THEN
+CharacterUnequipItem(_Player, _Item);
+ItemDestroy(_Item);
+CharacterEquipItem(_Player, _Existing);
+
+IF
+CharacterUsedSkill(_Player, "Shout_LLDT_DisableKillMode", _)
+AND
+ItemTemplateIsInCharacterInventory(_Player, "LLDT_Debug_DebugTool_Peace_d53e549c-5003-47a8-b7cf-852f4711c076", _Count)
+AND
+_Count <= 0
+AND
+GetItemForItemTemplateInInventory(_Player, "LLDT_Debug_DebugTool_Kill_1955e0c9-3272-48d0-88b9-db356ab921a9", _Item)
+THEN
+CharacterUnequipItem(_Player, _Item);
+ItemDestroy(_Item);
+ItemTemplateAddTo("LLDT_Debug_DebugTool_Peace_d53e549c-5003-47a8-b7cf-852f4711c076", _Player, 1);
+LLDT_EquipTemplate(_Player, "LLDT_Debug_DebugTool_Peace_d53e549c-5003-47a8-b7cf-852f4711c076");
+//END_REGION
+
+//REGION MENU
+IF
+CharacterUsedSkill(_Player, "Shout_LLDT_OpenMenu", _)
+AND
+DB_IsPlayer(_Player)
+//AND
+//CharacterIsInCombat(_Player, 0)
+THEN
+Proc_StartDialog(0, "LLDT_DebugMenu", _Player, _Player);
+
+//END_REGION
+
+//REGION TELEPORT
+IF
+CharacterUsedSkillAtPosition(_Player, _X,_Y,_Z, "Target_LLDT_TeleportSelf", _)
+THEN
+TeleportToPosition(_Player, _X,_Y,_Z, "LLDT_Event_TeleportSelf", 0);
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01", _X,_Y,_Z);
+
+IF
+CharacterUsedSkillAtPosition(_Caster, _X,_Y,_Z, "Target_LLDT_TeleportParty", _)
+AND
+LLDT_QRY_PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01", _X,_Y,_Z)
+AND
+DB_IsPlayer(_Player)
+THEN
+TeleportToPosition(_Player, _X,_Y,_Z, "LLDT_Event_TeleportParty", 1);
+//END_REGION
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "ZZZ_LL_DebugTools"

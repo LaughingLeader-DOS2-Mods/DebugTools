@@ -1,0 +1,11 @@
+new entry "LLDT_CONT_BackpackOfDestruction"
+type "Object"
+data "RootTemplate" "6c70c298-aa29-418f-a659-f8e0b5f5fa60"
+data "Value" "0"
+data "Weight" "0"
+data "InventoryTab" "Keys"
+data "MinAmount" "1"
+data "MaxAmount" "1"
+data "Priority" "1"
+data "Unique" "1"
+

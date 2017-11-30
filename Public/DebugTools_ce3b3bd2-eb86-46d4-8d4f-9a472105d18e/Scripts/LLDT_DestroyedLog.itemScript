@@ -1,0 +1,43 @@
+INIT
+	ITEM:__Me
+	CHARACTER:%Owner = null
+EVENTS
+EVENT SetOwner
+VARS
+	CHARACTER:_Char
+ON
+	OnPickupItem(_Char, __Me)
+	OnCharacterMovedItem(_Char, __Me)
+	OnUseItem(_Char, __Me)
+ACTIONS
+	Set(%Owner, _Char)
+
+EVENT UnsetOwner
+VARS
+	STRING:_Template
+	CHARACTER:_Char
+ON
+	OnItemDropped(__Me, _Template)
+ACTIONS
+	Set(%Owner, null)
+
+EVENT ItemDestroyed
+VARS
+	ITEM:_Item
+	STRING:_PrintStr
+	FIXEDSTRING:_LogStr
+ON
+	OnItemEvent(_Item, "LLDT_Event_ItemDestroyed")
+ACTIONS
+	Print(_PrintStr, "(DEBUG) Destroyed [1]", _Item)
+	Cast(_LogStr, _PrintStr)
+	//CombatLogText(%Owner, LLDT_DEBUG_MESSAGE, 1, 2)
+IF "!c1"
+	IsEqual(%Owner, null)
+THEN
+	DisplayCombatInfoText(%Owner, _LogStr, 0.0)
+	DisplayText(%Owner, "", 0.0)
+ELSE
+	//DisplayCombatInfoText(__Me, _LogStr, 1)
+	//CombatLogText(__Me, _LogStr, 0, 2)
+ENDIF

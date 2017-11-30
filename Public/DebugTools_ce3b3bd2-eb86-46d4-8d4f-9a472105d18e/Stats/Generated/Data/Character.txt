@@ -1,0 +1,5 @@
+new entry "TestTalents"
+type "Character"
+using "_Hero"
+data "Talents" "Beastmaster;Vitality"
+

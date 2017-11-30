@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<stats stat_object_definition_id="a1fa1d2f-c335-4902-898c-4228c3c07d52">
+  <stat_objects>
+    <stat_object index="0" is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LLDT_DebugTool_PeaceMode" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
+        <field name="Charges" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="MaxCharges" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="IsTwoHanded" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="AttackAPCost" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="Damage Type" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Damage Type" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="Weight" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="WeaponType" type="EnumerationStatObjectFieldDefinition" value="8" enumeration_type_name="WeaponType" />
+        <field name="Slot" type="EnumerationStatObjectFieldDefinition" value="3" enumeration_type_name="Itemslot" />
+        <field name="InventoryTab" type="EnumerationStatObjectFieldDefinition" value="5" enumeration_type_name="InventoryTabs" />
+        <field name="RuneSlots" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="Unique" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Skills" type="StringStatObjectFieldDefinition" value="Shout_LLDT_OpenMenu;Target_LLDT_GenerateTradeTreasure;Target_LLDT_ClearTradeTreasure;Target_LLDT_ClearItems;Target_LLDT_GenGold;Target_LLDT_LevelUp;Shout_LLDT_LevelUpParty;Shout_LLDT_EnableKillMode;Target_LLDT_TeleportSelf;Target_LLDT_TeleportParty" />
+        <field name="Damage" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="Damage Range" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="DamageBoost" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="DamageFromBase" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="CriticalDamage" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="CriticalChance" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="WeaponRange" type="IntegerStatObjectFieldDefinition" value="0" />
+      </fields>
+    </stat_object>
+    <stat_object index="1" is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LLDT_DebugTool_KillMode" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="20" enumeration_type_name="ActPart" />
+        <field name="Charges" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="MaxCharges" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="IsTwoHanded" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="AttackAPCost" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="Damage Type" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="Damage Type" />
+        <field name="Damage" type="IntegerStatObjectFieldDefinition" value="5" />
+        <field name="DamageFromBase" type="IntegerStatObjectFieldDefinition" value="9999999" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="Weight" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="WeaponType" type="EnumerationStatObjectFieldDefinition" value="7" enumeration_type_name="WeaponType" />
+        <field name="Slot" type="EnumerationStatObjectFieldDefinition" value="3" enumeration_type_name="Itemslot" />
+        <field name="InventoryTab" type="EnumerationStatObjectFieldDefinition" value="5" enumeration_type_name="InventoryTabs" />
+        <field name="RuneSlots" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="WeaponRange" type="IntegerStatObjectFieldDefinition" value="999" />
+        <field name="Unique" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Skills" type="StringStatObjectFieldDefinition" value="Shout_LLDT_OpenMenu;Target_LLDT_GenerateTradeTreasure;Target_LLDT_ClearTradeTreasure;Target_LLDT_ClearItems;Target_LLDT_GenGold;Target_LLDT_LevelUp;Shout_LLDT_LevelUpParty;Shout_LLDT_DisableKillMode;Target_LLDT_TeleportSelf;Target_LLDT_TeleportParty" />
+        <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
+        <field name="Requirements" type="StringStatObjectFieldDefinition" value="Finesse 0" />
+        <field name="CriticalDamage" type="IntegerStatObjectFieldDefinition" value="1080" />
+        <field name="CriticalChance" type="IntegerStatObjectFieldDefinition" value="1920" />
+        <field name="CleavePercentage" type="IntegerStatObjectFieldDefinition" value="200" />
+        <field name="CleaveAngle" type="IntegerStatObjectFieldDefinition" value="180" />
+        <field name="Initiative" type="IntegerStatObjectFieldDefinition" value="42" />
+      </fields>
+    </stat_object>
+  </stat_objects>
+</stats>

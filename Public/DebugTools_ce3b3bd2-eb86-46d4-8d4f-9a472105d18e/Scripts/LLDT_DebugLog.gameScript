@@ -1,0 +1,17 @@
+INIT
+
+EVENTS
+
+EVENT LogMessage
+VARS
+	CHARACTER:_Player
+	FIXEDSTRING:_Message
+ON
+	OnCharacterEvent(_Player, "LLDT_Event_PlayerDebugLog")
+ACTIONS
+IF "c1"
+	GetVar(_Message, _Player, "LLDebugTools_LogText")
+THEN
+	DisplayCombatInfoText(_Player, _Message, 0.0)
+	DisplayText(_Player, "", 0.0)
+ENDIF

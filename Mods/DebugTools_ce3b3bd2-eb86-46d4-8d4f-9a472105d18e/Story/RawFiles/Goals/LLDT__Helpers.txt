@@ -1,0 +1,29 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+//REGION CHECKS
+QRY
+LLDT_LogEnabled((CHARACTERGUID)_Player)
+AND
+ObjectGetFlag(_Player, "LLDEBUGTOOLS_LOG_ENABLED", 1)
+THEN
+DB_NOOP(1);
+//END_REGION
+
+//REGION EFFECTS
+QRY
+LLDT_QRY_PlayEffectAtPosition((STRING)_Effect, (REAL)_X, (REAL)_Y, (REAL)_Z)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01", _X,_Y,_Z);
+//END_REGION
+
+QRY
+LLDT_QRY_ClearFlag((GUIDSTRING)_Object, (STRING)_Flag)
+THEN
+ObjectClearFlag(_Object, _Flag);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "ZZZ_LL_DebugTools"

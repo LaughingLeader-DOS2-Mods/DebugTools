@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<stats stat_object_definition_id="a8098c1a-f86e-11da-bd1a-00112444be1e">
+  <stat_objects>
+    <stat_object index="0" is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="TestTalents" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Hero" />
+        <field name="Talents" type="StringStatObjectFieldDefinition" value="Beastmaster;Vitality" />
+      </fields>
+    </stat_object>
+  </stat_objects>
+</stats>

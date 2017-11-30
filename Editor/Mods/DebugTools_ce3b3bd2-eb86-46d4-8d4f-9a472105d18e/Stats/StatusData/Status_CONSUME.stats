@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<stats stat_object_definition_id="e2a8d59b-0e34-4a7c-bf5f-db7a2bb34cde">
+  <stat_objects>
+    <stat_object index="0" is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LLDT_GOLD_MULTIPLIER" />
+        <field name="Type" type="StringStatObjectFieldDefinition" value="CONSUME" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Greedy" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Character's gold is multiplying. Inflation imminent!" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Item_Loot_Gold_A" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="15" enumeration_type_name="FormatStringColor" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LLDT_GoldMult" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LLDT_GoldMult" />
+        <field name="SoundStart" type="StringStatObjectFieldDefinition" value="Item_Coin_Big_Pickup" />
+      </fields>
+    </stat_object>
+  </stat_objects>
+</stats>
