@@ -23,5 +23,5 @@ DebugTools Changelog
 	* Teleport Party
 	* Teleport Target
 		* Acts a little wonky when selecting both a character and an item.
-# 1.1.0
+# 1.0.0
 * Initial Release
