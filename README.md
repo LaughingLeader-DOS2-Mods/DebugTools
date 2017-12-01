@@ -10,6 +10,8 @@ It contains a collection of skills, menus, and more that you can use to debug yo
 * Use the most powerful of forks to slay everything.
 * Teleport yourself, party, or target as far as DOS2 allows.
 * Change your character creation tags.
+* Unlock all waypoints, allowing you to teleport to any level.
+* Display flag changes, and record those changes to the combat log.
 
 ### Releases
 * [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=1173088369) 
