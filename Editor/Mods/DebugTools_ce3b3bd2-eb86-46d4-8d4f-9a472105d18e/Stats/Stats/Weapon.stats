@@ -17,7 +17,7 @@
         <field name="InventoryTab" type="EnumerationStatObjectFieldDefinition" value="5" enumeration_type_name="InventoryTabs" />
         <field name="RuneSlots" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="Unique" type="IntegerStatObjectFieldDefinition" value="1" />
-        <field name="Skills" type="StringStatObjectFieldDefinition" value="Shout_LLDT_OpenMenu;Target_LLDT_GenerateTradeTreasure;Target_LLDT_ClearTradeTreasure;Target_LLDT_ClearItems;Target_LLDT_GenGold;Target_LLDT_LevelUp;Shout_LLDT_LevelUpParty;Shout_LLDT_EnableKillMode;Target_LLDT_TeleportSelf;Target_LLDT_TeleportParty" />
+        <field name="Skills" type="StringStatObjectFieldDefinition" value="Shout_LLDT_OpenMenu;Target_LLDT_GenerateTradeTreasure;Target_LLDT_ClearTradeTreasure;Target_LLDT_ClearItems;Target_LLDT_GenGold;Target_LLDT_LevelUp;Shout_LLDT_LevelUpParty;Shout_LLDT_EnableKillMode;Target_LLDT_TeleportSelf;Target_LLDT_TeleportParty;Teleportation_LLDT_TeleportTarget" />
         <field name="Damage" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="Damage Range" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="DamageBoost" type="IntegerStatObjectFieldDefinition" value="0" />
@@ -46,7 +46,7 @@
         <field name="RuneSlots" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="WeaponRange" type="IntegerStatObjectFieldDefinition" value="999" />
         <field name="Unique" type="IntegerStatObjectFieldDefinition" value="1" />
-        <field name="Skills" type="StringStatObjectFieldDefinition" value="Shout_LLDT_OpenMenu;Target_LLDT_GenerateTradeTreasure;Target_LLDT_ClearTradeTreasure;Target_LLDT_ClearItems;Target_LLDT_GenGold;Target_LLDT_LevelUp;Shout_LLDT_LevelUpParty;Shout_LLDT_DisableKillMode;Target_LLDT_TeleportSelf;Target_LLDT_TeleportParty" />
+        <field name="Skills" type="StringStatObjectFieldDefinition" value="Shout_LLDT_OpenMenu;Target_LLDT_GenerateTradeTreasure;Target_LLDT_ClearTradeTreasure;Target_LLDT_ClearItems;Target_LLDT_GenGold;Target_LLDT_LevelUp;Shout_LLDT_LevelUpParty;Shout_LLDT_DisableKillMode;Target_LLDT_TeleportSelf;Target_LLDT_TeleportParty;Teleportation_LLDT_TeleportTarget" />
         <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
         <field name="Requirements" type="StringStatObjectFieldDefinition" value="Finesse 0" />
         <field name="CriticalDamage" type="IntegerStatObjectFieldDefinition" value="1080" />

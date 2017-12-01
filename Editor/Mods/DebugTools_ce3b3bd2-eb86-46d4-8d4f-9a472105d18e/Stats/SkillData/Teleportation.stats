@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<stats stat_object_definition_id="c777d263-6c6a-4347-9652-667e59945528">
+  <stat_objects>
+    <stat_object index="0" is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LLDT_TeleportTarget" />
+        <field name="SkillType" type="StringStatObjectFieldDefinition" value="Teleportation" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="Ability" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="SkillAbility" />
+        <field name="Tier" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="SkillTier" />
+        <field name="ActionPoints" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="Cooldown" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="Memory Cost" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="Magic Cost" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="TargetRadius" type="IntegerStatObjectFieldDefinition" value="60" />
+        <field name="AreaRadius" type="IntegerStatObjectFieldDefinition" value="60" />
+        <field name="HitRadius" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Height" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="Acceleration" type="IntegerStatObjectFieldDefinition" value="20000" />
+        <field name="TeleportDelay" type="IntegerStatObjectFieldDefinition" value="500" />
+        <field name="TargetConditions" type="StringStatObjectFieldDefinition" value="!Self" />
+        <field name="TeleportSelf" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="CanTargetCharacters" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="CanTargetItems" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="CanTargetTerrain" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Ability_Scoundrel" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Teleport Target" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Teleport a target, regardless of vision.&lt;br&gt;You are the chessmaster, and the world is your board." />
+        <field name="FXScale" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="PrepareAnimationInit" type="StringStatObjectFieldDefinition" value="noprepare" />
+        <field name="PrepareAnimationLoop" type="StringStatObjectFieldDefinition" value="noprepare" />
+        <field name="CastAnimation" type="StringStatObjectFieldDefinition" value="skill_cast_aoe_divine_01_cast" />
+        <field name="CastTextEvent" type="StringStatObjectFieldDefinition" value="cast" />
+        <field name="PreviewEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_UI_TargetPreviewer_Void_01" />
+        <field name="DisappearEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_Skills_Void_Netherswap_Disappear_Root_01,Detach;RS3_FX_Skills_Void_Netherswap_Disappear_Overlay_01" />
+        <field name="ReappearEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_Skills_Void_Netherswap_Reappear_01" />
+        <field name="IgnoreVisionBlock" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="Stealth" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+      </fields>
+    </stat_object>
+  </stat_objects>
+</stats>

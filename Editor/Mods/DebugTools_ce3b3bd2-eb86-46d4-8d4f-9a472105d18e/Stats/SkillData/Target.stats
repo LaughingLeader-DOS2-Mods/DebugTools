@@ -28,6 +28,8 @@
         <field name="CastAnimation" type="StringStatObjectFieldDefinition" value="Portret_Still_01" />
         <field name="CastSelfAnimation" type="StringStatObjectFieldDefinition" value="Portret_Still_01" />
         <field name="CastTextEvent" type="StringStatObjectFieldDefinition" value="cast" />
+        <field name="IgnoreVisionBlock" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="Stealth" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
       </fields>
     </stat_object>
     <stat_object index="1" is_substat="false">
@@ -44,6 +46,8 @@
         <field name="SkillType" type="StringStatObjectFieldDefinition" value="Target" />
         <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
         <field name="Ability" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="SkillAbility" />
+        <field name="IgnoreVisionBlock" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="Stealth" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
       </fields>
     </stat_object>
     <stat_object index="2" is_substat="false">
@@ -60,6 +64,8 @@
         <field name="SkillType" type="StringStatObjectFieldDefinition" value="Target" />
         <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
         <field name="Ability" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="SkillAbility" />
+        <field name="IgnoreVisionBlock" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="Stealth" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
       </fields>
     </stat_object>
     <stat_object index="3" is_substat="false">
@@ -82,6 +88,8 @@
         <field name="CastEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_Skills_Void_Divine_Cast_Hand_02:Dummy_OverheadFX:cast" />
         <field name="TargetEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_Skills_Totem_Impact_Target_Root_Void_01:Dummy_BodyFX:cast" />
         <field name="BeamEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_GP_Beams_VoidBeam_01:Dummy_CastFX:Dummy_BodyFX:cast" />
+        <field name="IgnoreVisionBlock" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="Stealth" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
       </fields>
     </stat_object>
     <stat_object index="4" is_substat="false">
@@ -113,6 +121,8 @@
         <field name="TargetEffect" type="StringStatObjectFieldDefinition" value="LLDT_FX_GoldSplosion_01:Dummy_StatusFX" />
         <field name="SkillProperties" type="StringStatObjectFieldDefinition" value="LLDT_GOLD_MULTIPLIER,100,10" />
         <field name="TargetConditions" type="StringStatObjectFieldDefinition" value="Character" />
+        <field name="IgnoreVisionBlock" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="Stealth" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
       </fields>
     </stat_object>
     <stat_object index="5" is_substat="false">
@@ -142,6 +152,8 @@
         <field name="CastSelfAnimation" type="StringStatObjectFieldDefinition" value="Portret_Still_01" />
         <field name="CastTextEvent" type="StringStatObjectFieldDefinition" value="cast" />
         <field name="TargetConditions" type="StringStatObjectFieldDefinition" value="Character" />
+        <field name="IgnoreVisionBlock" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="Stealth" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
       </fields>
     </stat_object>
     <stat_object index="6" is_substat="false">
@@ -163,13 +175,15 @@
         <field name="Memory Cost" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="Magic Cost" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="Icon" type="StringStatObjectFieldDefinition" value="Ability_Hydrosophist" />
-        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Instant Transmission" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Teleport Self" />
         <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Teleport instantly to the target location.&lt;br&gt;Never walk again!" />
         <field name="PrepareAnimationInit" type="StringStatObjectFieldDefinition" value="noprepare" />
         <field name="PrepareAnimationLoop" type="StringStatObjectFieldDefinition" value="noprepare" />
         <field name="CastAnimation" type="StringStatObjectFieldDefinition" value="Portret_Still_01" />
         <field name="CastSelfAnimation" type="StringStatObjectFieldDefinition" value="Portret_Still_01" />
         <field name="CastTextEvent" type="StringStatObjectFieldDefinition" value="cast" />
+        <field name="IgnoreVisionBlock" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="Stealth" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
       </fields>
     </stat_object>
     <stat_object index="7" is_substat="false">
@@ -198,6 +212,8 @@
         <field name="CastAnimation" type="StringStatObjectFieldDefinition" value="Portret_Still_01" />
         <field name="CastSelfAnimation" type="StringStatObjectFieldDefinition" value="Portret_Still_01" />
         <field name="CastTextEvent" type="StringStatObjectFieldDefinition" value="cast" />
+        <field name="IgnoreVisionBlock" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="Stealth" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
       </fields>
     </stat_object>
   </stat_objects>

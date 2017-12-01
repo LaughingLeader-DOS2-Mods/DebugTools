@@ -11,11 +11,17 @@ DebugTools Changelog
 			* Add Talent Point
 		* Add Skills
 			* An alternative way to add the various debug skills without equipping the fork.
+		* Tag Editor
+			* Enable/disable the various character creation tags, and Hero/Villain.
 	* New Settings
 		* Log Settings
-			* Enable Log
+			* Disable/Enable Log
 			* Log Flag Changes (Party)
 			* Display Flag Changes (Self)	
-
+* New Skills
+	* Teleport Self
+	* Teleport Party
+	* Teleport Target
+		* Acts a little wonky when selecting both a character and an item.
 # 1.1.0
 * Initial Release

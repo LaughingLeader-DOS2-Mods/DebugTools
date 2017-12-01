@@ -7,7 +7,8 @@ KBSECTION
 QRY
 LLDT_LogEnabled((CHARACTERGUID)_Player)
 AND
-ObjectGetFlag(_Player, "LLDEBUGTOOLS_LOG_ENABLED", 1)
+//ObjectGetFlag(_Player, "LLDT_LOG_ENABLED", 1)
+UserGetFlag(_Player, "LLDT_LOG_DISABLED", 0)
 THEN
 DB_NOOP(1);
 //END_REGION
@@ -23,6 +24,11 @@ QRY
 LLDT_QRY_ClearFlag((GUIDSTRING)_Object, (STRING)_Flag)
 THEN
 ObjectClearFlag(_Object, _Flag);
+
+QRY
+LLDT_QRY_ClearPartyFlag((CHARACTERGUID)_Player, (STRING)_Flag, (INTEGER)_Instance)
+THEN
+PartyClearFlag(_Player, _Flag, _Instance);
 EXITSECTION
 
 ENDEXITSECTION

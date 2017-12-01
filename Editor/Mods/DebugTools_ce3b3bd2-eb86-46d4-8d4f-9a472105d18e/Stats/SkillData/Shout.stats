@@ -24,6 +24,7 @@
         <field name="CastAnimation" type="StringStatObjectFieldDefinition" value="Portret_Still_01" />
         <field name="Memory Cost" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="Magic Cost" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="Stealth" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
       </fields>
     </stat_object>
     <stat_object index="1" is_substat="false">
@@ -49,6 +50,7 @@
         <field name="CastAnimation" type="StringStatObjectFieldDefinition" value="Portret_Still_01" />
         <field name="Memory Cost" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="Magic Cost" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="Stealth" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
       </fields>
     </stat_object>
     <stat_object index="2" is_substat="false">
@@ -74,6 +76,7 @@
         <field name="CastAnimation" type="StringStatObjectFieldDefinition" value="Portret_Still_01" />
         <field name="Memory Cost" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="Magic Cost" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="Stealth" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
       </fields>
     </stat_object>
     <stat_object index="3" is_substat="false">
@@ -99,6 +102,7 @@
         <field name="CastAnimation" type="StringStatObjectFieldDefinition" value="Portret_Still_01" />
         <field name="Memory Cost" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="Magic Cost" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="Stealth" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
       </fields>
     </stat_object>
   </stat_objects>

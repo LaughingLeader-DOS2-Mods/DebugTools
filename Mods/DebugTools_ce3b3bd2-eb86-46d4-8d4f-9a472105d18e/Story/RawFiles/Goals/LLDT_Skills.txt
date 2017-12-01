@@ -201,6 +201,14 @@ AND
 DB_IsPlayer(_Player)
 THEN
 TeleportToPosition(_Player, _X,_Y,_Z, "LLDT_Event_TeleportParty", 1);
+
+/*
+IF
+CharacterUsedSkillAtPosition(_Caster, _X,_Y,_Z, "Target_LLDT_TeleportParty", _)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01", _X,_Y,_Z);
+*/
+
 //END_REGION
 EXITSECTION
 

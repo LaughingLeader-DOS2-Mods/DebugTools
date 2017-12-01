@@ -10,6 +10,7 @@ DB_LLDT_Skills_All("Target_LLDT_LevelUp");
 DB_LLDT_Skills_All("Shout_LLDT_LevelUpParty");
 DB_LLDT_Skills_All("Target_LLDT_TeleportSelf");
 DB_LLDT_Skills_All("Target_LLDT_TeleportParty");
+DB_LLDT_Skills_All("Teleportation_LLDT_TeleportTarget");
 
 DB_LLDT_Skills_Essentials("Shout_LLDT_OpenMenu");
 DB_LLDT_Skills_Essentials("Target_LLDT_GenGold");
@@ -17,6 +18,7 @@ DB_LLDT_Skills_Essentials("Target_LLDT_LevelUp");
 DB_LLDT_Skills_Essentials("Shout_LLDT_LevelUpParty");
 DB_LLDT_Skills_Essentials("Target_LLDT_TeleportSelf");
 DB_LLDT_Skills_Essentials("Target_LLDT_TeleportParty");
+DB_LLDT_Skills_Essentials("Teleportation_LLDT_TeleportTarget");
 
 DB_LLDT_Skills_Treasure("Shout_LLDT_OpenMenu");
 DB_LLDT_Skills_Treasure("Target_LLDT_GenerateTradeTreasure");
@@ -26,81 +28,81 @@ DB_LLDT_Skills_Treasure("Target_LLDT_GenGold");
 KBSECTION
 //REGION POINTS
 IF
-ObjectFlagSet("LLDEBUGTOOLS_ADD_ATTRIBUTE", (CHARACTERGUID)_Player, _Instance)
+ObjectFlagSet("LLDT_ADD_ATTRIBUTE", (CHARACTERGUID)_Player, _Instance)
 THEN
 CharacterAddAttributePoint(_Player, 1);
 LLDT_Print(_Player, "+1 Attribute Point");
-ObjectClearFlag(_Player, "LLDEBUGTOOLS_ADD_ATTRIBUTE");
+ObjectClearFlag(_Player, "LLDT_ADD_ATTRIBUTE");
 
 IF
-ObjectFlagSet("LLDEBUGTOOLS_ADD_ABILITY", (CHARACTERGUID)_Player, _Instance)
+ObjectFlagSet("LLDT_ADD_ABILITY", (CHARACTERGUID)_Player, _Instance)
 THEN
 CharacterAddAbilityPoint(_Player, 1);
 LLDT_Print(_Player, "+1 Ability Point");
-ObjectClearFlag(_Player, "LLDEBUGTOOLS_ADD_ABILITY");
+ObjectClearFlag(_Player, "LLDT_ADD_ABILITY");
 
 IF
-ObjectFlagSet("LLDEBUGTOOLS_ADD_CIVIL", (CHARACTERGUID)_Player, _Instance)
+ObjectFlagSet("LLDT_ADD_CIVIL", (CHARACTERGUID)_Player, _Instance)
 THEN
 CharacterAddCivilAbilityPoint(_Player, 1);
 LLDT_Print(_Player, "+1 Civil Point");
-ObjectClearFlag(_Player, "LLDEBUGTOOLS_ADD_CIVIL");
+ObjectClearFlag(_Player, "LLDT_ADD_CIVIL");
 
 IF
-ObjectFlagSet("LLDEBUGTOOLS_ADD_TALENT", (CHARACTERGUID)_Player, _Instance)
+ObjectFlagSet("LLDT_ADD_TALENT", (CHARACTERGUID)_Player, _Instance)
 THEN
 CharacterAddTalentPoint(_Player, 1);
 LLDT_Print(_Player, "+1 Talent Point");
-ObjectClearFlag(_Player, "LLDEBUGTOOLS_ADD_TALENT");
+ObjectClearFlag(_Player, "LLDT_ADD_TALENT");
 
 IF
-ObjectFlagSet("LLDEBUGTOOLS_ADD_ALL", (CHARACTERGUID)_Player, _Instance)
+ObjectFlagSet("LLDT_ADD_ALL", (CHARACTERGUID)_Player, _Instance)
 THEN
 CharacterAddAttributePoint(_Player, 1);
 CharacterAddAbilityPoint(_Player, 1);
 CharacterAddCivilAbilityPoint(_Player, 1);
 CharacterAddTalentPoint(_Player, 1);
 LLDT_Print(_Player, "+1 Attribute, Ability, Civil, and Talent Points");
-ObjectClearFlag(_Player, "LLDEBUGTOOLS_ADD_ALL");
+ObjectClearFlag(_Player, "LLDT_ADD_ALL");
 
 IF
-ObjectFlagSet("LLDEBUGTOOLS_ADD_ATTRIBUTE_PARTY", (CHARACTERGUID)_Speaker, _Instance)
+ObjectFlagSet("LLDT_ADD_ATTRIBUTE_PARTY", (CHARACTERGUID)_Speaker, _Instance)
 AND
 DB_IsPlayer(_Player)
 THEN
 CharacterAddAttributePoint(_Player, 1);
 LLDT_Print(_Player, "+1 Attribute Point");
-PartyClearFlag(_Speaker, "LLDEBUGTOOLS_ADD_ATTRIBUTE_PARTY", _Instance);
+PartyClearFlag(_Speaker, "LLDT_ADD_ATTRIBUTE_PARTY", _Instance);
 
 IF
-ObjectFlagSet("LLDEBUGTOOLS_ADD_ABILITY_PARTY", (CHARACTERGUID)_Speaker, _Instance)
+ObjectFlagSet("LLDT_ADD_ABILITY_PARTY", (CHARACTERGUID)_Speaker, _Instance)
 AND
 DB_IsPlayer(_Player)
 THEN
 CharacterAddAbilityPoint(_Player, 1);
 LLDT_Print(_Player, "+1 Ability Point");
-PartyClearFlag(_Speaker, "LLDEBUGTOOLS_ADD_ABILITY_PARTY", _Instance);
+PartyClearFlag(_Speaker, "LLDT_ADD_ABILITY_PARTY", _Instance);
 
 IF
-ObjectFlagSet("LLDEBUGTOOLS_ADD_CIVIL_PARTY", (CHARACTERGUID)_Speaker, _Instance)
+ObjectFlagSet("LLDT_ADD_CIVIL_PARTY", (CHARACTERGUID)_Speaker, _Instance)
 AND
 DB_IsPlayer(_Player)
 THEN
 CharacterAddCivilAbilityPoint(_Player, 1);
 LLDT_Print(_Player, "+1 Civil Point");
-PartyClearFlag(_Speaker, "LLDEBUGTOOLS_ADD_CIVIL_PARTY", _Instance);
+PartyClearFlag(_Speaker, "LLDT_ADD_CIVIL_PARTY", _Instance);
 
 IF
-ObjectFlagSet("LLDEBUGTOOLS_ADD_TALENT_PARTY", (CHARACTERGUID)_Speaker, _Instance)
+ObjectFlagSet("LLDT_ADD_TALENT_PARTY", (CHARACTERGUID)_Speaker, _Instance)
 AND
 DB_IsPlayer(_Player)
 THEN
 CharacterAddTalentPoint(_Player, 1);
 LLDT_Print(_Player, "+1 Talent Point");
-PartyClearFlag(_Speaker, "LLDEBUGTOOLS_ADD_TALENT_PARTY", _Instance);
+PartyClearFlag(_Speaker, "LLDT_ADD_TALENT_PARTY", _Instance);
 
 IF
-ObjectFlagSet("LLDEBUGTOOLS_ADD_ALL_PARTY", (CHARACTERGUID)_Speaker, _Instance)
+ObjectFlagSet("LLDT_ADD_ALL_PARTY", (CHARACTERGUID)_Speaker, _Instance)
 AND
 DB_IsPlayer(_Player)
 THEN
@@ -109,14 +111,14 @@ CharacterAddAbilityPoint(_Player, 1);
 CharacterAddCivilAbilityPoint(_Player, 1);
 CharacterAddTalentPoint(_Player, 1);
 LLDT_Print(_Player, "+1 Attribute, Ability, Civil, and Talent Points");
-PartyClearFlag(_Speaker, "LLDEBUGTOOLS_ADD_ALL_PARTY", _Instance);
+PartyClearFlag(_Speaker, "LLDT_ADD_ALL_PARTY", _Instance);
 //END_REGION
 
 //REGION DISPLAY_FLAGS
 IF
 ObjectFlagSet(_Flag, (CHARACTERGUID)_Player, _Instance)
 AND
-ObjectGetFlag(_Player, "LLDEBUGTOOLS_LOG_DISPLAYFLAGS", 1)
+ObjectGetFlag(_Player, "LLDT_LOG_DISPLAYFLAGS", 1)
 AND
 ObjectGetFlag(_Player, _Flag, _Val)
 THEN
@@ -125,7 +127,7 @@ LLDT_LogFlag(_Player, _Flag, _Val);
 IF
 ObjectFlagCleared(_Flag, (CHARACTERGUID)_Player, _Instance)
 AND
-ObjectGetFlag(_Player, "LLDEBUGTOOLS_LOG_DISPLAYFLAGS", 1)
+ObjectGetFlag(_Player, "LLDT_LOG_DISPLAYFLAGS", 1)
 AND
 ObjectGetFlag(_Player, _Flag, _Val)
 THEN
@@ -134,7 +136,7 @@ LLDT_LogFlag(_Player, _Flag, _Val);
 IF
 ObjectFlagSet(_Flag, (CHARACTERGUID)_Player, _Instance)
 AND
-ObjectGetFlag(_Player, "LLDEBUGTOOLS_LOG_PRINTFLAGS", 1)
+ObjectGetFlag(_Player, "LLDT_LOG_PRINTFLAGS", 1)
 AND
 ObjectGetFlag(_Player, _Flag, _Val)
 THEN
@@ -143,7 +145,7 @@ LLDT_PrintFlag(_Player, _Flag, _Val);
 IF
 ObjectFlagCleared(_Flag, (CHARACTERGUID)_Player, _Instance)
 AND
-ObjectGetFlag(_Player, "LLDEBUGTOOLS_LOG_PRINTFLAGS", 1)
+ObjectGetFlag(_Player, "LLDT_LOG_PRINTFLAGS", 1)
 AND
 ObjectGetFlag(_Player, _Flag, _Val)
 THEN
@@ -152,7 +154,7 @@ LLDT_PrintFlag(_Player, _Flag, _Val);
 
 //REGION LOG_SETTINGS
 IF
-ObjectFlagSet("LLDEBUGTOOLS_LOG_ENABLED", (CHARACTERGUID)_Player, _Instance)
+ObjectFlagSet("LLDT_LOG_ENABLED", (CHARACTERGUID)_Player, _Instance)
 THEN
 SetVarFixedString(_Player, "LLDebugTools_LogText", "Log Enabled");
 SetStoryEvent(_Player, "LLDT_Event_PlayerDebugLog");
@@ -160,50 +162,54 @@ SetStoryEvent(_Player, "LLDT_Event_PlayerDebugLog");
 
 //REGION SKILLS
 IF
-ObjectFlagSet("LLDEBUGTOOLS_ADD_SKILLS_MENU", (CHARACTERGUID)_Player, _Instance)
+ObjectFlagSet("LLDT_ADD_SKILLS_MENU", (CHARACTERGUID)_Player, _Instance)
 AND
 CharacterHasSkill(_Player, "Shout_LLDT_OpenMenu", 0)
 THEN
 CharacterAddSkill(_Player, "Shout_LLDT_OpenMenu");
-ObjectClearFlag(_Player, "LLDEBUGTOOLS_ADD_SKILLS_MENU");
+ObjectClearFlag(_Player, "LLDT_ADD_SKILLS_MENU");
+LLDT_Print(_Player, "[DT] Added skill Shout_LLDT_OpenMenu");
 
 IF
-ObjectFlagSet("LLDEBUGTOOLS_ADD_SKILLS_ESSENTIALS", (CHARACTERGUID)_Player, _Instance)
+ObjectFlagSet("LLDT_ADD_SKILLS_ESSENTIALS", (CHARACTERGUID)_Player, _Instance)
 AND
-LLDT_QRY_ClearFlag(_Player, "LLDEBUGTOOLS_ADD_SKILLS_ESSENTIALS")
+LLDT_QRY_ClearFlag(_Player, "LLDT_ADD_SKILLS_ESSENTIALS")
 AND
 DB_LLDT_Skills_Essentials(_Skill)
 AND
 CharacterHasSkill(_Player, _Skill, 0)
 THEN
 CharacterAddSkill(_Player, _Skill);
+LLDT_Print(_Player, "[DT] Added skill ", _Skill);
 
 IF
-ObjectFlagSet("LLDEBUGTOOLS_ADD_SKILLS_TREASURE", (CHARACTERGUID)_Player, _Instance)
+ObjectFlagSet("LLDT_ADD_SKILLS_TREASURE", (CHARACTERGUID)_Player, _Instance)
 AND
-LLDT_QRY_ClearFlag(_Player, "LLDEBUGTOOLS_ADD_SKILLS_TREASURE")
+LLDT_QRY_ClearFlag(_Player, "LLDT_ADD_SKILLS_TREASURE")
 AND
 DB_LLDT_Skills_Treasure(_Skill)
 AND
 CharacterHasSkill(_Player, _Skill, 0)
 THEN
 CharacterAddSkill(_Player, _Skill);
+LLDT_Print(_Player, "[DT] Added skill ", _Skill);
 
 IF
-ObjectFlagSet("LLDEBUGTOOLS_ADD_SKILLS", (CHARACTERGUID)_Player, _Instance)
+ObjectFlagSet("LLDT_ADD_SKILLS", (CHARACTERGUID)_Player, _Instance)
 AND
-LLDT_QRY_ClearFlag(_Player, "LLDEBUGTOOLS_ADD_SKILLS")
+LLDT_QRY_ClearFlag(_Player, "LLDT_ADD_SKILLS")
 AND
 DB_LLDT_Skills_All(_Skill)
 AND
 CharacterHasSkill(_Player, _Skill, 0)
 THEN
 CharacterAddSkill(_Player, _Skill);
+LLDT_Print(_Player, "[DT] Added skill ", _Skill);
 
 IF
-ObjectFlagSet("LLDEBUGTOOLS_ADD_SKILLS_PARTY", _, _Instance)
+ObjectFlagSet("LLDT_ADD_SKILLS_PARTY", _, _Instance)
 AND
-LLDT_QRY_ClearFlag(_Player, "LLDEBUGTOOLS_ADD_SKILLS_PARTY")
+LLDT_QRY_ClearFlag(_Player, "LLDT_ADD_SKILLS_PARTY")
 AND
 DB_IsPlayer(_Player)
 AND
@@ -212,22 +218,24 @@ AND
 CharacterHasSkill(_Player, _Skill, 0)
 THEN
 CharacterAddSkill(_Player, _Skill);
+LLDT_Print(_Player, "[DT] Added skill ", _Skill);
 
 IF
-ObjectFlagSet("LLDEBUGTOOLS_REMOVE_SKILLS", (CHARACTERGUID)_Player, _Instance)
+ObjectFlagSet("LLDT_REMOVE_SKILLS", (CHARACTERGUID)_Player, _Instance)
 AND
-LLDT_QRY_ClearFlag(_Player, "LLDEBUGTOOLS_REMOVE_SKILLS")
+LLDT_QRY_ClearFlag(_Player, "LLDT_REMOVE_SKILLS")
 AND
 DB_LLDT_Skills_All(_Skill)
 AND
 CharacterHasSkill(_Player, _Skill, 1)
 THEN
 CharacterRemoveSkill(_Player, _Skill);
+LLDT_Print(_Player, "[DT] Removed skill ", _Skill);
 
 IF
-ObjectFlagSet("LLDEBUGTOOLS_REMOVE_SKILLS_PARTY", _, _Instance)
+ObjectFlagSet("LLDT_REMOVE_SKILLS_PARTY", (CHARACTERGUID)_Speaker, _Instance)
 AND
-LLDT_QRY_ClearFlag(_Player, "LLDEBUGTOOLS_REMOVE_SKILLS_PARTY")
+LLDT_QRY_ClearPartyFlag(_Speaker, "LLDT_REMOVE_SKILLS_PARTY", _Instance)
 AND
 DB_IsPlayer(_Player)
 AND
@@ -236,6 +244,8 @@ AND
 CharacterHasSkill(_Player, _Skill, 1)
 THEN
 CharacterRemoveSkill(_Player, _Skill);
+LLDT_Print(_Player, "[DT] Removed skill ", _Skill);
+
 //END_REGION
 EXITSECTION
 
