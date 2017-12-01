@@ -25,7 +25,43 @@ DB_LLDT_Skills_Treasure("Target_LLDT_GenerateTradeTreasure");
 DB_LLDT_Skills_Treasure("Target_LLDT_ClearTradeTreasure");
 DB_LLDT_Skills_Treasure("Target_LLDT_ClearItems");
 DB_LLDT_Skills_Treasure("Target_LLDT_GenGold");
+
+DB_LLDT_CommandFlags("LLDT_ADD_ATTRIBUTE");
+DB_LLDT_CommandFlags("LLDT_ADD_ABILITY");
+DB_LLDT_CommandFlags("LLDT_ADD_CIVIL");
+DB_LLDT_CommandFlags("LLDT_ADD_TALENT");
+DB_LLDT_CommandFlags("LLDT_ADD_ALL");
+DB_LLDT_CommandFlags("LLDT_ADD_ATTRIBUTE_PARTY");
+DB_LLDT_CommandFlags("LLDT_ADD_ABILITY_PARTY");
+DB_LLDT_CommandFlags("LLDT_ADD_CIVIL_PARTY");
+DB_LLDT_CommandFlags("LLDT_ADD_TALENT_PARTY");
+DB_LLDT_CommandFlags("LLDT_ADD_ALL_PARTY");
+DB_LLDT_CommandFlags("LLDT_ADD_SKILLS_MENU");
+DB_LLDT_CommandFlags("LLDT_ADD_SKILLS_ESSENTIALS");
+DB_LLDT_CommandFlags("LLDT_ADD_SKILLS_TREASURE");
+DB_LLDT_CommandFlags("LLDT_ADD_SKILLS");
+DB_LLDT_CommandFlags("LLDT_ADD_SKILLS_PARTY");
+DB_LLDT_CommandFlags("LLDT_REMOVE_SKILLS");
+DB_LLDT_CommandFlags("LLDT_REMOVE_SKILLS_PARTY");
 KBSECTION
+//REGION RESET
+PROC
+LLDT_Menu_ResetCommands((CHARACTERGUID)_Player)
+AND
+DB_LLDT_CommandFlags(_Flag)
+THEN
+ObjectClearFlag(_Player, _Flag);
+
+/*
+PROC
+LLDT_Menu_ResetPartyCommands((CHARACTERGUID)_Player, (INTEGER)_Instance)
+AND
+DB_LLDT_PartyCommandFlags(_Flag)
+THEN
+PartyClearFlag(_Player, _Flag, _Instance);
+*/
+//END_REGION
+
 //REGION POINTS
 IF
 ObjectFlagSet("LLDT_ADD_ATTRIBUTE", (CHARACTERGUID)_Player, _Instance)
@@ -68,41 +104,47 @@ ObjectClearFlag(_Player, "LLDT_ADD_ALL");
 IF
 ObjectFlagSet("LLDT_ADD_ATTRIBUTE_PARTY", (CHARACTERGUID)_Speaker, _Instance)
 AND
+LLDT_QRY_ClearFlag(_Speaker, "LLDT_ADD_ATTRIBUTE_PARTY")
+AND
 DB_IsPlayer(_Player)
 THEN
 CharacterAddAttributePoint(_Player, 1);
 LLDT_Print(_Player, "+1 Attribute Point");
-PartyClearFlag(_Speaker, "LLDT_ADD_ATTRIBUTE_PARTY", _Instance);
 
 IF
 ObjectFlagSet("LLDT_ADD_ABILITY_PARTY", (CHARACTERGUID)_Speaker, _Instance)
+AND
+LLDT_QRY_ClearFlag(_Speaker, "LLDT_ADD_ABILITY_PARTY")
 AND
 DB_IsPlayer(_Player)
 THEN
 CharacterAddAbilityPoint(_Player, 1);
 LLDT_Print(_Player, "+1 Ability Point");
-PartyClearFlag(_Speaker, "LLDT_ADD_ABILITY_PARTY", _Instance);
 
 IF
 ObjectFlagSet("LLDT_ADD_CIVIL_PARTY", (CHARACTERGUID)_Speaker, _Instance)
+AND
+LLDT_QRY_ClearFlag(_Speaker, "LLDT_ADD_CIVIL_PARTY")
 AND
 DB_IsPlayer(_Player)
 THEN
 CharacterAddCivilAbilityPoint(_Player, 1);
 LLDT_Print(_Player, "+1 Civil Point");
-PartyClearFlag(_Speaker, "LLDT_ADD_CIVIL_PARTY", _Instance);
 
 IF
 ObjectFlagSet("LLDT_ADD_TALENT_PARTY", (CHARACTERGUID)_Speaker, _Instance)
+AND
+LLDT_QRY_ClearFlag(_Speaker, "LLDT_ADD_TALENT_PARTY")
 AND
 DB_IsPlayer(_Player)
 THEN
 CharacterAddTalentPoint(_Player, 1);
 LLDT_Print(_Player, "+1 Talent Point");
-PartyClearFlag(_Speaker, "LLDT_ADD_TALENT_PARTY", _Instance);
 
 IF
 ObjectFlagSet("LLDT_ADD_ALL_PARTY", (CHARACTERGUID)_Speaker, _Instance)
+AND
+LLDT_QRY_ClearFlag(_Speaker, "LLDT_ADD_ALL_PARTY")
 AND
 DB_IsPlayer(_Player)
 THEN
@@ -111,7 +153,6 @@ CharacterAddAbilityPoint(_Player, 1);
 CharacterAddCivilAbilityPoint(_Player, 1);
 CharacterAddTalentPoint(_Player, 1);
 LLDT_Print(_Player, "+1 Attribute, Ability, Civil, and Talent Points");
-PartyClearFlag(_Speaker, "LLDT_ADD_ALL_PARTY", _Instance);
 //END_REGION
 
 //REGION DISPLAY_FLAGS
@@ -246,6 +287,19 @@ THEN
 CharacterRemoveSkill(_Player, _Skill);
 LLDT_Print(_Player, "[DT] Removed skill ", _Skill);
 
+//END_REGION
+
+//REGION WAYPOINTS
+IF
+ObjectFlagSet("LLDT_ADD_WAYPOINTS", (CHARACTERGUID)_Player, _Instance)
+AND
+LLDT_QRY_ClearFlag(_Player, "LLDT_ADD_WAYPOINTS")
+AND
+LLDT_QRY_Print(_Player, "All waypoints unlocked")
+AND
+DB_WaypointInfo(_Item,_Trigger,_CurrentWP)
+THEN
+ProcDoWaypointUnlock(_Item, _Player);
 //END_REGION
 EXITSECTION
 

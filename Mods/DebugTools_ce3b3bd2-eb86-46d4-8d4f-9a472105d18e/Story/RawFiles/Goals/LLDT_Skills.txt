@@ -184,6 +184,14 @@ DB_IsPlayer(_Player)
 THEN
 Proc_StartDialog(0, "LLDT_DebugMenu", _Player, _Player);
 
+IF
+DialogStarted("LLDT_DebugMenu", _Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 0, (CHARACTERGUID)_Player)
+THEN
+LLDT_Menu_ResetCommands(_Player);
+//LLDT_Menu_ResetPartyCommands(_Player, _Instance);
+
 //END_REGION
 
 //REGION TELEPORT

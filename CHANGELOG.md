@@ -1,5 +1,12 @@
 DebugTools Changelog
 =======
+# 1.1.1
+* Fix for Add Points (Party) commands locking the game up.
+* Debug Menu
+	* New Commands
+		* Add All Waypoints
+			* Adds every waypoint in the game. You can use this to teleport to other levels, but take care as your quests will probably get screwed up.
+
 # 1.1.0
 * New Debug Menu Skill
 	* Added a new debug menu, accessible with the skill "Open DebugTools Menu". Contains various commands and settings.
