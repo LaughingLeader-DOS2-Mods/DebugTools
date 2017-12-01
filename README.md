@@ -8,6 +8,8 @@ Example Features:
 	* Regenerate or destroy trader treasure.
 	* Destroy items in containers, characters, or items on the ground.
 	* Use the most powerful of forks to slay everything.
+	* Teleport yourself, party, or target as far as DOS2 allows.
+	* Change your character creation tags.
 
 ### Releases
 * [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=1173088369) 
