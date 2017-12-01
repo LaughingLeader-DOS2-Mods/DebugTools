@@ -15,6 +15,7 @@ It contains a collection of skills, menus, and more that you can use to debug yo
 
 ### Releases
 * [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=1173088369) 
+* [Nexus](https://www.nexusmods.com/divinityoriginalsin2/mods/268) 
 
 ## Contributing to this project
 
