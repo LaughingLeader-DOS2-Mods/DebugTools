@@ -290,17 +290,43 @@ LLDT_Print(_Player, "[DT] Removed skill ", _Skill);
 //END_REGION
 
 //REGION WAYPOINTS
-IF
-ObjectFlagSet("LLDT_ADD_WAYPOINTS", (CHARACTERGUID)_Player, _Instance)
-AND
-LLDT_QRY_ClearFlag(_Player, "LLDT_ADD_WAYPOINTS")
-AND
-LLDT_QRY_Print(_Player, "All waypoints unlocked")
+PROC
+LLDT_Menu_UnlockAllWaypoints((CHARACTERGUID)_Player)
 AND
 DB_WaypointInfo(_Item,_Trigger,_CurrentWP)
 THEN
 ProcDoWaypointUnlock(_Item, _Player);
+
+PROC
+LLDT_Menu_UnlockAllWaypoints((CHARACTERGUID)_Player)
+THEN
+//2: the button is visible, enabled, and flashes to indicate a new waypoint is available
+SetHomesteadKeyState(2, _Player);
+
+IF
+ObjectFlagSet("LLDT_ADD_WAYPOINTS", (CHARACTERGUID)_Speaker, _Instance)
+AND
+LLDT_QRY_ClearFlag(_Speaker, "LLDT_ADD_WAYPOINTS")
+AND
+LLDT_QRY_Print(_Speaker, "All waypoints unlocked")
+AND
+DB_IsPlayer(_Player)
+THEN
+LLDT_Menu_UnlockAllWaypoints(_Player);
+
 //END_REGION
+
+IF
+ObjectFlagSet("LLDT_ADD_IMMORTALITY", (CHARACTERGUID)_Player, _Instance)
+THEN
+CharacterSetImmortal(_Player, 1);
+ObjectClearFlag(_Player, "LLDT_ADD_IMMORTALITY");
+
+IF
+ObjectFlagSet("LLDT_REMOVE_IMMORTALITY", (CHARACTERGUID)_Player, _Instance)
+THEN
+CharacterSetImmortal(_Player, 0);
+ObjectClearFlag(_Player, "LLDT_REMOVE_IMMORTALITY");
 EXITSECTION
 
 ENDEXITSECTION

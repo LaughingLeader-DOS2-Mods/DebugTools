@@ -1,5 +1,10 @@
 DebugTools Changelog
 =======
+# 1.1.2
+* Debug Menu
+	* New Commands
+		* Enable/Disable Immortality
+			
 # 1.1.1
 * Fix for Add Points (Party) commands locking the game up.
 * Debug Menu
