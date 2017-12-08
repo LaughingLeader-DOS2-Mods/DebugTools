@@ -248,9 +248,9 @@ CharacterAddSkill(_Player, _Skill);
 LLDT_Print(_Player, "[DT] Added skill ", _Skill);
 
 IF
-ObjectFlagSet("LLDT_ADD_SKILLS_PARTY", _, _Instance)
+ObjectFlagSet("LLDT_ADD_SKILLS_PARTY", (CHARACTERGUID)_Speaker, _Instance)
 AND
-LLDT_QRY_ClearFlag(_Player, "LLDT_ADD_SKILLS_PARTY")
+LLDT_QRY_ClearFlag(_Speaker, "LLDT_ADD_SKILLS_PARTY")
 AND
 DB_IsPlayer(_Player)
 AND

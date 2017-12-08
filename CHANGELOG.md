@@ -1,18 +1,21 @@
 DebugTools Changelog
 =======
-# 1.1.2
+# 1.1.2.1
+* Rebuilt the story to incorporate the new patch changes (no actual changes to DebugTools scripts).
+
+# 1.1.2.0
 * Debug Menu
 	* New Commands
 		* Enable/Disable Immortality
 			
-# 1.1.1
+# 1.1.1.0
 * Fix for Add Points (Party) commands locking the game up.
 * Debug Menu
 	* New Commands
 		* Add All Waypoints
 			* Adds every waypoint in the game. You can use this to teleport to other levels, but take care as your quests will probably get screwed up.
 
-# 1.1.0
+# 1.1.0.0
 * New Debug Menu Skill
 	* Added a new debug menu, accessible with the skill "Open DebugTools Menu". Contains various commands and settings.
 	* New Commands
@@ -35,5 +38,5 @@ DebugTools Changelog
 	* Teleport Party
 	* Teleport Target
 		* Acts a little wonky when selecting both a character and an item.
-# 1.0.0
+# 1.0.0.0
 * Initial Release
