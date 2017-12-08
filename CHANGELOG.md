@@ -1,12 +1,12 @@
 DebugTools Changelog
 =======
-# 1.1.2.1
-* Rebuilt the story to incorporate the new patch changes (no actual changes to DebugTools scripts).
-
-# 1.1.2.0
+# 1.1.2.0 (Soon)
 * Debug Menu
 	* New Commands
 		* Enable/Disable Immortality
+		
+# 1.1.1.1
+* Rebuilt the story to incorporate the new patch changes (no actual changes to DebugTools scripts).
 			
 # 1.1.1.0
 * Fix for Add Points (Party) commands locking the game up.
