@@ -12,6 +12,16 @@ Mods/DebugTools_ce3b3bd2-eb86-46d4-8d4f-9a472105d18e/Story/RawFiles/story_header
 
 #Assets
 Public/DebugTools_ce3b3bd2-eb86-46d4-8d4f-9a472105d18e/Assets/*
+Editor/Mods/DebugTools_ce3b3bd2-eb86-46d4-8d4f-9a472105d18e/Assets/Effects/*
+Public/DebugTools_ce3b3bd2-eb86-46d4-8d4f-9a472105d18e/GUI/*
+
+#Log files, etc
+*.log
+StatsEditorConfig.xml
+COMBAT_LLLE_Humans_Trader.ailog
+DockPanel.config
+EditorBrowserMetadata_e19e4cc5-7fa7-45ed-8fbb-e5e02eb1d60e.xml
+EffectEditorConfig.xml
 
 #Binary Files
 *.bik
