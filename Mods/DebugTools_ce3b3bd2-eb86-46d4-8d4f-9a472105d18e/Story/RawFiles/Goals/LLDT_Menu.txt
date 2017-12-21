@@ -1,48 +1,7 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-DB_LLDT_Skills_All("Shout_LLDT_OpenMenu");
-DB_LLDT_Skills_All("Target_LLDT_GenerateTradeTreasure");
-DB_LLDT_Skills_All("Target_LLDT_ClearTradeTreasure");
-DB_LLDT_Skills_All("Target_LLDT_ClearItems");
-DB_LLDT_Skills_All("Target_LLDT_GenGold");
-DB_LLDT_Skills_All("Target_LLDT_LevelUp");
-DB_LLDT_Skills_All("Shout_LLDT_LevelUpParty");
-DB_LLDT_Skills_All("Target_LLDT_TeleportSelf");
-DB_LLDT_Skills_All("Target_LLDT_TeleportParty");
-DB_LLDT_Skills_All("Teleportation_LLDT_TeleportTarget");
-
-DB_LLDT_Skills_Essentials("Shout_LLDT_OpenMenu");
-DB_LLDT_Skills_Essentials("Target_LLDT_GenGold");
-DB_LLDT_Skills_Essentials("Target_LLDT_LevelUp");
-DB_LLDT_Skills_Essentials("Shout_LLDT_LevelUpParty");
-DB_LLDT_Skills_Essentials("Target_LLDT_TeleportSelf");
-DB_LLDT_Skills_Essentials("Target_LLDT_TeleportParty");
-DB_LLDT_Skills_Essentials("Teleportation_LLDT_TeleportTarget");
-
-DB_LLDT_Skills_Treasure("Shout_LLDT_OpenMenu");
-DB_LLDT_Skills_Treasure("Target_LLDT_GenerateTradeTreasure");
-DB_LLDT_Skills_Treasure("Target_LLDT_ClearTradeTreasure");
-DB_LLDT_Skills_Treasure("Target_LLDT_ClearItems");
-DB_LLDT_Skills_Treasure("Target_LLDT_GenGold");
-
-DB_LLDT_CommandFlags("LLDT_ADD_ATTRIBUTE");
-DB_LLDT_CommandFlags("LLDT_ADD_ABILITY");
-DB_LLDT_CommandFlags("LLDT_ADD_CIVIL");
-DB_LLDT_CommandFlags("LLDT_ADD_TALENT");
-DB_LLDT_CommandFlags("LLDT_ADD_ALL");
-DB_LLDT_CommandFlags("LLDT_ADD_ATTRIBUTE_PARTY");
-DB_LLDT_CommandFlags("LLDT_ADD_ABILITY_PARTY");
-DB_LLDT_CommandFlags("LLDT_ADD_CIVIL_PARTY");
-DB_LLDT_CommandFlags("LLDT_ADD_TALENT_PARTY");
-DB_LLDT_CommandFlags("LLDT_ADD_ALL_PARTY");
-DB_LLDT_CommandFlags("LLDT_ADD_SKILLS_MENU");
-DB_LLDT_CommandFlags("LLDT_ADD_SKILLS_ESSENTIALS");
-DB_LLDT_CommandFlags("LLDT_ADD_SKILLS_TREASURE");
-DB_LLDT_CommandFlags("LLDT_ADD_SKILLS");
-DB_LLDT_CommandFlags("LLDT_ADD_SKILLS_PARTY");
-DB_LLDT_CommandFlags("LLDT_REMOVE_SKILLS");
-DB_LLDT_CommandFlags("LLDT_REMOVE_SKILLS_PARTY");
+LLDT_Menu_BuildSettings();
 KBSECTION
 //REGION RESET
 PROC
@@ -60,6 +19,60 @@ DB_LLDT_PartyCommandFlags(_Flag)
 THEN
 PartyClearFlag(_Player, _Flag, _Instance);
 */
+//END_REGION
+
+//REGION BUILD_SETTINGS
+PROC
+LLDT_Menu_BuildSettings()
+THEN
+SysClear("DB_LLDT_Skills_All", 1);
+DB_LLDT_Skills_All("Shout_LLDT_OpenMenu");
+DB_LLDT_Skills_All("Target_LLDT_GenerateTradeTreasure");
+DB_LLDT_Skills_All("Target_LLDT_ClearTradeTreasure");
+DB_LLDT_Skills_All("Target_LLDT_ClearItems");
+DB_LLDT_Skills_All("Target_LLDT_GenGold");
+DB_LLDT_Skills_All("Target_LLDT_LevelUp");
+DB_LLDT_Skills_All("Shout_LLDT_LevelUpParty");
+DB_LLDT_Skills_All("Target_LLDT_TeleportSelf");
+DB_LLDT_Skills_All("Target_LLDT_TeleportParty");
+DB_LLDT_Skills_All("Teleportation_LLDT_TeleportTarget");
+
+SysClear("DB_LLDT_Skills_Essentials", 1);
+DB_LLDT_Skills_Essentials("Shout_LLDT_OpenMenu");
+DB_LLDT_Skills_Essentials("Target_LLDT_GenGold");
+DB_LLDT_Skills_Essentials("Target_LLDT_LevelUp");
+DB_LLDT_Skills_Essentials("Shout_LLDT_LevelUpParty");
+DB_LLDT_Skills_Essentials("Target_LLDT_TeleportSelf");
+DB_LLDT_Skills_Essentials("Target_LLDT_TeleportParty");
+DB_LLDT_Skills_Essentials("Teleportation_LLDT_TeleportTarget");
+
+SysClear("DB_LLDT_Skills_Treasure", 1);
+DB_LLDT_Skills_Treasure("Shout_LLDT_OpenMenu");
+DB_LLDT_Skills_Treasure("Target_LLDT_GenerateTradeTreasure");
+DB_LLDT_Skills_Treasure("Target_LLDT_ClearTradeTreasure");
+DB_LLDT_Skills_Treasure("Target_LLDT_ClearItems");
+DB_LLDT_Skills_Treasure("Target_LLDT_GenGold");
+
+SysClear("DB_LLDT_CommandFlags", 1);
+DB_LLDT_CommandFlags("LLDT_ADD_ATTRIBUTE");
+DB_LLDT_CommandFlags("LLDT_ADD_ABILITY");
+DB_LLDT_CommandFlags("LLDT_ADD_CIVIL");
+DB_LLDT_CommandFlags("LLDT_ADD_TALENT");
+DB_LLDT_CommandFlags("LLDT_ADD_ALL");
+DB_LLDT_CommandFlags("LLDT_ADD_ATTRIBUTE_PARTY");
+DB_LLDT_CommandFlags("LLDT_ADD_ABILITY_PARTY");
+DB_LLDT_CommandFlags("LLDT_ADD_CIVIL_PARTY");
+DB_LLDT_CommandFlags("LLDT_ADD_TALENT_PARTY");
+DB_LLDT_CommandFlags("LLDT_ADD_ALL_PARTY");
+DB_LLDT_CommandFlags("LLDT_ADD_SKILLS_MENU");
+DB_LLDT_CommandFlags("LLDT_ADD_SKILLS_ESSENTIALS");
+DB_LLDT_CommandFlags("LLDT_ADD_SKILLS_TREASURE");
+DB_LLDT_CommandFlags("LLDT_ADD_SKILLS");
+DB_LLDT_CommandFlags("LLDT_ADD_SKILLS_PARTY");
+DB_LLDT_CommandFlags("LLDT_REMOVE_SKILLS");
+DB_LLDT_CommandFlags("LLDT_REMOVE_SKILLS_PARTY");
+DB_LLDT_CommandFlags("LLDT_REMOVE_COLLAR");
+DB_LLDT_CommandFlags("LLDT_REMOVE_COLLAR_PARTY");
 //END_REGION
 
 //REGION POINTS
@@ -316,17 +329,49 @@ LLDT_Menu_UnlockAllWaypoints(_Player);
 
 //END_REGION
 
+//REGION IMMORTALITY
 IF
-ObjectFlagSet("LLDT_ADD_IMMORTALITY", (CHARACTERGUID)_Player, _Instance)
+ObjectFlagSet("LLDT_IMMORTALITY_ENABLED", (CHARACTERGUID)_Player, _Instance)
 THEN
+LLDT_Helpers_SetTag(_Player, "DEATHFOG_IMMUNE");
+LLDT_Helpers_SetTag(_Player, "CHICKENTOUCH_IMMUNE");
 CharacterSetImmortal(_Player, 1);
-ObjectClearFlag(_Player, "LLDT_ADD_IMMORTALITY");
+ProcSetInvulnerable(_Player, 1);
+DisplayText(_Player, "<font color='#A52A2A' size='30'>There can only be ONE!</font>");
+PlayAnimation(_Player, "", "");
+PlayAnimation(_Player, "skill_cast_shout_01_cast", "");
 
 IF
-ObjectFlagSet("LLDT_REMOVE_IMMORTALITY", (CHARACTERGUID)_Player, _Instance)
+ObjectFlagCleared("LLDT_IMMORTALITY_ENABLED", (CHARACTERGUID)_Player, _Instance)
 THEN
+LLDT_Helpers_ResetTag(_Player, "DEATHFOG_IMMUNE");
+LLDT_Helpers_ResetTag(_Player, "CHICKENTOUCH_IMMUNE");
 CharacterSetImmortal(_Player, 0);
-ObjectClearFlag(_Player, "LLDT_REMOVE_IMMORTALITY");
+ProcSetInvulnerable(_Player, 0);
+DisplayText(_Player, "<font size='26'>I'm... <font color='#FFFF00' size='13'>mortal</font>...</font>");
+PlayAnimation(_Player, "", "");
+PlayAnimation(_Player, "emotion_sad", "");
+
+//END_REGION
+
+//REGION SOURCE_COLLAR
+IF
+ObjectFlagSet("LLDT_REMOVE_COLLAR_PARTY", (CHARACTERGUID)_Speaker, _Instance)
+AND
+LLDT_QRY_ClearFlag(_Speaker, "LLDT_REMOVE_COLLAR_PARTY")
+AND
+DB_IsPlayer(_Player)
+THEN
+ObjectSetFlag(_Player, "FTJ_RemoveSourceCollar");
+
+//END_REGION
+
+//REGION MOD_UPDATE
+PROC
+LLDT_System_UpdateAll()
+THEN
+LLDT_Menu_BuildSettings();
+//END_REGION
 EXITSECTION
 
 ENDEXITSECTION

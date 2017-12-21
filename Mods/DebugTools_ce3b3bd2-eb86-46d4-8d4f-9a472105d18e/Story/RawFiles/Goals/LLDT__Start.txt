@@ -5,6 +5,7 @@ DB_LLDT_DebugItems("LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e", 1)
 //DB_LLDT_DebugItems("LLDT_Debug_DebugTool_Peace_d53e549c-5003-47a8-b7cf-852f4711c076", 1);
 //DB_LLDT_DebugItems("LLDT_Debug_DebugTool_Kill_1955e0c9-3272-48d0-88b9-db356ab921a9", 1);
 KBSECTION
+//REGION DESTROYER
 IF
 SavegameLoaded(_,_,_,_)
 AND
@@ -54,6 +55,8 @@ AND
 _Template == "LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e"
 THEN
 SetVarObject(_Item, "Owner", _Player);
+
+//END_REGION
 
 //REGION FORK
 IF
@@ -127,6 +130,24 @@ AND
 CharacterHasSkill(_Player, "Shout_LLDT_OpenMenu", 0)
 THEN
 CharacterAddSkill(_Player, "Shout_LLDT_OpenMenu");
+//END_REGION
+
+//REGION MOD_UPDATE
+PROC
+LLDT_System_UpdateAll()
+AND
+DB_Mods_RegisteredMod("DebugTools", _Version, _Author)
+THEN
+NOT DB_Mods_RegisteredMod("DebugTools", _Version, _Author);
+
+IF
+SavegameLoaded(_,_,_,_)
+AND
+NOT DB_Mods_RegisteredMod("DebugTools", "1.1.2.0", "LaughingLeader")
+THEN
+LLDT_System_UpdateAll();
+DB_Mods_RegisteredMod("DebugTools", "1.1.2.0", "LaughingLeader");
+
 //END_REGION
 EXITSECTION
 

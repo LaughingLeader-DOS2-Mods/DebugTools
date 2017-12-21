@@ -20,6 +20,59 @@ THEN
 PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01", _X,_Y,_Z);
 //END_REGION
 
+//REGION TAGS
+QRY
+LLDT_QRY_Helpers_StoreInitialTagValue((CHARACTERGUID)_Player, (STRING)_Tag)
+AND
+NOT DB_LLDT_InitialTag(_Player, _Tag, _)
+AND
+IsTagged(_Player, _Tag, _InitialVal)
+THEN
+DB_LLDT_InitialTag(_Player, _Tag, _InitialVal);
+
+QRY
+LLDT_QRY_Helpers_StoreInitialTagValue((CHARACTERGUID)_Player, (STRING)_Tag)
+AND
+DB_LLDT_InitialTag(_Player, _Tag, _InitialVal)
+THEN
+DB_NOOP(1);
+
+PROC
+LLDT_Helpers_SetTag((CHARACTERGUID)_Player, (STRING)_Tag)
+AND
+LLDT_QRY_Helpers_StoreInitialTagValue(_Player, _Tag)
+THEN
+SetTag(_Player, _Tag);
+
+PROC
+LLDT_Helpers_ClearTag((CHARACTERGUID)_Player, (STRING)_Tag)
+AND
+LLDT_QRY_Helpers_StoreInitialTagValue(_Player, _Tag)
+THEN
+ClearTag(_Player, _Tag);
+
+PROC
+LLDT_Helpers_ResetTag((CHARACTERGUID)_Player, (STRING)_Tag)
+AND
+DB_LLDT_InitialTag(_Player, _Tag, _InitialVal)
+AND
+_InitialVal > 0
+THEN
+SetTag(_Player, _Tag);
+NOT DB_LLDT_InitialTag(_Player, _Tag, _InitialVal);
+
+PROC
+LLDT_Helpers_ResetTag((CHARACTERGUID)_Player, (STRING)_Tag)
+AND
+DB_LLDT_InitialTag(_Player, _Tag, _InitialVal)
+AND
+_InitialVal <= 0
+THEN
+ClearTag(_Player, _Tag);
+NOT DB_LLDT_InitialTag(_Player, _Tag, _InitialVal);
+
+//END_REGION
+
 QRY
 LLDT_QRY_ClearFlag((GUIDSTRING)_Object, (STRING)_Flag)
 THEN

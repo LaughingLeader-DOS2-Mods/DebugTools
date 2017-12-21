@@ -1,9 +1,14 @@
 DebugTools Changelog
 =======
-# 1.1.2.0 (Soon)
+# 1.1.2.0
 * Debug Menu
-	* New Commands
+	* New Commands Menu
 		* Enable/Disable Immortality
+			* Makes you completely immune to damage and death.
+		* Moved Unlock Waypoints command to Commands Menu.
+		* New Remove Source Collar Commands
+			* Available in both a single (self) command and a party-wide command.
+	
 		
 # 1.1.1.1
 * Rebuilt the story to incorporate the new patch changes (no actual changes to DebugTools scripts).
