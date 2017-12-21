@@ -8,7 +8,12 @@ DebugTools Changelog
 		* Moved Unlock Waypoints command to Commands Menu.
 		* New Remove Source Collar Commands
 			* Available in both a single (self) command and a party-wide command.
-	
+		* New Fully Heal Party Command
+		* New Resurrect Party Commands
+			* Also restores full health to the resurrected character.
+	* Add Points (Self) & (Party) Menus
+		* New Add Source Point Command
+		* New Increase/Decrease Max Source Points Command
 		
 # 1.1.1.1
 * Rebuilt the story to incorporate the new patch changes (no actual changes to DebugTools scripts).
