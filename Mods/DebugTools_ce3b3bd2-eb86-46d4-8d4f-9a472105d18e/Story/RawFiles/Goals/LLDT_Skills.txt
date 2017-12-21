@@ -179,10 +179,19 @@ IF
 CharacterUsedSkill(_Player, "Shout_LLDT_OpenMenu", _)
 AND
 DB_IsPlayer(_Player)
-//AND
-//CharacterIsInCombat(_Player, 0)
+AND
+CharacterIsInCombat(_Player, 0)
 THEN
 Proc_StartDialog(0, "LLDT_DebugMenu", _Player, _Player);
+
+IF
+CharacterUsedSkill(_Player, "Shout_LLDT_OpenMenu", _)
+AND
+DB_IsPlayer(_Player)
+AND
+CharacterIsInCombat(_Player, 1)
+THEN
+CharacterStatusText(_Player, "<font color='FE2E2E'>Debug Menu cannot be opened while in combat.</font>");
 
 IF
 DialogStarted("LLDT_DebugMenu", _Instance)
@@ -190,8 +199,6 @@ AND
 DialogGetInvolvedPlayer(_Instance, 0, (CHARACTERGUID)_Player)
 THEN
 LLDT_Menu_ResetCommands(_Player);
-//LLDT_Menu_ResetPartyCommands(_Player, _Instance);
-
 //END_REGION
 
 //REGION TELEPORT

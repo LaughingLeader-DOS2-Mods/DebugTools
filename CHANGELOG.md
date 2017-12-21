@@ -2,18 +2,20 @@ DebugTools Changelog
 =======
 # 1.1.2.0
 * Debug Menu
-	* New Commands Menu
+	* New Quick Commands Menu
 		* Enable/Disable Immortality
 			* Makes you completely immune to damage and death.
-		* Moved Unlock Waypoints command to Commands Menu.
+		* Moved Unlock Waypoints command to Quick Commands Menu.
 		* New Remove Source Collar Commands
-			* Available in both a single (self) command and a party-wide command.
+			* Available for both (Self) and (Party).
 		* New Fully Heal Party Command
 		* New Resurrect Party Commands
 			* Also restores full health to the resurrected character.
-	* Add Points (Self) & (Party) Menus
+	* Add Points (Self)/(Party) Menus
 		* New Add Source Point Command
 		* New Increase/Decrease Max Source Points Command
+* Fork
+	* Made the "Kill Mode" fork a little more ridiculous.
 		
 # 1.1.1.1
 * Rebuilt the story to incorporate the new patch changes (no actual changes to DebugTools scripts).

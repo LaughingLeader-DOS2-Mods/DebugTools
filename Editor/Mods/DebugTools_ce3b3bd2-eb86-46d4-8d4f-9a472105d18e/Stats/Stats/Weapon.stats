@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <stats stat_object_definition_id="a1fa1d2f-c335-4902-898c-4228c3c07d52">
   <stat_objects>
     <stat_object index="0" is_substat="false">
@@ -40,20 +40,27 @@
         <field name="DamageFromBase" type="IntegerStatObjectFieldDefinition" value="9999999" />
         <field name="Value" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="Weight" type="IntegerStatObjectFieldDefinition" value="0" />
-        <field name="WeaponType" type="EnumerationStatObjectFieldDefinition" value="7" enumeration_type_name="WeaponType" />
+        <field name="WeaponType" type="EnumerationStatObjectFieldDefinition" value="9" enumeration_type_name="WeaponType" />
         <field name="Slot" type="EnumerationStatObjectFieldDefinition" value="3" enumeration_type_name="Itemslot" />
         <field name="InventoryTab" type="EnumerationStatObjectFieldDefinition" value="5" enumeration_type_name="InventoryTabs" />
         <field name="RuneSlots" type="IntegerStatObjectFieldDefinition" value="0" />
-        <field name="WeaponRange" type="IntegerStatObjectFieldDefinition" value="999" />
+        <field name="WeaponRange" type="IntegerStatObjectFieldDefinition" value="6000" />
         <field name="Unique" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Skills" type="StringStatObjectFieldDefinition" value="Shout_LLDT_OpenMenu;Target_LLDT_GenerateTradeTreasure;Target_LLDT_ClearTradeTreasure;Target_LLDT_ClearItems;Target_LLDT_GenGold;Target_LLDT_LevelUp;Shout_LLDT_LevelUpParty;Shout_LLDT_DisableKillMode;Target_LLDT_TeleportSelf;Target_LLDT_TeleportParty;Teleportation_LLDT_TeleportTarget" />
         <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
         <field name="Requirements" type="StringStatObjectFieldDefinition" value="Finesse 0" />
         <field name="CriticalDamage" type="IntegerStatObjectFieldDefinition" value="1080" />
         <field name="CriticalChance" type="IntegerStatObjectFieldDefinition" value="1920" />
-        <field name="CleavePercentage" type="IntegerStatObjectFieldDefinition" value="200" />
-        <field name="CleaveAngle" type="IntegerStatObjectFieldDefinition" value="180" />
-        <field name="Initiative" type="IntegerStatObjectFieldDefinition" value="42" />
+        <field name="Initiative" type="IntegerStatObjectFieldDefinition" value="200" />
+        <field name="Projectile" type="StringStatObjectFieldDefinition" value="8b286ccf-f17a-4c47-b115-dd32fbda436f" />
+        <field name="IgnoreVisionBlock" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="ChanceToHitBoost" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="APMaximum" type="IntegerStatObjectFieldDefinition" value="10" />
+        <field name="APStart" type="IntegerStatObjectFieldDefinition" value="10" />
+        <field name="APRecovery" type="IntegerStatObjectFieldDefinition" value="10" />
+        <field name="AccuracyBoost" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="DodgeBoost" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="LifeSteal" type="IntegerStatObjectFieldDefinition" value="100" />
       </fields>
     </stat_object>
   </stat_objects>
