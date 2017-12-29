@@ -381,6 +381,75 @@ StringConcatenate(_Str3, "'", _Message)
 THEN
 LLDT_Log(_Player, _Message);
 //END_REGION
+
+//REGION EDITOR_LOGGING
+PROC
+LLDT_EditorLog((STRING)_Message)
+THEN
+LLDT_EditorLog(_Message, "", "", "", "", "");
+
+PROC
+LLDT_EditorLog((STRING)_Str1, (STRING)_Str2)
+THEN
+LLDT_EditorLog(_Str1, _Str2, "", "", "", "");
+
+PROC
+LLDT_EditorLog((STRING)_Str1, (STRING)_Str2, (STRING)_Str3)
+THEN
+LLDT_EditorLog(_Str1, _Str2, _Str3, "", "", "");
+
+PROC
+LLDT_EditorLog((STRING)_Str1, (STRING)_Str2, (STRING)_Str3, (STRING)_Str4)
+THEN
+LLDT_EditorLog(_Str1, _Str2, _Str3, _Str4, "", "");
+
+PROC
+LLDT_EditorLog((STRING)_Str1, (STRING)_Str2, (STRING)_Str3, (STRING)_Str4, (STRING)_Str5)
+THEN
+LLDT_EditorLog(_Str1, _Str2, _Str3, _Str4, _Str5, "");
+
+PROC
+LLDT_EditorLog((STRING)_Str1, (STRING)_Str2, (STRING)_Str3, (STRING)_Str4, (STRING)_Str5, (STRING)_Str6)
+AND
+GlobalGetFlag("LLDT_EDITORMODE", 1)
+AND
+StringConcatenate(_Str1, _Str2, _Msg1)
+AND
+StringConcatenate(_Msg1, _Str3, _Msg2)
+AND
+StringConcatenate(_Msg2, _Str4, _Msg3)
+AND
+StringConcatenate(_Msg3, _Str5, _Msg4)
+AND
+StringConcatenate("LLDT|", _Msg4, _LoggedMessage)
+THEN
+DebugBreak(_LoggedMessage);
+
+IF
+StoryEvent((CHARACTERGUID)_Player, "LLDT_Event_PlayerDebugLog")
+AND
+GlobalGetFlag("LLDT_EDITORMODE", 1)
+AND
+GetVarFixedString(_Player, "LLDebugTools_LogText", _LoggedMessage)
+THEN
+DebugBreak(_LoggedMessage);
+
+IF
+GameStarted(_,_EditorMode)
+AND
+_EditorMode > 0
+THEN
+GlobalSetFlag("LLDT_EDITORMODE");
+
+IF
+GameStarted(_,_EditorMode)
+AND
+_EditorMode <= 0
+AND
+GlobalGetFlag("LLDT_EDITORMODE", 1)
+THEN
+GlobalClearFlag("LLDT_EDITORMODE");
+//END_REGION
 EXITSECTION
 
 ENDEXITSECTION

@@ -1,0 +1,413 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+LLDT_RaceMenu_BuildSettings();
+
+//Settings
+//DB_LLDT_RaceMenu_RaceTemplates(_Race, _Gender, _Template);
+//DB_LLDT_RaceMenu_UndeadRaceTemplates(_Race, _Gender, _Template);
+//DB_LLDT_RaceMenu_FlagToRace(_Flag, _Race);
+//DB_LLDT_RaceMenu_RaceSkills(_Race, _Skill);
+//DB_LLDT_RaceMenu_RaceTalents(_Race, _Talent, _Undead);
+//DB_LLDT_RaceMenu_RaceSkills("All", "Dome_CircleOfProtection");
+//DB_LLDT_RaceMenu_RaceSkills("Undead", "Shout_PlayDead");
+//"UNDEAD"
+//DB_LLDT_RaceMenu_UndeadTags(_Race, _Tag);
+//Temp Data
+//DB_LLDT_RaceMenu_OriginalCharacterTemplate(_Player, _Template);
+//DB_LLDT_RaceMenu_Selected(_Player, _Race, _Gender, _Undead)
+KBSECTION
+//REGION BUILD_SETTINGS
+PROC
+LLDT_RaceMenu_BuildSettings()
+THEN
+SysClear("DB_LLDT_RaceMenu_RaceTemplates", 3);
+DB_LLDT_RaceMenu_RaceTemplates("Dwarf", "Female", "Dwarves_Hero_Female_c1c58707-b06e-499e-9c43-91a90be602b0");
+DB_LLDT_RaceMenu_RaceTemplates("Dwarf", "Male", "Dwarves_Hero_Male_024d1763-b2aa-46ec-b705-6338059838be");
+DB_LLDT_RaceMenu_RaceTemplates("Elf", "Female", "Elves_Hero_Female_7ef846f5-34dc-450c-815e-a58dfc190a7b");
+DB_LLDT_RaceMenu_RaceTemplates("Elf", "Male", "Elves_Hero_Male_19913083-924e-45ec-8b5b-119d5913722f");
+DB_LLDT_RaceMenu_RaceTemplates("Human", "Female", "Humans_Hero_Female_de8ea39b-6989-4b93-b34a-81e549c540f2");
+DB_LLDT_RaceMenu_RaceTemplates("Human", "Male", "Humans_Hero_Male_25611432-e5e4-482a-8f5d-196c9e90001e");
+DB_LLDT_RaceMenu_RaceTemplates("Lizard", "Female", "Lizards_Hero_Female_e4a6bcfa-ecd6-4e56-8592-cd16b85a1c50");
+DB_LLDT_RaceMenu_RaceTemplates("Lizard", "Male", "Lizards_Hero_Male_fa12e21f-0a10-47dd-af46-ab2c9a53cf6d");
+
+SysClear("DB_LLDT_RaceMenu_UndeadRaceTemplates", 3);
+DB_LLDT_RaceMenu_UndeadRaceTemplates("Dwarf", "Female", "Dwarves_Hero_Female_Undead_373a1966-a54d-4a3e-be70-e779a654c914");
+DB_LLDT_RaceMenu_UndeadRaceTemplates("Dwarf", "Male", "Dwarves_Hero_Male_Undead_726442a5-6856-4b0d-91ed-5d2f003b8a0c");
+DB_LLDT_RaceMenu_UndeadRaceTemplates("Elf", "Female", "Elves_Hero_Female_Undead_7f366172-9fd1-45df-8719-a6d14cb534b3");
+DB_LLDT_RaceMenu_UndeadRaceTemplates("Elf", "Male", "Elves_Hero_Male_Undead_9eeaaafd-c47d-4650-9200-b00430d61e83");
+DB_LLDT_RaceMenu_UndeadRaceTemplates("Human", "Female", "Humans_Hero_Female_Undead_3bd0693d-0b0a-4f6d-93e2-aea9be654bee");
+DB_LLDT_RaceMenu_UndeadRaceTemplates("Human", "Male", "Humans_Hero_Male_Undead_5ab5d036-4606-4265-962e-c2e4d2d2408b");
+DB_LLDT_RaceMenu_UndeadRaceTemplates("Lizard", "Female", "Lizards_Hero_Female_Undead_725f9a47-a3d4-41d2-92cf-017d18c2b212");
+DB_LLDT_RaceMenu_UndeadRaceTemplates("Lizard", "Male", "Lizards_Hero_Male_Undead_57b70554-36bf-4b86-b9aa-8f7cc3944153");
+
+SysClear("DB_LLDT_RaceMenu_FlagToRace", 2);
+DB_LLDT_RaceMenu_FlagToRace("LLDT_RACECHANGE_DWARF", "Dwarf");
+DB_LLDT_RaceMenu_FlagToRace("LLDT_RACECHANGE_ELF", "Elf");
+DB_LLDT_RaceMenu_FlagToRace("LLDT_RACECHANGE_HUMAN", "Human");
+DB_LLDT_RaceMenu_FlagToRace("LLDT_RACECHANGE_LIZARD", "Lizard");
+
+SysClear("DB_LLDT_RaceMenu_RaceSkills", 2);
+DB_LLDT_RaceMenu_RaceSkills("Dwarf", "Target_PetrifyingTouch");
+DB_LLDT_RaceMenu_RaceSkills("Elf", "Shout_FleshSacrifice");
+DB_LLDT_RaceMenu_RaceSkills("Human", "Shout_InspireStart");
+DB_LLDT_RaceMenu_RaceSkills("Lizard", "Cone_Flamebreath");
+
+SysClear("DB_LLDT_RaceMenu_RaceTalents", 3);
+DB_LLDT_RaceMenu_RaceTalents("Dwarf", "Dwarf_Sturdy", 1);
+DB_LLDT_RaceMenu_RaceTalents("Dwarf", "Dwarf_Sneaking", 0);
+DB_LLDT_RaceMenu_RaceTalents("Elf", "Elf_CorpseEating", 1);
+DB_LLDT_RaceMenu_RaceTalents("Elf", "Elf_Lore", 0);
+DB_LLDT_RaceMenu_RaceTalents("Human", "Human_Inventive", 1);
+DB_LLDT_RaceMenu_RaceTalents("Human", "Human_Civil", 0);
+DB_LLDT_RaceMenu_RaceTalents("Lizard", "Lizard_Persuasion", 1);
+DB_LLDT_RaceMenu_RaceTalents("Lizard", "Lizard_Resistance", 0);
+
+SysClear("DB_LLDT_RaceMenu_UndeadTags", 2);
+DB_LLDT_RaceMenu_UndeadTags("Dwarf", "UNDEAD_DWARF");
+DB_LLDT_RaceMenu_UndeadTags("Elf", "UNDEAD_ELF");
+DB_LLDT_RaceMenu_UndeadTags("Human", "UNDEAD_HUMAN");
+DB_LLDT_RaceMenu_UndeadTags("Lizard", "UNDEAD_LIZARD");
+//END_REGION
+
+//REGION DIALOG
+IF
+DialogEnded("LLDT_DebugMenu", _Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
+AND
+ObjectGetFlag(_Player, "LLDT_MENU_RACEMENU", 1)
+THEN
+Proc_StartDialog(0, "LLDT_RaceChangeMenu", _Player, _Player);
+
+IF
+DialogEnded("LLDT_RaceChangeMenu", _Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
+AND
+ObjectGetFlag(_Player, "LLDT_MENU_RACEMENU", 0)
+THEN
+Proc_StartDialog(0, "LLDT_DebugMenu", _Player, _Player);
+//END_REGION
+
+//REGION SELECTION
+PROC
+LLDT_RaceMenu_SelectRace((CHARACTERGUID)_Player, (STRING)_Race, (INTEGER)_Instance)
+AND
+NOT DB_LLDT_RaceMenu_Selected(_Player, _, _, _)
+THEN
+DB_LLDT_RaceMenu_Selected(_Player, _Race, "Female", 0);
+LLDT_RaceMenu_UpdateDialogVar(_Player, _Instance);
+
+PROC
+LLDT_RaceMenu_SelectRace((CHARACTERGUID)_Player, (STRING)_Race, (INTEGER)_Instance)
+AND
+DB_LLDT_RaceMenu_Selected(_Player, _PreviousRace, _Gender, _Undead)
+THEN
+NOT DB_LLDT_RaceMenu_Selected(_Player, _PreviousRace, _Gender, _Undead);
+DB_LLDT_RaceMenu_Selected(_Player, _Race, _Gender, _Undead);
+LLDT_RaceMenu_UpdateDialogVar(_Player, _Instance);
+
+PROC
+LLDT_RaceMenu_SelectGender((CHARACTERGUID)_Player, (STRING)_Gender, (INTEGER)_Instance)
+AND
+NOT DB_LLDT_RaceMenu_Selected(_Player, _, _, _)
+THEN
+DB_LLDT_RaceMenu_Selected(_Player, "Human", _Gender, 0);
+LLDT_RaceMenu_UpdateDialogVar(_Player, _Instance);
+
+PROC
+LLDT_RaceMenu_SelectGender((CHARACTERGUID)_Player, (STRING)_Gender, (INTEGER)_Instance)
+AND
+DB_LLDT_RaceMenu_Selected(_Player, _Race, _LastGender, _Undead)
+THEN
+NOT DB_LLDT_RaceMenu_Selected(_Player, _Race, _LastGender, _Undead);
+DB_LLDT_RaceMenu_Selected(_Player, _Race, _Gender, _Undead);
+LLDT_RaceMenu_UpdateDialogVar(_Player, _Instance);
+
+PROC
+LLDT_RaceMenu_SelectUndead((CHARACTERGUID)_Player, (INTEGER)_Undead, (INTEGER)_Instance)
+AND
+NOT DB_LLDT_RaceMenu_Selected(_Player, _, _, _)
+THEN
+DB_LLDT_RaceMenu_Selected(_Player, "Human", "Female", _Undead);
+LLDT_RaceMenu_UpdateDialogVar(_Player, _Instance);
+
+PROC
+LLDT_RaceMenu_SelectUndead((CHARACTERGUID)_Player, (INTEGER)_Undead, (INTEGER)_Instance)
+AND
+DB_LLDT_RaceMenu_Selected(_Player, _Race, _Gender, _LastUndead)
+THEN
+NOT DB_LLDT_RaceMenu_Selected(_Player, _Race, _Gender, _LastUndead);
+DB_LLDT_RaceMenu_Selected(_Player, _Race, _Gender, _Undead);
+LLDT_RaceMenu_UpdateDialogVar(_Player, _Instance);
+//END_REGION
+
+//REGION FLAGS
+IF
+ObjectFlagSet("LLDT_RACECHANGE_UPDATERACE", (CHARACTERGUID)_Player, _Instance)
+AND
+LLDT_QRY_ClearFlag(_Player, "LLDT_RACECHANGE_UPDATERACE")
+AND
+DB_LLDT_RaceMenu_FlagToRace(_Flag, _Race)
+AND
+ObjectGetFlag(_Player, _Flag, 1)
+THEN
+LLDT_RaceMenu_SelectRace(_Player, _Race, _Instance);
+DebugBreak(_Race);
+
+IF
+ObjectFlagSet("LLDT_RACECHANGE_UNDEAD", (CHARACTERGUID)_Player, _Instance)
+THEN
+LLDT_RaceMenu_SelectUndead(_Player, 1, _Instance);
+
+IF
+ObjectFlagCleared("LLDT_RACECHANGE_UNDEAD", (CHARACTERGUID)_Player, _Instance)
+THEN
+LLDT_RaceMenu_SelectUndead(_Player, 0, _Instance);
+
+IF
+ObjectFlagSet("LLDT_RACECHANGE_MALE", (CHARACTERGUID)_Player, _Instance)
+THEN
+LLDT_RaceMenu_SelectGender(_Player, "Male", _Instance);
+
+IF
+ObjectFlagCleared("LLDT_RACECHANGE_MALE", (CHARACTERGUID)_Player, _Instance)
+THEN
+LLDT_RaceMenu_SelectGender(_Player, "Female", _Instance);
+
+IF
+ObjectFlagSet("LLDT_RACECHANGE_READY", (CHARACTERGUID)_Player, _Instance)
+AND
+LLDT_QRY_ClearFlag(_Player, "LLDT_RACECHANGE_READY")
+THEN
+LLDT_RaceMenu_ChangeRace(_Player);
+
+IF
+ObjectFlagSet("LLDT_RACECHANGE_REVERT", (CHARACTERGUID)_Player, _Instance)
+AND
+LLDT_QRY_ClearFlag(_Player, "LLDT_RACECHANGE_REVERT")
+AND
+DB_LLDT_RaceMenu_OriginalCharacterTemplate(_Player, _Template)
+THEN
+PlayEffect(_Player, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+CharacterTransform(_Player, _Template, 0, 0, 0, 0, 0, 0, 0);
+CharacterStatusText(_Player, "<font color='#00FF7F'>Appearance Reverted to Initial Settings</font>");
+NOT DB_LLDT_RaceMenu_OriginalCharacterTemplate(_Player, _Template);
+ObjectClearFlag(_Player, "LLDT_RACECHANGE_SAVED");
+//END_REGION
+
+//REGION CHANGING
+PROC
+LLDT_RaceMenu_StoreOriginalTemplate((CHARACTERGUID)_Player)
+AND
+NOT DB_LLDT_RaceMenu_OriginalCharacterTemplate(_Player, _)
+AND
+GetTemplate(_Player, _Template)
+THEN
+DB_LLDT_RaceMenu_OriginalCharacterTemplate(_Player, _Template);
+ObjectSetFlag(_Player, "LLDT_RACECHANGE_SAVED");
+
+PROC
+LLDT_RaceMenu_UpdateDialogVar((CHARACTERGUID)_Player, (INTEGER)_Instance)
+AND
+DB_LLDT_RaceMenu_Selected(_Player, _Race, _Gender, _Undead)
+AND
+StringConcatenate("Race[", _Race, _Str1)
+AND
+StringConcatenate(_Str1, "] Gender[", _Str2)
+AND
+StringConcatenate(_Str2, _Gender, _Str3)
+AND
+StringConcatenate(_Str3, "] Undead[", _Str4)
+AND
+IntegertoString(_Undead, _UndeadStr)
+AND
+StringConcatenate(_Str4, _UndeadStr, _Str5)
+AND
+StringConcatenate(_Str5, "]", _Val)
+THEN
+DialogSetVariableStringForInstance(_Instance, "LLDT_RaceChangeMenu_SettingsDisplay_24e832d8-5f1b-44c6-9c99-59ec7907c478", _Val);
+
+PROC
+LLDT_RaceMenu_ChangeRace((CHARACTERGUID)_Player)
+AND
+DB_LLDT_RaceMenu_Selected(_Player, _Race, _Gender, _Undead)
+AND
+_Undead <= 0
+AND
+DB_LLDT_RaceMenu_RaceTemplates(_Race, _Gender, _Template)
+THEN
+LLDT_RaceMenu_StoreOriginalTemplate(_Player);
+PlayEffect(_Player, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+CharacterTransform(_Player, _Template, 0, 0, 0, 0, 0, 0, 0);
+CharacterStatusText(_Player, "<font color='#00FF7F'>Race Changed</font>");
+
+PROC
+LLDT_RaceMenu_ChangeRace((CHARACTERGUID)_Player)
+AND
+DB_LLDT_RaceMenu_Selected(_Player, _Race, _Gender, _Undead)
+AND
+_Undead > 0
+AND
+DB_LLDT_RaceMenu_UndeadRaceTemplates(_Race, _Gender, _Template)
+THEN
+LLDT_RaceMenu_StoreOriginalTemplate(_Player);
+PlayEffect(_Player, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+CharacterTransform(_Player, _Template, 0, 0, 0, 0, 0, 0, 0);
+CharacterStatusText(_Player, "<font color='#00FF7F'>Race Changed</font>");
+
+PROC
+LLDT_RaceMenu_ChangeRace((CHARACTERGUID)_Player)
+AND
+DB_LLDT_RaceMenu_Selected(_Player, _Race, _Gender, _Undead)
+THEN
+LLDT_RaceMenu_UpdateRaceSkills(_Player, _Race, _Undead);
+LLDT_RaceMenu_UpdateTags(_Player, _Race, _Undead);
+LLDT_RaceMenu_UpdateRaceTalents(_Player, _Race, _Undead);
+NOT DB_LLDT_RaceMenu_Selected(_Player, _Race, _Gender, _Undead);
+//END_REGION
+
+//REGION UPDATE_SKILLS_TALENTS
+PROC
+LLDT_RaceMenu_UpdateRaceSkills((CHARACTERGUID)_Player, (STRING)_CurrentRace, 0)
+AND
+DB_LLDT_RaceMenu_RaceSkills(_CurrentRace, _Skill)
+AND
+CharacterHasSkill(_Player, _Skill, 0)
+THEN
+CharacterAddSkill(_Player, _Skill);
+
+PROC
+LLDT_RaceMenu_UpdateRaceSkills((CHARACTERGUID)_Player, (STRING)_CurrentRace, (INTEGER)_Undead)
+AND
+DB_LLDT_RaceMenu_RaceSkills(_Race, _Skill)
+AND
+_Race != _CurrentRace
+AND
+CharacterHasSkill(_Player, _Skill, 1)
+THEN
+CharacterRemoveSkill(_Player, _Skill);
+
+PROC
+LLDT_RaceMenu_UpdateRaceSkills((CHARACTERGUID)_Player, (STRING)_CurrentRace, 0)
+AND
+CharacterHasSkill(_Player, "Shout_PlayDead", 1)
+THEN
+CharacterRemoveSkill(_Player, "Shout_PlayDead");
+
+PROC
+LLDT_RaceMenu_UpdateRaceSkills((CHARACTERGUID)_Player, (STRING)_CurrentRace, 1)
+AND
+CharacterHasSkill(_Player, "Shout_PlayDead", 0)
+THEN
+CharacterAddSkill(_Player, "Shout_PlayDead");
+
+//Non-Undead get all race-related talents
+PROC
+LLDT_RaceMenu_UpdateRaceTalents((CHARACTERGUID)_Player, (STRING)_CurrentRace, 0)
+AND
+DB_LLDT_RaceMenu_RaceTalents(_CurrentRace, _Talent, _UndeadAllowed)
+AND
+CharacterHasTalent(_Player, _Talent, 0)
+THEN
+CharacterAddTalent(_Player, _Talent);
+
+//Undead only get specific race talents.
+PROC
+LLDT_RaceMenu_UpdateRaceTalents((CHARACTERGUID)_Player, (STRING)_CurrentRace, 1)
+AND
+DB_LLDT_RaceMenu_RaceTalents(_CurrentRace, _Talent, 1)
+AND
+CharacterHasTalent(_Player, _Talent, 0)
+THEN
+CharacterAddTalent(_Player, _Talent);
+
+PROC
+LLDT_RaceMenu_UpdateRaceTalents((CHARACTERGUID)_Player, (STRING)_CurrentRace, (INTEGER)_Undead)
+AND
+DB_LLDT_RaceMenu_RaceTalents(_Race, _Talent, _UndeadAllowed)
+AND
+_Race != _CurrentRace
+AND
+CharacterHasTalent(_Player, _Talent, 1)
+THEN
+CharacterRemoveTalent(_Player, _Talent);
+
+PROC
+LLDT_RaceMenu_UpdateRaceTalents((CHARACTERGUID)_Player, (STRING)_CurrentRace, 1)
+AND
+DB_LLDT_RaceMenu_RaceTalents(_Race, _Talent, 0)
+AND
+CharacterHasTalent(_Player, _Talent, 1)
+THEN
+CharacterRemoveTalent(_Player, _Talent);
+
+PROC
+LLDT_RaceMenu_UpdateRaceTalents((CHARACTERGUID)_Player, (STRING)_CurrentRace, 1)
+AND
+CharacterHasTalent(_Player, "Zombie", 0)
+THEN
+CharacterAddTalent(_Player, "Zombie");
+
+PROC
+LLDT_RaceMenu_UpdateRaceTalents((CHARACTERGUID)_Player, (STRING)_CurrentRace, 0)
+AND
+CharacterHasTalent(_Player, "Zombie", 1)
+THEN
+CharacterRemoveTalent(_Player, "Zombie");
+
+PROC
+LLDT_RaceMenu_UpdateTags((CHARACTERGUID)_Player, (STRING)_CurrentRace, 1)
+AND
+IsTagged(_Player, "UNDEAD", 0)
+THEN
+SetTag(_Player, "UNDEAD");
+
+PROC
+LLDT_RaceMenu_UpdateTags((CHARACTERGUID)_Player, (STRING)_Race, 1)
+AND
+DB_LLDT_RaceMenu_UndeadTags(_Race, _Tag)
+AND
+IsTagged(_Player, _Tag, 0)
+THEN
+SetTag(_Player, _Tag);
+
+PROC
+LLDT_RaceMenu_UpdateTags((CHARACTERGUID)_Player, (STRING)_CurrentRace, 1)
+AND
+DB_LLDT_RaceMenu_UndeadTags(_Race, _Tag)
+AND
+_CurrentRace != _Race
+AND
+IsTagged(_Player, _Tag, 1)
+THEN
+ClearTag(_Player, _Tag);
+
+PROC
+LLDT_RaceMenu_UpdateTags((CHARACTERGUID)_Player, (STRING)_CurrentRace, 0)
+AND
+DB_LLDT_RaceMenu_UndeadTags(_Race, _Tag)
+AND
+IsTagged(_Player, _Tag, 1)
+THEN
+ClearTag(_Player, _Tag);
+
+PROC
+LLDT_RaceMenu_UpdateTags((CHARACTERGUID)_Player, (STRING)_Race, 0)
+AND
+IsTagged(_Player, "UNDEAD", 1)
+THEN
+ClearTag(_Player, "UNDEAD");
+//END_REGION
+
+//REGION MOD_UPDATE
+PROC
+LLDT_System_UpdateAll()
+THEN
+LLDT_RaceMenu_BuildSettings();
+//END_REGION
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "ZZZ_LL_DebugTools"

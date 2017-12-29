@@ -181,8 +181,21 @@ AND
 DB_IsPlayer(_Player)
 AND
 CharacterIsInCombat(_Player, 0)
+AND
+ObjectGetFlag(_Player, "LLDT_MENU_RACEMENU", 0)
 THEN
 Proc_StartDialog(0, "LLDT_DebugMenu", _Player, _Player);
+
+IF
+CharacterUsedSkill(_Player, "Shout_LLDT_OpenMenu", _)
+AND
+DB_IsPlayer(_Player)
+AND
+CharacterIsInCombat(_Player, 0)
+AND
+ObjectGetFlag(_Player, "LLDT_MENU_RACEMENU", 1)
+THEN
+Proc_StartDialog(0, "LLDT_RaceChangeMenu", _Player, _Player);
 
 IF
 CharacterUsedSkill(_Player, "Shout_LLDT_OpenMenu", _)

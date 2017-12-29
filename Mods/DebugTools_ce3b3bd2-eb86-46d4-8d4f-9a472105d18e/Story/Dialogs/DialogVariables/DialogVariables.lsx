@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1514560122" />
+    <version major="3" minor="1" revision="5" build="0" />
+    <region id="DialogVariables">
+        <node id="root">
+            <children>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="" type="23" />
+                    <attribute id="Description" value="Displays the final settings before a player changes their appearance." type="23" />
+                    <attribute id="UUID" value="24e832d8-5f1b-44c6-9c99-59ec7907c478" type="31" />
+                    <attribute id="name" value="LLDT_RaceChangeMenu_SettingsDisplay" type="22" />
+                    <attribute id="type" value="String" type="23" />
+                </node>
+            </children>
+        </node>
+    </region>
+</save>
