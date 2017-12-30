@@ -1,7 +1,7 @@
 {
    "save" : {
       "header" : {
-         "time" : 1514565282,
+         "time" : 1514656843,
          "version" : "2.0.8.2"
       },
       "regions" : {
@@ -590,7 +590,7 @@
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
-                                                   "value" : "[Race Change Menu]"
+                                                   "value" : "[Race Change Menu] *EXPERIMENTAL*"
                                                 },
                                                 "stub" : {"type" : 19, "value" : 1}
                                              }

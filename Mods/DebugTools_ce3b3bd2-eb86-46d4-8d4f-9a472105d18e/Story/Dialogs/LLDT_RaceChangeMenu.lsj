@@ -1,7 +1,7 @@
 {
    "save" : {
       "header" : {
-         "time" : 1514564946,
+         "time" : 1514657460,
          "version" : "2.0.8.2"
       },
       "regions" : {
@@ -1830,9 +1830,9 @@
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
-                                                   "value" : "Yes, change appearance."
+                                                   "value" : "Yes, change appearance. <b>*WARNING*</b> - This may have unintended consequences."
                                                 },
-                                                "stub" : {"type" : 19, "value" : 1}
+                                                "stub" : {"type" : 19, "value" : 0}
                                              }
                                           ]
                                        }
