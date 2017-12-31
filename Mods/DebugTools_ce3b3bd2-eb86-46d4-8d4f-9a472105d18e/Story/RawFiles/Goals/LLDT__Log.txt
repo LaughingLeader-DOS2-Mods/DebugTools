@@ -425,6 +425,36 @@ StringConcatenate("LLDT|", _Msg4, _LoggedMessage)
 THEN
 DebugBreak(_LoggedMessage);
 
+QRY
+LLDT_QRY_EditorLog((STRING)_Message)
+THEN
+LLDT_EditorLog(_Message, "", "", "", "", "");
+
+QRY
+LLDT_QRY_EditorLog((STRING)_Str1, (STRING)_Str2)
+THEN
+LLDT_EditorLog(_Str1, _Str2, "", "", "", "");
+
+QRY
+LLDT_QRY_EditorLog((STRING)_Str1, (STRING)_Str2, (STRING)_Str3)
+THEN
+LLDT_EditorLog(_Str1, _Str2, _Str3, "", "", "");
+
+QRY
+LLDT_QRY_EditorLog((STRING)_Str1, (STRING)_Str2, (STRING)_Str3, (STRING)_Str4)
+THEN
+LLDT_EditorLog(_Str1, _Str2, _Str3, _Str4, "", "");
+
+QRY
+LLDT_QRY_EditorLog((STRING)_Str1, (STRING)_Str2, (STRING)_Str3, (STRING)_Str4, (STRING)_Str5)
+THEN
+LLDT_EditorLog(_Str1, _Str2, _Str3, _Str4, _Str5, "");
+
+QRY
+LLDT_QRY_EditorLog((STRING)_Str1, (STRING)_Str2, (STRING)_Str3, (STRING)_Str4, (STRING)_Str5, (STRING)_Str6)
+THEN
+LLDT_EditorLog(_Str1, _Str2, _Str3, _Str4, _Str5, _Str6);
+
 IF
 StoryEvent((CHARACTERGUID)_Player, "LLDT_Event_PlayerDebugLog")
 AND
