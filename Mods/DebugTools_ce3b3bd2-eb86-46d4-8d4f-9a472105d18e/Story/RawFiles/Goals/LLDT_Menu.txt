@@ -532,6 +532,54 @@ CharacterSetHitpointsPercentage(_Player, 100);
 
 //END_REGION
 
+//REGION ON_OPEN
+QRY
+LLDT_QRY_Menu_BuildModList()
+THEN
+SysLog("DB_Mods_RegisteredMod", 3);
+
+QRY
+LLDT_QRY_Menu_BuildModList()
+AND
+NOT DB_LLDT_Menu_ModText(_)
+THEN
+DB_LLDT_Menu_ModText("");
+
+QRY
+LLDT_QRY_Menu_BuildModList()
+AND
+DB_Mods_RegisteredMod(_ModName, _Version, _Author)
+AND
+StringConcatenate("<b>", _ModName, _Str0)
+AND
+StringConcatenate(_Str0, "</b> (", _Str1)
+AND
+StringConcatenate(_Str1, _Version, _Str2)
+AND
+StringConcatenate(_Str2, ") by ", _Str3)
+AND
+StringConcatenate(_Str3, _Author, _Str4)
+AND
+StringConcatenate(_Str4, "<br>", _ModEntry)
+AND
+DB_LLDT_Menu_ModText(_Text)
+AND
+StringConcatenate(_Text, _ModEntry, _RegisteredMods)
+THEN
+NOT DB_LLDT_Menu_ModText(_Text);
+DB_LLDT_Menu_ModText(_RegisteredMods);
+
+IF
+DialogStarted("LLDT_DebugMenu", _Instance)
+AND
+LLDT_QRY_Menu_BuildModList()
+AND
+DB_LLDT_Menu_ModText(_RegisteredMods)
+THEN
+DialogSetVariableString("LLDT_DebugMenu", "LLDT_DebugMenu_RegisteredMods_7cdc7329-d14b-452e-bfac-2e6cff9b5d50", _RegisteredMods);
+NOT DB_LLDT_Menu_ModText(_RegisteredMods);
+//END_REGION
+
 //REGION MOD_UPDATE
 PROC
 LLDT_System_UpdateAll()

@@ -1,5 +1,12 @@
 DebugTools Changelog
 =======
+# 1.1.3.0
+* Updated to the latest hotfix.
+* Debug Menu
+	* Added a new command: View Registered Mods (LLAPI).
+		* This provides a way to view which mods have been registered under a specific database - Useful in making sure those mods were properly updated.
+* Refactored update code to a new script.
+
 # 1.1.2.0
 * Debug Menu
 	* New Quick Commands Menu

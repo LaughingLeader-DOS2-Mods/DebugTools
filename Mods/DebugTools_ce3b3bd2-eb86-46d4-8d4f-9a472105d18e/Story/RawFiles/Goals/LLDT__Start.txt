@@ -135,19 +135,9 @@ CharacterAddSkill(_Player, "Shout_LLDT_OpenMenu");
 //REGION MOD_UPDATE
 PROC
 LLDT_System_UpdateAll()
-AND
-DB_Mods_RegisteredMod("DebugTools", _Version, _Author)
 THEN
-NOT DB_Mods_RegisteredMod("DebugTools", _Version, _Author);
-
-IF
-SavegameLoaded(_,_,_,_)
-AND
-NOT DB_Mods_RegisteredMod("DebugTools", "1.1.2.0", "LaughingLeader")
-THEN
-LLDT_System_UpdateAll();
-DB_Mods_RegisteredMod("DebugTools", "1.1.2.0", "LaughingLeader");
-
+SysClear("DB_LLDT_DebugItems", 2);
+DB_LLDT_DebugItems("LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e", 1);
 //END_REGION
 EXITSECTION
 

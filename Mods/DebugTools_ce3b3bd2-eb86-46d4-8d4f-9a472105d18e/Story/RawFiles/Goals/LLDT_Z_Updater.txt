@@ -1,0 +1,24 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_Mods_RegisteredMod("DebugTools", "1.1.3.0", "LaughingLeader");
+KBSECTION
+PROC
+LLDT_Updater_ClearPrevious()
+AND
+DB_Mods_RegisteredMod("DebugTools", _Version, "LaughingLeader")
+THEN
+NOT DB_Mods_RegisteredMod("DebugTools", _Version, "LaughingLeader");
+
+IF
+SavegameLoaded(_,_,_,_)
+AND
+NOT DB_Mods_RegisteredMod("DebugTools", "1.1.3.0", "LaughingLeader")
+THEN
+LLDT_Updater_ClearPrevious();
+DB_Mods_RegisteredMod("DebugTools", "1.1.3.0", "LaughingLeader");
+LLDT_System_UpdateAll();
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "ZZZ_LL_DebugTools"
