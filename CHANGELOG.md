@@ -5,6 +5,7 @@ DebugTools Changelog
 * Debug Menu
 	* Added a new command: View Registered Mods (LLAPI).
 		* This provides a way to view which mods have been registered under a specific database - Useful in making sure those mods were properly updated.
+	* Added a Race Menu (currently WIP).
 * Refactored update code to a new script.
 
 # 1.1.2.0
