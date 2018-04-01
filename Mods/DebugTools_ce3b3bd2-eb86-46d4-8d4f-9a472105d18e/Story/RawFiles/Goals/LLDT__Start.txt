@@ -114,15 +114,6 @@ ItemTemplateAddTo("LLDT_Debug_DebugTool_Peace_d53e549c-5003-47a8-b7cf-852f4711c0
 
 //REGION MENU_SKILL
 IF
-SavegameLoaded(_,_,_,_)
-AND
-DB_IsPlayer(_Player)
-AND
-CharacterHasSkill(_Player, "Shout_LLDT_OpenMenu", 0)
-THEN
-CharacterAddSkill(_Player, "Shout_LLDT_OpenMenu");
-
-IF
 GameStarted(_Level, _Mode)
 AND
 DB_IsPlayer(_Player)

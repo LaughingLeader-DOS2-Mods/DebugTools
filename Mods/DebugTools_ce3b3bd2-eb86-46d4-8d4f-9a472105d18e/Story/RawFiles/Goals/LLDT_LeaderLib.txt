@@ -1,0 +1,22 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+IF
+StoryEvent(_, "LeaderLib_Initialized")
+AND
+NOT DB_LLDT_RegisteredLeaderLibSettings(_)
+THEN
+LLDT_LeaderLib_RegisterSettings();
+DB_LLDT_RegisteredLeaderLibSettings(1);
+
+PROC
+LLDT_LeaderLib_RegisterSettings()
+THEN
+DB_LeaderLib_ModApi_RegisterActiveGoal("DebugTools", "LaughingLeader", "LLDT_LeaderLib");
+DB_LeaderLib_ModApi_RegisterMenu("LaughingLeader_DebugTools", "[Debug Tools] Debug Menu", "LLDT_DebugMenu", "DebugTools", "LaughingLeader");
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "ZZZ_LL_DebugTools"

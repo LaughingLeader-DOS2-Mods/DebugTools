@@ -535,11 +535,6 @@ CharacterSetHitpointsPercentage(_Player, 100);
 //REGION ON_OPEN
 QRY
 LLDT_QRY_Menu_BuildModList()
-THEN
-SysLog("DB_Mods_RegisteredMod", 3);
-
-QRY
-LLDT_QRY_Menu_BuildModList()
 AND
 NOT DB_LLDT_Menu_ModText(_)
 THEN
@@ -548,7 +543,7 @@ DB_LLDT_Menu_ModText("");
 QRY
 LLDT_QRY_Menu_BuildModList()
 AND
-DB_Mods_RegisteredMod(_ModName, _Version, _Author)
+DB_Mods_Registered(_ModName, _Author, _Version)
 AND
 StringConcatenate("<b>", _ModName, _Str0)
 AND
@@ -571,6 +566,8 @@ DB_LLDT_Menu_ModText(_RegisteredMods);
 
 IF
 DialogStarted("LLDT_DebugMenu", _Instance)
+AND
+NOT GlobalGetFlag("LeaderLib_Active", 1) // LeaderLib provides its own mod list
 AND
 LLDT_QRY_Menu_BuildModList()
 AND
