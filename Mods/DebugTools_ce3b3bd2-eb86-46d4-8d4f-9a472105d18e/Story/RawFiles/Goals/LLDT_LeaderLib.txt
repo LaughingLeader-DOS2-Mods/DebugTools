@@ -16,6 +16,8 @@ LLDT_LeaderLib_RegisterSettings()
 THEN
 DB_LeaderLib_ModApi_RegisterActiveGoal("DebugTools", "LaughingLeader", "LLDT_LeaderLib");
 DB_LeaderLib_ModApi_RegisterMenu("LaughingLeader_DebugTools", "[Debug Tools] Debug Menu", "LLDT_DebugMenu", "DebugTools", "LaughingLeader");
+DB_LLLIB_Treasure_TreasureItemTemplates("LLLIB_LeaderTrader_ModItems", "LLDT_Debug_DebugTool_Peace_d53e549c-5003-47a8-b7cf-852f4711c076", 1, "");
+DB_LLLIB_Treasure_ItemMaxAmount("LLLIB_LeaderTrader_ModItems", "LLDT_Debug_DebugTool_Peace_d53e549c-5003-47a8-b7cf-852f4711c076", 1);
 LLDT_LeaderLib_RegisterDatabases();
 
 PROC

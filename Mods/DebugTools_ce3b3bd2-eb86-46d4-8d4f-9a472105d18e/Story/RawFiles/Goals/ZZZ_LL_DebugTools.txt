@@ -7,16 +7,6 @@ IF
 GameEventSet("GAMEEVENT_GameStarted")
 THEN
 GoalCompleted;
-
-IF
-SavegameLoaded(_,_,_,_)
-THEN
-GoalCompleted;
-
-IF
-RegionStarted(_Region)
-THEN
-GoalCompleted;
 EXITSECTION
 
 ENDEXITSECTION

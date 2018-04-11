@@ -1,5 +1,10 @@
 DebugTools Changelog
 =======
+# 1.1.4.0
+* Added LeaderLib support (dependency-free, a.k.a. optional).
+	* If LeaderLib is installed, Debug Tools will register its settings to the LeaderLib "Mod Menu". Otherwise, the settings book will spawn as normal.
+* Removed the "View Registered Mods" menu option. Use LeaderLib instead.
+	
 # 1.1.3.0
 * Updated to the latest hotfix.
 * Debug Menu
