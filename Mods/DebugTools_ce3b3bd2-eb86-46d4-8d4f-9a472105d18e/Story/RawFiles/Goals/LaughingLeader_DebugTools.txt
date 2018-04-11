@@ -21,6 +21,14 @@ DB_StoryStarted(_)
 THEN
 DebugBreak("[LLDT] Existing save detected.");
 LLDT_Internal_StartDebugTools();
+
+IF
+SavegameLoaded(_,_,_,_)
+AND
+DB_StoryStarted(_)
+THEN
+DebugBreak("[LLDT] Existing save detected.");
+LLDT_Internal_StartDebugTools();
 EXITSECTION
 
 ENDEXITSECTION

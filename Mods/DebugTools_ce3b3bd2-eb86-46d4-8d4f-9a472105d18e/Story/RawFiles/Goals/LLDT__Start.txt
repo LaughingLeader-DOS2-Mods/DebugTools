@@ -133,4 +133,4 @@ DB_LLDT_DebugItems("LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e", 1)
 EXITSECTION
 
 ENDEXITSECTION
-ParentTargetEdge "ZZZ_LL_DebugTools"
+ParentTargetEdge "LaughingLeader_DebugTools"

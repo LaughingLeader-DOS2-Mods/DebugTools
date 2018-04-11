@@ -43,4 +43,4 @@ DB_LeaderLib_ModApi_RegisterDatabase("DebugTools", "LaughingLeader", "RaceMenu",
 EXITSECTION
 
 ENDEXITSECTION
-ParentTargetEdge "ZZZ_LL_DebugTools"
+ParentTargetEdge "LaughingLeader_DebugTools"

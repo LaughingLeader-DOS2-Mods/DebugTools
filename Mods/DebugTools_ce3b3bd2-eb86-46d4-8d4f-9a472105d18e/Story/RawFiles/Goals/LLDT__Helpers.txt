@@ -85,4 +85,4 @@ PartyClearFlag(_Player, _Flag, _Instance);
 EXITSECTION
 
 ENDEXITSECTION
-ParentTargetEdge "ZZZ_LL_DebugTools"
+ParentTargetEdge "LaughingLeader_DebugTools"

@@ -483,4 +483,4 @@ GlobalClearFlag("LLDT_EDITORMODE");
 EXITSECTION
 
 ENDEXITSECTION
-ParentTargetEdge "ZZZ_LL_DebugTools"
+ParentTargetEdge "LaughingLeader_DebugTools"

@@ -37,4 +37,4 @@ LLDT_System_UpdateAll();
 EXITSECTION
 
 ENDEXITSECTION
-ParentTargetEdge "ZZZ_LL_DebugTools"
+ParentTargetEdge "LaughingLeader_DebugTools"

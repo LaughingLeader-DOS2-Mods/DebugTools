@@ -410,4 +410,4 @@ LLDT_RaceMenu_BuildSettings();
 EXITSECTION
 
 ENDEXITSECTION
-ParentTargetEdge "ZZZ_LL_DebugTools"
+ParentTargetEdge "LaughingLeader_DebugTools"
