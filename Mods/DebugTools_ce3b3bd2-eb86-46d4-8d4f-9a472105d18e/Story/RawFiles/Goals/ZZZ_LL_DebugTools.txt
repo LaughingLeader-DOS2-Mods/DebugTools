@@ -1,12 +1,26 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-
+LLDT_Start_Internal_CompleteIfStarted(); // Existing saves. 
 KBSECTION
+PROC
+LLDT_Internal_StartDebugTools()
+THEN
+DebugBreak("[LLDT] Debug Tools starting.");
+GoalCompleted;
+
 IF
 GameEventSet("GAMEEVENT_GameStarted")
 THEN
-GoalCompleted;
+LLDT_Internal_StartDebugTools();
+
+PROC
+LLDT_Start_Internal_CompleteIfStarted()
+AND
+SysIsCompleted("__Start")
+THEN
+DebugBreak("[LLDT] Existing save detected.");
+LLDT_Internal_StartDebugTools();
 EXITSECTION
 
 ENDEXITSECTION
