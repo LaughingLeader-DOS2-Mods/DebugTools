@@ -17,7 +17,7 @@ LLDT_Internal_StartDebugTools();
 PROC
 LLDT_Start_Internal_CompleteIfStarted()
 AND
-SysIsCompleted("__Start")
+DB_StoryStarted(_)
 THEN
 DebugBreak("[LLDT] Existing save detected.");
 LLDT_Internal_StartDebugTools();
