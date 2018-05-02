@@ -1,5 +1,9 @@
 DebugTools Changelog
 =======
+#1.1.5.0
+* Made waypoints teleport the party to other levels after unlocking them with the menu command.
+	* Added Fort Joy and The Nameless Isle waypoints. Originally they were only registered when the levels were loaded.
+
 # 1.1.4.0
 * Added LeaderLib support (dependency-free, a.k.a. optional).
 	* If LeaderLib is installed, Debug Tools will register its settings to the LeaderLib "Mod Menu". Otherwise, the settings book will spawn as normal.
