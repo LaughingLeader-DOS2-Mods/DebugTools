@@ -1,8 +1,9 @@
 DebugTools Changelog
 =======
 # 1.1.5.0
-* Made waypoints teleport the party to other levels after unlocking them with the menu command.
-	* Added Fort Joy and The Nameless Isle waypoints. Originally they were only registered when the levels were loaded.
+* Tweaked Waypoint Commands
+	* Made waypoints teleport the party to other levels after unlocking them with the menu command.
+	* Added Fort Joy and The Nameless Isle waypoints. Originally they were only registered when those specific levels were loaded.
 
 # 1.1.4.0
 * Added LeaderLib support (dependency-free, a.k.a. optional).
