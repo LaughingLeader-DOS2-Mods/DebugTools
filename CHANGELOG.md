@@ -1,7 +1,7 @@
 DebugTools Changelog
 =======
 # 1.1.5.0
-* Tweaked Waypoint Commands
+* Tweaked Waypoints Command
 	* Made waypoints teleport the party to other levels after unlocking them with the menu command.
 	* Added Fort Joy and The Nameless Isle waypoints. Originally they were only registered when those specific levels were loaded.
 
