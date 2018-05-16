@@ -7,9 +7,7 @@ DB_LLDT_DebugItems("LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e", 1)
 KBSECTION
 //REGION DESTROYER
 IF
-SavegameLoaded(_,_,_,_)
-AND
-DB_IsPlayer(_Player)
+StoryEvent((CHARACTERGUID)_Player, "LLDT_Events_OnInitPlayer")
 AND
 DB_LLDT_DebugItems(_Item, _Amount)
 AND
@@ -22,24 +20,7 @@ THEN
 ItemTemplateAddTo(_Item, _Player, _AddAmount, 1);
 
 IF
-GameStarted(_Level, _Mode)
-AND
-DB_IsPlayer(_Player)
-AND
-DB_LLDT_DebugItems(_Item, _Amount)
-AND
-ItemTemplateIsInCharacterInventory(_Player, _Item, _Count)
-AND
-_Count < _Amount
-AND
-IntegerSubtract(_Amount, _Count, _AddAmount)
-THEN
-ItemTemplateAddTo(_Item, _Player, _AddAmount, 1);
-
-IF
-GameStarted(_Level, _Mode)
-AND
-DB_IsPlayer(_Player)
+StoryEvent((CHARACTERGUID)_Player, "LLDT_Events_OnInitPlayer")
 AND
 GetItemForItemTemplateInInventory(_Player, "LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e", _Item)
 THEN
@@ -48,7 +29,7 @@ SetVarObject(_Item, "Owner", _Player);
 IF
 ItemAddedToCharacter(_Item, _Player)
 AND
-DB_IsPlayer(_Player)
+CharacterIsPlayer(_Player, 1)
 AND
 GetTemplate(_Item, _Template)
 AND
@@ -82,9 +63,7 @@ THEN
 ItemTemplateAddTo("LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e", _Player, 1);
 
 IF
-SavegameLoaded(_,_,_,_)
-AND
-DB_IsPlayer(_Player)
+StoryEvent((CHARACTERGUID)_Player, "LLDT_Events_OnInitPlayer")
 AND
 ItemTemplateIsInCharacterInventory(_Player, "LLDT_Debug_DebugTool_Peace_d53e549c-5003-47a8-b7cf-852f4711c076", _Count)
 AND
@@ -97,9 +76,7 @@ THEN
 ItemTemplateAddTo("LLDT_Debug_DebugTool_Peace_d53e549c-5003-47a8-b7cf-852f4711c076", _Player, 1);
 
 IF
-GameStarted(_Level, _Mode)
-AND
-DB_IsPlayer(_Player)
+StoryEvent((CHARACTERGUID)_Player, "LLDT_Events_OnInitPlayer")
 AND
 ItemTemplateIsInCharacterInventory(_Player, "LLDT_Debug_DebugTool_Peace_d53e549c-5003-47a8-b7cf-852f4711c076", _Count)
 AND
@@ -114,9 +91,7 @@ ItemTemplateAddTo("LLDT_Debug_DebugTool_Peace_d53e549c-5003-47a8-b7cf-852f4711c0
 
 //REGION MENU_SKILL
 IF
-GameStarted(_Level, _Mode)
-AND
-DB_IsPlayer(_Player)
+StoryEvent((CHARACTERGUID)_Player, "LLDT_Events_OnInitPlayer")
 AND
 CharacterHasSkill(_Player, "Shout_LLDT_OpenMenu", 0)
 THEN
@@ -129,6 +104,55 @@ LLDT_System_UpdateAll()
 THEN
 SysClear("DB_LLDT_DebugItems", 2);
 DB_LLDT_DebugItems("LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e", 1);
+//END_REGION
+
+//REGION PLAYER_DATABASE_FIX
+IF
+GameStarted(_,_)
+AND
+NOT SysIsActive("GLOBAL_CharacterCreation") // If Origins isn't running
+THEN
+TimerLaunch("LLDT_Debug_IteratePlayers", 1000);
+
+IF
+TimerFinished("LLDT_Debug_IteratePlayers")
+AND
+CharacterGetHostCharacter(_Player)
+AND
+NOT DB_IsPlayer(_Player)
+THEN
+DB_IsPlayer(_Player);
+
+IF
+TimerFinished("LLDT_Debug_IteratePlayers")
+THEN
+CharacterLaunchIterator("LLDT_Debug_AddPlayer");
+
+IF
+StoryEvent((CHARACTERGUID)_Player, "LLDT_Debug_AddPlayer")
+AND
+CharacterIsPlayer(_Player, 1)
+AND
+NOT DB_IsPlayer(_Player)
+THEN
+DB_IsPlayer(_Player);
+
+IF
+StoryEvent(NULL_00000000-0000-0000-0000-000000000000, "LLDT_Debug_AddPlayer")
+THEN
+DB_NOOP(1);
+//END_REGION
+
+//REGION PARTY_ITERATOR
+IF
+GameStarted(_,_)
+THEN
+TimerLaunch("LLDT_Timers_StartPartyIterator", 25);
+
+IF
+TimerFinished("LLDT_Timers_StartPartyIterator")
+THEN
+IterateParties("LLDT_Events_OnInitPlayer");
 //END_REGION
 EXITSECTION
 

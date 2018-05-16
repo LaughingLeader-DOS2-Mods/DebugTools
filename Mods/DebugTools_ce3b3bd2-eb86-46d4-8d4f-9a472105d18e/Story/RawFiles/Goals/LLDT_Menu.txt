@@ -82,6 +82,25 @@ DB_LLDT_CommandFlags("LLDT_REMOVE_SKILLS_PARTY");
 DB_LLDT_CommandFlags("LLDT_REMOVE_COLLAR_PARTY");
 DB_LLDT_CommandFlags("LLDT_RESURRECT_PARTY");
 DB_LLDT_CommandFlags("LLDT_FULLHEAL_PARTY");
+
+//Waypoints not registered normally, unless the level is started
+SysClear("DB_LLDT_WaypointInfo", 3);
+//FTJ
+DB_LLDT_WaypointInfo((ITEMGUID)ITEMGUID_S_FTJ_BeachStatue_465c7929-cc0f-4f58-8c2c-24d3e65e2fb0, (TRIGGERGUID)TRIGGERGUID_S_FTJ_BeachStatue_Point_c75522f4-7b83-445d-8ccd-8f908eb3673d,"WAYP_FTJ_BeachStatue");
+DB_LLDT_WaypointInfo(ITEMGUID_S_FTJ_ShrineToTheSeven_a7c71478-416b-4b7a-bd97-446f03708443,TRIGGERGUID_S_FTJ_OlgoHatchUp_Point_25f36d64-1291-497e-8686-063e1aec04f8,"WAYP_FTJ_ShrineToTheSeven");
+DB_LLDT_WaypointInfo(ITEMGUID_S_FTJ_UnderGroundShrine_fceee19d-145c-8a40-28fb-536fab281adc,TRIGGERGUID_S_FTJ_UndergroundShrine_Point_6985ff34-4bc6-4525-9611-afbe99b99557,"WAYP_FTJ_UndergroundShrine");
+DB_LLDT_WaypointInfo(ITEMGUID_S_FTJ_SW_GateShrine_487f7035-69a4-45f7-82e3-0e33a3fd00b8,TRIGGERGUID_S_FTJ_SW_GateShrine_Point_d708e577-f258-46cf-b0d4-e887e0d262c2,"WAYP_FTJ_SW_GateShrine");
+DB_LLDT_WaypointInfo(ITEMGUID_S_WAYP_FTJ_SW_Armory_bdfe2897-def1-437f-960c-042daab1f967, TRIGGERGUID_S_WAYP_FTJ_SW_Armory_Trigger_a048888a-efa3-4f4c-b627-e82b5f51b601, "WAYP_FTJ_SW_Armory");
+DB_LLDT_WaypointInfo(ITEMGUID_S_WAYP_FTJ_SW_FinalBattle_a9573466-3109-4be8-8fd0-a08db0993387, TRIGGERGUID_S_WAYP_FTJ_SW_FinalBattle_Trigger_030a12f7-ff8f-400e-bc54-dcad3c787885, "WAYP_FTJ_SW_FinalBattle");
+DB_LLDT_WaypointInfo(ITEMGUID_S_WAYP_FTJ_SW_FrozenBeach_ff4aebd1-952f-4513-8231-f30eb2663d03, TRIGGERGUID_S_WAYP_FTJ_SW_FrozenBeach_Trigger_838eb43f-19ed-4966-ba1a-e247e0a61218, "WAYP_FTJ_SW_FrozenBeach");
+//CoS
+DB_LLDT_WaypointInfo((ITEMGUID)ITEMGUID_S_CoS_Temples_Waypoint_Beach_d3e51c58-9361-4d78-b967-9061e2b60e7e,(TRIGGERGUID)TRIGGERGUID_S_CoS_Temples_Waypoint_Beach_Point_0739766c-729b-45ec-870e-607a2e9da8c5,"WAYP_CoS_Temples_Beach");
+DB_LLDT_WaypointInfo((ITEMGUID)ITEMGUID_S_CoS_Temples_Waypoint_Elf_c32b2004-2f1c-446e-a23c-a1d8f6705922,(TRIGGERGUID)TRIGGERGUID_S_CoS_Temples_Waypoint_ElfTemple_b356750d-f4a8-4040-96e0-84b9d71e8fc9,"WAYP_CoS_Temples_ElfTemple");
+DB_LLDT_WaypointInfo((ITEMGUID)ITEMGUID_S_CoS_Temples_Waypoint_Human_892e7e94-75b5-44d2-bc6f-1f735f7c8965,(TRIGGERGUID)TRIGGERGUID_S_CoS_Temples_Waypoint_Human_Point_416c1174-9826-4dc5-bcd9-933387a58f6a,"WAYP_CoS_Temples_Human");
+DB_LLDT_WaypointInfo((ITEMGUID)ITEMGUID_S_CoS_Temples_Waypoint_LunarPuzzle_7a7da96f-5e96-4800-85a7-5a54594d6e81,(TRIGGERGUID)TRIGGERGUID_S_CoS_Temples_Waypoint_LunarPuzzle_Point_672a0928-094d-4982-b542-3fc1c3faa8d3,"WAYP_CoS_Temples_LunarPuzzle");
+DB_LLDT_WaypointInfo((ITEMGUID)ITEMGUID_S_CoS_Academy_Waypoint_Central_2db50e45-a3f7-4f6f-bcef-d99df60617a0,(TRIGGERGUID)TRIGGERGUID_S_CoS_Academy_Waypoint_Central_Point_e28abb66-7361-4cb2-ae6e-eea182b05b46,"WAYP_CoS_Academy_Central");
+DB_LLDT_WaypointInfo((ITEMGUID)ITEMGUID_S_CoS_Temples_Waypoint_Wizard_d089a9bd-9f20-4710-826f-f3a719039861,(TRIGGERGUID)TRIGGERGUID_S_CoS_Temples_Waypoint_Wizard_Point_8908a5de-cbf1-4e8a-b272-56896fd670b1,"WAYP_CoS_Temples_Wizard");
+DB_LLDT_WaypointInfo((ITEMGUID)ITEMGUID_S_CoS_Temples_Waypoint_Imp_0f989a2f-6a3e-4123-be34-c84c4fe17744,(TRIGGERGUID)TRIGGERGUID_S_CoS_Temples_Waypoint_Imp_Point_2cb11394-785b-47ef-bdf9-f8c9134dde06,"WAYP_CoS_Temples_Imp");
 //END_REGION
 
 //REGION POINTS
@@ -451,9 +470,23 @@ LLDT_Print(_Player, "[DT] Removed skill ", _Skill);
 PROC
 LLDT_Menu_UnlockAllWaypoints((CHARACTERGUID)_Player)
 AND
-DB_WaypointInfo(_Item,_Trigger,_CurrentWP)
+DB_LLDT_WaypointInfo(_Item, _Trigger, _CurrentWP)
+AND
+ObjectExists(_Trigger, 1)
 THEN
-ProcDoWaypointUnlock(_Item, _Player);
+RegisterWaypoint(_CurrentWP, _Item);
+UnlockWaypoint(_CurrentWP, _Trigger, _Player);
+
+PROC
+LLDT_Menu_UnlockAllWaypoints((CHARACTERGUID)_Player)
+AND
+DB_WaypointInfo(_Item,_Trigger,_CurrentWP)
+AND
+ObjectExists(_Trigger, 1)
+THEN
+RegisterWaypoint(_CurrentWP, _Item);
+UnlockWaypoint(_CurrentWP, _Trigger, _Player);
+ObjectSetFlag(_Player, "LLDT_WaypointsUnlocked");
 
 PROC
 LLDT_Menu_UnlockAllWaypoints((CHARACTERGUID)_Player)
@@ -462,16 +495,63 @@ THEN
 SetHomesteadKeyState(2, _Player);
 
 IF
-ObjectFlagSet("LLDT_ADD_WAYPOINTS", (CHARACTERGUID)_Speaker, _Instance)
+ObjectFlagSet("LLDT_ADD_WAYPOINTS", (CHARACTERGUID)_Player, _Instance)
 AND
-LLDT_QRY_ClearFlag(_Speaker, "LLDT_ADD_WAYPOINTS")
+LLDT_QRY_ClearFlag(_Player, "LLDT_ADD_WAYPOINTS")
 AND
-LLDT_QRY_Print(_Speaker, "All waypoints unlocked")
-AND
-DB_IsPlayer(_Player)
+LLDT_QRY_Print(_Player, "All waypoints unlocked")
 THEN
 LLDT_Menu_UnlockAllWaypoints(_Player);
 
+IF
+CharacterTeleportToWaypoint(_Player, _Trigger)
+AND
+ObjectGetFlag(_Player, "LLDT_WaypointsUnlocked", 1)
+AND
+DB_WaypointInfo(_Item,_Trigger,_CurrentWP)
+THEN
+LLDT_WaypointTravel_StartRegionCheck(_Player, _Item, _Trigger);
+
+IF
+CharacterTeleportToWaypoint(_Player, _Trigger)
+AND
+ObjectGetFlag(_Player, "LLDT_WaypointsUnlocked", 1)
+AND
+DB_LLDT_WaypointInfo(_Item, _Trigger, _CurrentWP)
+THEN
+LLDT_WaypointTravel_StartRegionCheck(_Player, _Item, _Trigger);
+
+PROC
+LLDT_WaypointTravel_StartRegionCheck((CHARACTERGUID)_Player, (ITEMGUID)_Item, (TRIGGERGUID)_Trigger)
+AND
+GetUUID(_Player, _ID)
+AND
+GetUUID(_Item, _ItemID)
+AND
+StringConcatenate("LLDT_Timers_CheckWaypointRegion_", _ItemID, _Str1)
+AND
+StringConcatenate(_Str1, "_", _Str2)
+AND
+StringConcatenate(_Str2, _ID, _TimerName)
+THEN
+DB_LLDT_WaypointTravel_CheckRegion(_TimerName, _Player, _Item, _Trigger);
+TimerLaunch(_TimerName, 150);
+
+IF
+TimerFinished(_TimerName)
+AND
+DB_LLDT_WaypointTravel_CheckRegion(_TimerName, _Player, _Item, _Trigger)
+AND
+CharacterCanSee(_Player, _Item, 0)
+THEN
+CharacterTeleportPartiesToTrigger(_Trigger, "");
+
+IF
+TimerFinished(_TimerName)
+AND
+DB_LLDT_WaypointTravel_CheckRegion(_TimerName, _Player, _Item, _Trigger)
+THEN
+NOT DB_LLDT_WaypointTravel_CheckRegion(_TimerName, _Player, _Item, _Trigger);
 //END_REGION
 
 //REGION IMMORTALITY
