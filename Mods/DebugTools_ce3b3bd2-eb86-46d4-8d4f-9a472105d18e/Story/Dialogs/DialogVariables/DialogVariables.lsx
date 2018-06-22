@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <save>
-    <header version="2" time="1516374579" />
-    <version major="3" minor="1" revision="5" build="0" />
+    <header version="2" time="1529705275" />
+    <version major="3" minor="1" revision="8" build="0" />
     <region id="DialogVariables">
         <node id="root">
             <children>
@@ -17,6 +17,69 @@
                     <attribute id="Description" value="Displays the final settings before a player changes their appearance." type="23" />
                     <attribute id="UUID" value="24e832d8-5f1b-44c6-9c99-59ec7907c478" type="31" />
                     <attribute id="name" value="LLDT_RaceChangeMenu_SettingsDisplay" type="22" />
+                    <attribute id="type" value="String" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="0/0" type="23" />
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="UUID" value="67740c80-fbd2-4ceb-b5be-2c6ac9b08946" type="31" />
+                    <attribute id="name" value="LLDT_TalentMenu_PageDisplay" type="22" />
+                    <attribute id="type" value="String" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="" type="23" />
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="UUID" value="e7e0b3d4-a46d-4282-8c83-b376e6ea192c" type="31" />
+                    <attribute id="name" value="LLDT_TalentMenu_Talent1" type="22" />
+                    <attribute id="type" value="String" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="" type="23" />
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="UUID" value="09ac5206-b33f-479e-9027-038e8a3c34ae" type="31" />
+                    <attribute id="name" value="LLDT_TalentMenu_Talent2" type="22" />
+                    <attribute id="type" value="String" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="" type="23" />
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="UUID" value="1795a2fd-ff1c-41d0-b91e-80d28dcfcca9" type="31" />
+                    <attribute id="name" value="LLDT_TalentMenu_Talent3" type="22" />
+                    <attribute id="type" value="String" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="" type="23" />
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="UUID" value="15351b28-1263-48de-9c6e-1fb443fd4571" type="31" />
+                    <attribute id="name" value="LLDT_TalentMenu_Talent4" type="22" />
+                    <attribute id="type" value="String" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="" type="23" />
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="UUID" value="7808cdc0-5e47-4ba9-a950-459740eda643" type="31" />
+                    <attribute id="name" value="LLDT_TalentMenu_Talent5" type="22" />
+                    <attribute id="type" value="String" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="" type="23" />
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="UUID" value="3ebd4af5-1fee-4523-a4bd-42e1b983efd5" type="31" />
+                    <attribute id="name" value="LLDT_TalentMenu_Talent6" type="22" />
+                    <attribute id="type" value="String" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="" type="23" />
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="UUID" value="18f3600e-fa3a-4745-b9b8-2f817eda5cee" type="31" />
+                    <attribute id="name" value="LLDT_TalentMenu_Talent7" type="22" />
+                    <attribute id="type" value="String" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="" type="23" />
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="UUID" value="c2451421-3c19-40ed-bc92-b460209f9eb6" type="31" />
+                    <attribute id="name" value="LLDT_TalentMenu_Talent8" type="22" />
                     <attribute id="type" value="String" type="23" />
                 </node>
             </children>

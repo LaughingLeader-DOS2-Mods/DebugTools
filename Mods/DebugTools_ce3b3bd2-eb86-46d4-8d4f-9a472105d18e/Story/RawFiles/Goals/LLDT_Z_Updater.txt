@@ -1,7 +1,7 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-DB_Mods_Registered("DebugTools", "LaughingLeader", "1.1.5.0");
+DB_Mods_Registered("DebugTools", "LaughingLeader", "1.2.0.0");
 KBSECTION
 //Old version order
 PROC
@@ -29,10 +29,10 @@ NOT DB_Mods_Registered("DebugTools", "LaughingLeader", _Version);
 IF
 GameStarted(_,_)
 AND
-NOT DB_Mods_Registered("DebugTools", "LaughingLeader", "1.1.5.0")
+NOT DB_Mods_Registered("DebugTools", "LaughingLeader", "1.2.0.0")
 THEN
 LLDT_Updater_ClearPrevious();
-DB_Mods_Registered("DebugTools", "LaughingLeader", "1.1.5.0");
+DB_Mods_Registered("DebugTools", "LaughingLeader", "1.2.0.0");
 LLDT_System_UpdateAll();
 EXITSECTION
 

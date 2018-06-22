@@ -1,0 +1,653 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+LLDT_TalentMenu_InitSettings();
+
+//DB_LLDT_TalentMenu_Talents(_Index, _DisplayName, _Talent)
+//DB_LLDT_TalentMenu_RacialTalents(_Index, _Talent, _DisplayName)
+//DB_LLDT_TalentMenu_DialogVars(_Index, _DialogVar, _ToggleFlag, _EnabledFlag)
+/*Page Vars*/
+//DB_LLDT_TalentMenu_Temp_MaxPageIndex(_Instance, _MaxPageIndex)
+//DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PageIndex)
+//DB_LLDT_TalentMenu_Temp_TalentList(_Instance, _Index, _Talent, _DisplayName)
+/*Temp*/
+//DB_LLDT_TalentMenu_Temp_ToggledTalent(_Player)
+//DB_LLDT_TalentMenu_Temp_PageTurnResolved(_Instance)
+KBSECTION
+//REGION SETTINGS
+PROC
+LLDT_TalentMenu_InitSettings()
+THEN
+DB_LLDT_TalentMenu_DialogVarPrefix(0, "Add <b>");
+DB_LLDT_TalentMenu_DialogVarPrefix(1, "Remove <b>");
+
+DB_LLDT_TalentMenu_DialogVars(0, "LLDT_TalentMenu_Talent1_e7e0b3d4-a46d-4282-8c83-b376e6ea192c", "LLDT_TalentMenu_ToggleTalent1", "LLDT_TalentMenu_Talent1Available");
+DB_LLDT_TalentMenu_DialogVars(1, "LLDT_TalentMenu_Talent2_09ac5206-b33f-479e-9027-038e8a3c34ae", "LLDT_TalentMenu_ToggleTalent2", "LLDT_TalentMenu_Talent2Available");
+DB_LLDT_TalentMenu_DialogVars(2, "LLDT_TalentMenu_Talent3_1795a2fd-ff1c-41d0-b91e-80d28dcfcca9", "LLDT_TalentMenu_ToggleTalent3", "LLDT_TalentMenu_Talent3Available");
+DB_LLDT_TalentMenu_DialogVars(3, "LLDT_TalentMenu_Talent4_15351b28-1263-48de-9c6e-1fb443fd4571", "LLDT_TalentMenu_ToggleTalent4", "LLDT_TalentMenu_Talent4Available");
+DB_LLDT_TalentMenu_DialogVars(4, "LLDT_TalentMenu_Talent5_7808cdc0-5e47-4ba9-a950-459740eda643", "LLDT_TalentMenu_ToggleTalent5", "LLDT_TalentMenu_Talent5Available");
+DB_LLDT_TalentMenu_DialogVars(5, "LLDT_TalentMenu_Talent6_3ebd4af5-1fee-4523-a4bd-42e1b983efd5", "LLDT_TalentMenu_ToggleTalent6", "LLDT_TalentMenu_Talent6Available");
+DB_LLDT_TalentMenu_DialogVars(6, "LLDT_TalentMenu_Talent7_18f3600e-fa3a-4745-b9b8-2f817eda5cee", "LLDT_TalentMenu_ToggleTalent7", "LLDT_TalentMenu_Talent7Available");
+DB_LLDT_TalentMenu_DialogVars(7, "LLDT_TalentMenu_Talent8_c2451421-3c19-40ed-bc92-b460209f9eb6", "LLDT_TalentMenu_ToggleTalent8", "LLDT_TalentMenu_Talent8Available");
+
+LLDT_TalentMenu_AddRacialTalent("Ancestral Knowledge"	, "Elf_Lore");
+LLDT_TalentMenu_AddRacialTalent("Corpse Eater"			, "Elf_CorpseEating");
+LLDT_TalentMenu_AddRacialTalent("Dwarven Guile"			, "Dwarf_Sneaking");
+LLDT_TalentMenu_AddRacialTalent("Ingenious"				, "Human_Inventive");
+LLDT_TalentMenu_AddRacialTalent("Sophisticated"			, "Lizard_Resistance");
+LLDT_TalentMenu_AddRacialTalent("Spellsong"				, "Lizard_Persuasion");
+LLDT_TalentMenu_AddRacialTalent("Sturdy"				, "Dwarf_Sturdy");
+LLDT_TalentMenu_AddRacialTalent("Thrifty"				, "Human_Civil");
+
+/* Console error - "Unknown talent"
+LLDT_TalentMenu_AddTalent("DualWieldingBlock", "Dual Wielding Block");
+LLDT_TalentMenu_AddTalent("Throwing", "Throwing");
+LLDT_TalentMenu_AddTalent("WandCharge", "Wand Charge");
+LLDT_TalentMenu_AddTalent("Vitalty", "Picture of Health");
+*/
+LLDT_TalentMenu_AddTalent("Undead"                     ,"Zombie");
+LLDT_TalentMenu_AddTalent("All Skilled Up"             ,"ExtraSkillPoints");
+LLDT_TalentMenu_AddTalent("Ambidextrous"               ,"Ambidextrous");
+LLDT_TalentMenu_AddTalent("Anaconda"                   ,"SpillNoBlood");
+LLDT_TalentMenu_AddTalent("Arrow Recovery"             ,"RangerLoreArrowRecover");
+LLDT_TalentMenu_AddTalent("Assassin"                   ,"Backstab");
+LLDT_TalentMenu_AddTalent("Backstabber"                ,"RogueLoreDaggerBackStab");
+LLDT_TalentMenu_AddTalent("Beast Master"               ,"Beastmaster");
+LLDT_TalentMenu_AddTalent("Bigger And Better"          ,"ExtraStatPoints");
+LLDT_TalentMenu_AddTalent("Breveheart"                 ,"ResistFear");
+LLDT_TalentMenu_AddTalent("Bully"                      ,"Bully");
+LLDT_TalentMenu_AddTalent("Cat Burglar"                ,"Lockpick");
+LLDT_TalentMenu_AddTalent("Comeback Kid"               ,"ResistDead");
+LLDT_TalentMenu_AddTalent("Courageous"                 ,"Courageous");
+LLDT_TalentMenu_AddTalent("Demon"                      ,"Demon");
+LLDT_TalentMenu_AddTalent("Dress Rehersal"             ,"InventoryAccess");
+LLDT_TalentMenu_AddTalent("Duck Duck Goose"            ,"NoAttackOfOpportunity");
+LLDT_TalentMenu_AddTalent("Elemental Affinity"         ,"ElementalAffinity");
+LLDT_TalentMenu_AddTalent("Elemental Ranger"           ,"ElementalRanger");
+LLDT_TalentMenu_AddTalent("Escapist"                   ,"Escapist");
+LLDT_TalentMenu_AddTalent("Executioner"                ,"Executioner");
+LLDT_TalentMenu_AddTalent("Far Out Man"                ,"FaroutDude");
+LLDT_TalentMenu_AddTalent("Five-Star Dinner"           ,"FiveStarRestaurant");
+LLDT_TalentMenu_AddTalent("FleetFooted"                ,"ActionPoints");
+LLDT_TalentMenu_AddTalent("Forest's Fortune"           ,"Quest_GhostTree");
+LLDT_TalentMenu_AddTalent("Fortune's Favourite"        ,"Luck");
+LLDT_TalentMenu_AddTalent("Geomancer"                  ,"EarthSpells");
+LLDT_TalentMenu_AddTalent("Gladiator"                  ,"ChanceToHitMelee");
+LLDT_TalentMenu_AddTalent("Glass Cannon"               ,"Raistlin");
+LLDT_TalentMenu_AddTalent("Grease Monkey"              ,"Repair");
+LLDT_TalentMenu_AddTalent("Guerilla"                   ,"SurpriseAttack");
+LLDT_TalentMenu_AddTalent("Headstrong"                 ,"RogueLoreHoldResistance");
+LLDT_TalentMenu_AddTalent("Hothead"                    ,"Perfectionist");
+LLDT_TalentMenu_AddTalent("Hyperopia"                  ,"Sight");
+LLDT_TalentMenu_AddTalent("Ice King"                   ,"IceKing");
+LLDT_TalentMenu_AddTalent("Indestructible"             ,"IncreasedArmor");
+LLDT_TalentMenu_AddTalent("Intimidator"                ,"Intimidate");
+LLDT_TalentMenu_AddTalent("Kickstarter"                ,"Kickstarter");
+LLDT_TalentMenu_AddTalent("Killer Instincts"           ,"Criticals");
+LLDT_TalentMenu_AddTalent("Know-It-All"                ,"MrKnowItAll");
+LLDT_TalentMenu_AddTalent("Leader of the Pack"         ,"Initiative");
+LLDT_TalentMenu_AddTalent("Leech"                      ,"Leech");
+LLDT_TalentMenu_AddTalent("Light Stepper"              ,"LightStep");
+LLDT_TalentMenu_AddTalent("Lightning Rod"              ,"LightningRod");
+LLDT_TalentMenu_AddTalent("Lightning Rod"              ,"ResistStun");
+LLDT_TalentMenu_AddTalent("Living Armour"              ,"LivingArmor");
+LLDT_TalentMenu_AddTalent("Lone Wolf"                  ,"LoneWolf");
+LLDT_TalentMenu_AddTalent("Mack the Knife"             ,"RogueLoreDaggerAPBonus");
+LLDT_TalentMenu_AddTalent("Magician"                   ,"ExtraWandCharge");
+LLDT_TalentMenu_AddTalent("Marksman"                   ,"ChanceToHitRanged");
+LLDT_TalentMenu_AddTalent("Mithridates"                ,"ResistPoison");
+LLDT_TalentMenu_AddTalent("Mnemonics"                  ,"Memory");
+LLDT_TalentMenu_AddTalent("Morning Person"             ,"ResurrectToFullHealth");
+LLDT_TalentMenu_AddTalent("My Precious"                ,"Durability");
+LLDT_TalentMenu_AddTalent("Natural Conductor"          ,"NaturalConductor");
+LLDT_TalentMenu_AddTalent("Opportunist"                ,"AttackOfOpportunity");
+LLDT_TalentMenu_AddTalent("Packmule"                   ,"Carry");
+LLDT_TalentMenu_AddTalent("Parry Master"               ,"DualWieldingDodging");
+LLDT_TalentMenu_AddTalent("Pet Pal"                    ,"AnimalEmpathy");
+LLDT_TalentMenu_AddTalent("Picture of Health"          ,"WarriorLoreNaturalHealth");
+LLDT_TalentMenu_AddTalent("Pinpoint"                   ,"RogueLoreGrenadePrecision");
+LLDT_TalentMenu_AddTalent("Politician"                 ,"Politician");
+LLDT_TalentMenu_AddTalent("Prince Charming"            ,"Charm");
+LLDT_TalentMenu_AddTalent("Pussyfooter"                ,"AvoidDetection");
+LLDT_TalentMenu_AddTalent("Pyromaniac"                 ,"FireSpells");
+LLDT_TalentMenu_AddTalent("Quick Witted"               ,"ExpGain");
+LLDT_TalentMenu_AddTalent("Quickdraw"                  ,"RangerLoreRangedAPBonus");
+LLDT_TalentMenu_AddTalent("Rainman"                    ,"WaterSpells");
+LLDT_TalentMenu_AddTalent("Ressurect With Extra Health","ResurrectExtraHealth");
+LLDT_TalentMenu_AddTalent("Rhetorician"                ,"Reason");
+LLDT_TalentMenu_AddTalent("Rooted"                     ,"Quest_Rooted");
+LLDT_TalentMenu_AddTalent("Rosy-cheeked"               ,"ActionPoints2");
+LLDT_TalentMenu_AddTalent("Savage Sortilege"           ,"ViolentMagic");
+LLDT_TalentMenu_AddTalent("Scientist"                  ,"Scientist");
+LLDT_TalentMenu_AddTalent("Sidestep"                   ,"RangerLoreEvasionBonus");
+LLDT_TalentMenu_AddTalent("Sidewinder"                 ,"Flanking");
+LLDT_TalentMenu_AddTalent("Silver-tongued"             ,"ResistSilence");
+LLDT_TalentMenu_AddTalent("Sixth Sense"                ,"Awareness");
+LLDT_TalentMenu_AddTalent("Slingshot"                  ,"WarriorLoreGrenadeRange");
+LLDT_TalentMenu_AddTalent("Speedcreeper"               ,"FolkDancer");
+LLDT_TalentMenu_AddTalent("Spider Kiss"                ,"Quest_SpidersKiss_Int");
+LLDT_TalentMenu_AddTalent("Spider Kiss"                ,"Quest_SpidersKiss_Null");
+LLDT_TalentMenu_AddTalent("Spider Kiss"                ,"Quest_SpidersKiss_Per");
+LLDT_TalentMenu_AddTalent("Spider Kiss"                ,"Quest_SpidersKiss_Str");
+LLDT_TalentMenu_AddTalent("Spook"                      ,"ItemMovement");
+LLDT_TalentMenu_AddTalent("Stand Your Ground"          ,"ResistKnockdown");
+LLDT_TalentMenu_AddTalent("Stand Your Ground"          ,"StandYourGround");
+LLDT_TalentMenu_AddTalent("Stench"                     ,"Stench");
+LLDT_TalentMenu_AddTalent("SwiftFooted"                ,"RogueLoreMovementBonus");
+LLDT_TalentMenu_AddTalent("Tempest"                    ,"AirSpells");
+LLDT_TalentMenu_AddTalent("The Pawn"                   ,"QuickStep");
+LLDT_TalentMenu_AddTalent("Thick Skin"                 ,"WarriorLoreNaturalArmor");
+LLDT_TalentMenu_AddTalent("Tinkerer"                   ,"ItemCreation");
+LLDT_TalentMenu_AddTalent("Torturer"                   ,"Torturer");
+LLDT_TalentMenu_AddTalent("Trade Secrets"              ,"Quest_TradeSecrets");
+LLDT_TalentMenu_AddTalent("Trader's Tongue"            ,"Trade");
+LLDT_TalentMenu_AddTalent("Unstable"                   ,"Unstable");
+LLDT_TalentMenu_AddTalent("Voluble Mage"               ,"GoldenMage");
+LLDT_TalentMenu_AddTalent("Walk It Off"                ,"WalkItOff");
+LLDT_TalentMenu_AddTalent("Warlord"                    ,"Damage");
+LLDT_TalentMenu_AddTalent("Weather Proof"              ,"WeatherProof");
+LLDT_TalentMenu_AddTalent("Weather the Storms"         ,"WarriorLoreNaturalResistance");
+LLDT_TalentMenu_AddTalent("What A Rush"                ,"WhatARush");
+
+PROC
+LLDT_TalentMenu_AddTalent((STRING)_DisplayName, (STRING)_Talent)
+AND
+SysCount("DB_LLDT_TalentMenu_Talents", 3, _Index)
+AND
+IntegertoString(_Index, _IndexStr)
+AND
+StringConcatenate("Adding talent: [",_IndexStr, _Str1)
+AND
+StringConcatenate(_Str1, "][",_Str2)
+AND
+StringConcatenate(_Str2, _Talent, _Str3)
+AND
+StringConcatenate(_Str3, "][", _Str4)
+AND
+StringConcatenate(_Str4, _DisplayName, _Str5)
+AND
+StringConcatenate(_Str5, "]", _Str6)
+THEN
+DebugBreak(_Str6);
+DB_LLDT_TalentMenu_Talents(_Index, _DisplayName, _Talent);
+
+PROC
+LLDT_TalentMenu_AddRacialTalent((STRING)_DisplayName, (STRING)_Talent)
+AND
+SysCount("DB_LLDT_TalentMenu_RacialTalents", 3, _Index)
+THEN
+DB_LLDT_TalentMenu_RacialTalents(_Index, _DisplayName, _Talent);
+
+PROC
+LLDT_TalentMenu_SetMaxPageIndex((INTEGER)_Instance, (INTEGER)_Index)
+AND
+DB_LLDT_TalentMenu_Temp_MaxPageIndex(_Instance, _MaxPageIndex)
+THEN
+NOT DB_LLDT_TalentMenu_Temp_MaxPageIndex(_Instance, _MaxPageIndex);
+
+PROC
+LLDT_TalentMenu_SetMaxPageIndex((INTEGER)_Instance, (INTEGER)_Index)
+THEN
+DB_LLDT_TalentMenu_Temp_MaxPageIndex(_Instance, _Index);
+//END_REGION
+
+//REGION UPDATER
+PROC
+LLDT_System_UpdateAll()
+THEN
+DB_NOOP(1);
+//END_REGION
+
+//REGION PAGE_LOADING_EVENTS
+IF
+ObjectFlagSet("LLDT_TalentMenu_LoadTalents", (CHARACTERGUID)_Player, _Instance)
+THEN
+ObjectClearFlag(_Player, "LLDT_TalentMenu_LoadTalents");
+LLDT_TalentMenu_LoadInitialTalents("Default", _Instance);
+
+IF
+ObjectFlagSet("LLDT_TalentMenu_LoadRacialTalents", (CHARACTERGUID)_Player, _Instance)
+THEN
+ObjectClearFlag(_Player, "LLDT_TalentMenu_LoadRacialTalents");
+LLDT_TalentMenu_LoadInitialTalents("Race", _Instance);
+
+PROC
+LLDT_TalentMenu_LoadInitialTalents((STRING)_ListID, (INTEGER)_Instance)
+AND
+NOT DB_LLDT_TalentMenu_Temp_LoadingTalents(_Instance)
+AND
+DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PageIndex)
+THEN
+DB_LLDT_TalentMenu_Temp_LoadingTalents(_Instance);
+LLDT_TalentMenu_LoadTalents(_ListID, _PageIndex, _Instance);
+
+PROC
+LLDT_TalentMenu_LoadInitialTalents((STRING)_ListID, (INTEGER)_Instance)
+AND
+NOT DB_LLDT_TalentMenu_Temp_LoadingTalents(_Instance)
+AND
+NOT DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _)
+THEN
+DB_LLDT_TalentMenu_Temp_LoadingTalents(_Instance);
+LLDT_TalentMenu_LoadTalents(_ListID, 0, _Instance);
+
+PROC
+LLDT_TalentMenu_LoadInitialTalents((STRING)_ListID, (INTEGER)_Instance)
+AND
+DB_LLDT_TalentMenu_Temp_LoadingTalents(_Instance)
+THEN
+NOT DB_LLDT_TalentMenu_Temp_LoadingTalents(_Instance);
+
+IF
+ObjectFlagSet("LLDT_TalentMenu_NextPage", (CHARACTERGUID)_Player, _Instance)
+THEN
+ObjectClearFlag(_Player, "LLDT_TalentMenu_NextPage");
+LLDT_TalentMenu_NextPage(_Instance);
+
+IF
+ObjectFlagSet("LLDT_TalentMenu_PreviousPage", (CHARACTERGUID)_Player, _Instance)
+THEN
+ObjectClearFlag(_Player, "LLDT_TalentMenu_PreviousPage");
+LLDT_TalentMenu_PreviousPage(_Instance);
+
+IF
+ObjectFlagSet("LLDT_TalentMenu_FirstPage", (CHARACTERGUID)_Player, _Instance)
+THEN
+ObjectClearFlag(_Player, "LLDT_TalentMenu_FirstPage");
+LLDT_TalentMenu_FirstPage(_Instance);
+
+IF
+ObjectFlagSet("LLDT_TalentMenu_LastPage", (CHARACTERGUID)_Player, _Instance)
+THEN
+ObjectClearFlag(_Player, "LLDT_TalentMenu_LastPage");
+LLDT_TalentMenu_LastPage(_Instance);
+
+PROC
+LLDT_TalentMenu_FirstPage((INTEGER)_Instance)
+AND
+DB_LLDT_TalentMenu_Temp_CurrentList(_ListID)
+AND
+DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PageIndex)
+AND
+_PageIndex != 0
+THEN
+NOT DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PageIndex);
+DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, 0);
+LLDT_TalentMenu_LoadTalents(_ListID, 0, _Instance);
+
+PROC
+LLDT_TalentMenu_LastPage((INTEGER)_Instance)
+AND
+DB_LLDT_TalentMenu_Temp_CurrentList(_ListID)
+AND
+DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PageIndex)
+AND
+DB_LLDT_TalentMenu_Temp_MaxPageIndex(_Instance, _MaxPageIndex)
+AND
+_PageIndex != _MaxPageIndex
+THEN
+NOT DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PageIndex);
+DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _MaxPageIndex);
+LLDT_TalentMenu_LoadTalents(_ListID, _MaxPageIndex, _Instance);
+
+PROC
+LLDT_TalentMenu_NextPage((INTEGER)_Instance)
+AND
+NOT DB_LLDT_TalentMenu_Temp_PageTurnResolved(_Instance)
+AND
+DB_LLDT_TalentMenu_Temp_CurrentList(_ListID)
+AND
+DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PageIndex)
+AND
+IntegerSum(_PageIndex, 1, _NextPage)
+AND
+DB_LLDT_TalentMenu_Temp_MaxPageIndex(_Instance, _MaxPageIndex)
+AND
+_NextPage <= _MaxPageIndex
+THEN
+DB_LLDT_TalentMenu_Temp_PageTurnResolved(_Instance);
+NOT DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PageIndex);
+DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _NextPage);
+LLDT_TalentMenu_LoadTalents(_ListID, _NextPage, _Instance);
+
+PROC
+LLDT_TalentMenu_NextPage((INTEGER)_Instance)
+AND
+NOT DB_LLDT_TalentMenu_Temp_PageTurnResolved(_Instance)
+AND
+DB_LLDT_TalentMenu_Temp_CurrentList(_ListID)
+AND
+DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PageIndex)
+AND
+IntegerSum(_PageIndex, 1, _NextPage)
+AND
+DB_LLDT_TalentMenu_Temp_MaxPageIndex(_Instance, _MaxPageIndex)
+AND
+_NextPage > _MaxPageIndex
+THEN
+DB_LLDT_TalentMenu_Temp_PageTurnResolved(_Instance);
+NOT DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PageIndex);
+DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, 0);
+LLDT_TalentMenu_LoadTalents(_ListID, 0, _Instance);
+
+PROC
+LLDT_TalentMenu_NextPage((INTEGER)_Instance)
+AND
+DB_LLDT_TalentMenu_Temp_PageTurnResolved(_Instance)
+THEN
+NOT DB_LLDT_TalentMenu_Temp_PageTurnResolved(_Instance);
+
+PROC
+LLDT_TalentMenu_PreviousPage((INTEGER)_Instance)
+AND
+NOT DB_LLDT_TalentMenu_Temp_PageTurnResolved(_Instance)
+AND
+DB_LLDT_TalentMenu_Temp_CurrentList(_ListID)
+AND
+DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PageIndex)
+AND
+IntegerSubtract(_PageIndex, 1, _NextPage)
+AND
+_NextPage >= 0
+THEN
+DB_LLDT_TalentMenu_Temp_PageTurnResolved(_Instance);
+NOT DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PageIndex);
+DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _NextPage);
+LLDT_TalentMenu_LoadTalents(_ListID, _NextPage, _Instance);
+
+PROC
+LLDT_TalentMenu_PreviousPage((INTEGER)_Instance)
+AND
+NOT DB_LLDT_TalentMenu_Temp_PageTurnResolved(_Instance)
+AND
+DB_LLDT_TalentMenu_Temp_CurrentList(_ListID)
+AND
+DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PageIndex)
+AND
+IntegerSubtract(_PageIndex, 1, _NextPage)
+AND
+_NextPage < 0
+AND
+DB_LLDT_TalentMenu_Temp_MaxPageIndex(_Instance, _MaxPageIndex)
+THEN
+DB_LLDT_TalentMenu_Temp_PageTurnResolved(_Instance);
+NOT DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PageIndex);
+DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _MaxPageIndex);
+LLDT_TalentMenu_LoadTalents(_ListID, _MaxPageIndex, _Instance);
+
+PROC
+LLDT_TalentMenu_PreviousPage((INTEGER)_Instance)
+AND
+DB_LLDT_TalentMenu_Temp_PageTurnResolved(_Instance)
+THEN
+NOT DB_LLDT_TalentMenu_Temp_PageTurnResolved(_Instance);
+
+IF
+DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _Index)
+AND
+DB_LLDT_TalentMenu_Temp_MaxPageIndex(_Instance, _EndIndex)
+AND
+IntegertoString(_Index, _PageStr)
+AND
+IntegertoString(_EndIndex, _EndPageStr)
+AND
+StringConcatenate("[LLDT:TalentMenu] Page set to ", _PageStr, _Str)
+AND
+StringConcatenate(_Str, "/", _Str2)
+AND
+StringConcatenate(_Str2, _EndPageStr, _Str3)
+THEN
+DebugBreak(_Str3);
+//END_REGION
+
+//REGION DIALOG_VAR_SETTING
+PROC
+LLDT_TalentMenu_ClearTalentList((INTEGER)_Instance)
+AND
+DB_LLDT_TalentMenu_Temp_TalentList(_Instance, _Index, _Talent, _DisplayName)
+THEN
+NOT DB_LLDT_TalentMenu_Temp_TalentList(_Instance, _Index, _Talent, _DisplayName);
+
+PROC
+LLDT_TalentMenu_ClearTalentList((INTEGER)_Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
+AND
+DB_LLDT_TalentMenu_DialogVars(_Index, _DialogVar, _ToggleFlag, _EnabledFlag)
+THEN
+ObjectClearFlag(_Player, _EnabledFlag);
+
+PROC
+LLDT_TalentMenu_LoadTalents((STRING)_ListID, (INTEGER)_PageIndex, (INTEGER)_Instance)
+AND
+DB_LLDT_TalentMenu_Temp_CurrentList(_OtherListID)
+AND
+_ListID != _OtherListID
+THEN
+NOT DB_LLDT_TalentMenu_Temp_CurrentList(_OtherListID);
+
+PROC
+LLDT_TalentMenu_LoadTalents((STRING)_ListID, (INTEGER)_PageIndex, (INTEGER)_Instance)
+AND
+DB_LLDT_TalentMenu_Temp_MaxPageIndex(_Instance, _MaxPageIndex)
+THEN
+NOT DB_LLDT_TalentMenu_Temp_MaxPageIndex(_Instance, _MaxPageIndex);
+
+PROC
+LLDT_TalentMenu_LoadTalents((STRING)_ListID, (INTEGER)_PageIndex, (INTEGER)_Instance)
+AND
+DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _OtherPageIndex)
+THEN
+NOT DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _OtherPageIndex);
+
+PROC
+LLDT_TalentMenu_LoadTalents((STRING)_ListID, (INTEGER)_PageIndex, (INTEGER)_Instance)
+THEN
+LLDT_TalentMenu_ClearTalentList(_Instance);
+DB_LLDT_TalentMenu_Temp_CurrentList(_ListID);
+DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PageIndex);
+
+PROC
+LLDT_TalentMenu_LoadTalents("Default", (INTEGER)_PageIndex, (INTEGER)_Instance)
+AND
+SysCount("DB_LLDT_TalentMenu_Talents", 3, _TotalTalents)
+AND
+IntegerDivide(_TotalTalents, 8, _TotalPages)
+AND
+IntegerProduct(_PageIndex, 8, _TalentIndex)
+THEN
+LLDT_TalentMenu_SetMaxPageIndex(_Instance, _TotalPages);
+DB_LLDT_TalentMenu_Temp_SetTalentList("Default", _Instance, _TalentIndex, 0);
+
+IF
+DB_LLDT_TalentMenu_Temp_SetTalentList("Default", _Instance, _TalentStartIndex, _ListIndex)
+AND
+_ListIndex <= 7
+AND
+IntegerSum(_TalentStartIndex, _ListIndex, _Index)
+AND
+IntegerSum(_ListIndex, 1, _NextListIndex)
+THEN
+NOT DB_LLDT_TalentMenu_Temp_SetTalentList("Default", _Instance, _TalentStartIndex, _ListIndex);
+LLDT_TalentMenu_AddTalentByIndex("Default", _Instance, _Index, _ListIndex);
+DB_LLDT_TalentMenu_Temp_SetTalentList("Default", _Instance, _TalentStartIndex, _NextListIndex);
+
+PROC
+LLDT_TalentMenu_AddTalentByIndex("Default", (INTEGER)_Instance, (INTEGER)_Index, (INTEGER)_ListIndex)
+AND
+DB_LLDT_TalentMenu_Talents(_Index, _DisplayName, _Talent)
+THEN
+DB_LLDT_TalentMenu_Temp_TalentList(_Instance, _ListIndex, _Talent, _DisplayName);
+
+PROC
+LLDT_TalentMenu_LoadTalents("Race", (INTEGER)_PageIndex, (INTEGER)_Instance)
+THEN
+LLDT_TalentMenu_SetMaxPageIndex(_Instance, 0);
+DB_LLDT_TalentMenu_Temp_SetTalentList("Race", _Instance, 0, 0);
+
+IF
+DB_LLDT_TalentMenu_Temp_SetTalentList("Race", _Instance, _TalentStartIndex, _ListIndex)
+AND
+_ListIndex <= 7
+AND
+IntegerSum(_TalentStartIndex, _ListIndex, _Index)
+AND
+IntegerSum(_ListIndex, 1, _NextListIndex)
+THEN
+NOT DB_LLDT_TalentMenu_Temp_SetTalentList("Race", _Instance, _TalentStartIndex, _ListIndex);
+LLDT_TalentMenu_AddTalentByIndex("Race", _Instance, _Index, _ListIndex);
+DB_LLDT_TalentMenu_Temp_SetTalentList("Race", _Instance, _TalentStartIndex, _NextListIndex);
+
+PROC
+LLDT_TalentMenu_AddTalentByIndex("Race", (INTEGER)_Instance, (INTEGER)_Index, (INTEGER)_ListIndex)
+AND
+DB_LLDT_TalentMenu_RacialTalents(_Index, _DisplayName, _Talent)
+THEN
+DB_LLDT_TalentMenu_Temp_TalentList(_Instance, _ListIndex, _Talent, _DisplayName);
+
+IF
+DB_LLDT_TalentMenu_Temp_SetTalentList(_ListID, _Instance, _TalentStartIndex, _ListIndex)
+AND
+_ListIndex > 7
+THEN
+NOT DB_LLDT_TalentMenu_Temp_SetTalentList(_ListID, _Instance, _TalentStartIndex, _ListIndex);
+LLDT_TalentMenu_SetTalentDialogVars(_Instance);
+
+PROC
+LLDT_TalentMenu_SetTalentDialogVars((INTEGER)_Instance)
+AND
+DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PageIndex)
+AND
+DB_LLDT_TalentMenu_Temp_MaxPageIndex(_Instance, _MaxPageIndex)
+AND
+IntegerSum(_PageIndex, 1, _DisplayedIndex)
+AND
+IntegerSum(_MaxPageIndex, 1, _DisplayedEndIndex)
+AND
+IntegertoString(_DisplayedIndex, _PageStr)
+AND
+IntegertoString(_DisplayedEndIndex, _EndPageStr)
+AND
+StringConcatenate(_PageStr, "/", _Str1)
+AND
+StringConcatenate(_Str1, _EndPageStr, _DialogString)
+THEN
+DialogSetVariableStringForInstance(_Instance, "LLDT_TalentMenu_PageDisplay_67740c80-fbd2-4ceb-b5be-2c6ac9b08946", _DialogString);
+
+PROC
+LLDT_TalentMenu_SetTalentDialogVars((INTEGER)_Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
+AND
+DB_LLDT_TalentMenu_Temp_TalentList(_Instance, _Index, _Talent, _DisplayName)
+AND
+DB_LLDT_TalentMenu_DialogVars(_Index, _DialogVar, _ToggleFlag, _EnabledFlag)
+AND
+CharacterHasTalent(_Player, _Talent, _HasTalent)
+AND
+DB_LLDT_TalentMenu_DialogVarPrefix(_HasTalent, _Prefix)
+AND
+StringConcatenate(_Prefix, _DisplayName, _Str1)
+AND
+StringConcatenate(_Str1, "</b> [", _Str2)
+AND
+StringConcatenate(_Str2, _Talent, _Str3)
+AND
+StringConcatenate(_Str3, "]", _DialogString)
+THEN
+DialogSetVariableStringForInstance(_Instance, _DialogVar, _DialogString);
+ObjectSetFlag(_Player, _EnabledFlag, _Instance);
+//END_REGION
+
+//REGION TALENT_TOGGLING
+IF
+ObjectFlagSet(_ToggleFlag, (CHARACTERGUID)_Player, _Instance)
+AND
+DB_LLDT_TalentMenu_DialogVars(_Index, _DialogVar, _ToggleFlag, _EnabledFlag)
+THEN
+ObjectClearFlag(_Player, _ToggleFlag);
+LLDT_TalentMenu_ToggleTalent(_Player, _Index);
+LLDT_TalentMenu_SetTalentDialogVars(_Instance);
+
+PROC
+LLDT_TalentMenu_ToggleTalent((CHARACTERGUID)_Player, (INTEGER)_Index)
+AND
+NOT DB_LLDT_TalentMenu_Temp_ToggledTalent(_Player)
+AND
+DB_LLDT_TalentMenu_Temp_TalentList(_Instance, _Index, _Talent, _DisplayName)
+AND
+CharacterHasTalent(_Player, _Talent, 0)
+AND
+StringConcatenate(_DisplayName, " Added", _Str)
+THEN
+CharacterStatusText(_Player, _Str);
+CharacterAddTalent(_Player, _Talent);
+DB_LLDT_TalentMenu_Temp_ToggledTalent(_Player);
+
+PROC
+LLDT_TalentMenu_ToggleTalent((CHARACTERGUID)_Player, (INTEGER)_Index)
+AND
+NOT DB_LLDT_TalentMenu_Temp_ToggledTalent(_Player)
+AND
+DB_LLDT_TalentMenu_Temp_TalentList(_Instance, _Index, _Talent, _DisplayName)
+AND
+CharacterHasTalent(_Player, _Talent, 1)
+AND
+StringConcatenate(_DisplayName, " Removed", _Str)
+THEN
+CharacterStatusText(_Player, _Str);
+CharacterRemoveTalent(_Player, _Talent);
+DB_LLDT_TalentMenu_Temp_ToggledTalent(_Player);
+
+PROC
+LLDT_TalentMenu_ToggleTalent((CHARACTERGUID)_Player, (INTEGER)_Index)
+AND
+DB_LLDT_TalentMenu_Temp_ToggledTalent(_Player)
+THEN
+NOT DB_LLDT_TalentMenu_Temp_ToggledTalent(_Player);
+//END_REGION
+
+//REGION DIALOG_EVENTS
+PROC
+LLDT_TalentMenu_ClearTempDatabases((INTEGER)_Instance)
+AND
+DB_LLDT_TalentMenu_Temp_MaxPageIndex(_Instance, _MaxPageIndex)
+THEN
+NOT DB_LLDT_TalentMenu_Temp_MaxPageIndex(_Instance, _MaxPageIndex);
+
+PROC
+LLDT_TalentMenu_ClearTempDatabases((INTEGER)_Instance)
+AND
+DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PageIndex)
+THEN
+NOT DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PageIndex);
+
+PROC
+LLDT_TalentMenu_ClearTempDatabases((INTEGER)_Instance)
+AND
+DB_LLDT_TalentMenu_Temp_TalentList(_Instance, _Index, _Talent, _DisplayName)
+THEN
+NOT DB_LLDT_TalentMenu_Temp_TalentList(_Instance, _Index, _Talent, _DisplayName);
+
+IF
+DialogEnded("LLDT_TalentMenu", _Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
+THEN
+LLDT_TalentMenu_ClearTempDatabases(_Instance);
+Proc_StartDialog(0, "LLDT_DebugMenu", _Player, _Player);
+
+IF
+DialogEnded("LLDT_DebugMenu", _Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
+AND
+ObjectGetFlag(_Player, "LLDT_OpenTalentMenu", 1)
+THEN
+ObjectClearFlag(_Player, "LLDT_OpenTalentMenu");
+Proc_StartDialog(0, "LLDT_TalentMenu", _Player, _Player);
+//END_REGION
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "LaughingLeader_DebugTools"
