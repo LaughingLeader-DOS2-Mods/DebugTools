@@ -153,22 +153,7 @@ PROC
 LLDT_TalentMenu_AddTalent((STRING)_DisplayName, (STRING)_Talent)
 AND
 SysCount("DB_LLDT_TalentMenu_Talents", 3, _Index)
-AND
-IntegertoString(_Index, _IndexStr)
-AND
-StringConcatenate("Adding talent: [",_IndexStr, _Str1)
-AND
-StringConcatenate(_Str1, "][",_Str2)
-AND
-StringConcatenate(_Str2, _Talent, _Str3)
-AND
-StringConcatenate(_Str3, "][", _Str4)
-AND
-StringConcatenate(_Str4, _DisplayName, _Str5)
-AND
-StringConcatenate(_Str5, "]", _Str6)
 THEN
-DebugBreak(_Str6);
 DB_LLDT_TalentMenu_Talents(_Index, _DisplayName, _Talent);
 
 PROC
@@ -381,26 +366,29 @@ AND
 DB_LLDT_TalentMenu_Temp_PageTurnResolved(_Instance)
 THEN
 NOT DB_LLDT_TalentMenu_Temp_PageTurnResolved(_Instance);
-
-IF
-DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _Index)
-AND
-DB_LLDT_TalentMenu_Temp_MaxPageIndex(_Instance, _EndIndex)
-AND
-IntegertoString(_Index, _PageStr)
-AND
-IntegertoString(_EndIndex, _EndPageStr)
-AND
-StringConcatenate("[LLDT:TalentMenu] Page set to ", _PageStr, _Str)
-AND
-StringConcatenate(_Str, "/", _Str2)
-AND
-StringConcatenate(_Str2, _EndPageStr, _Str3)
-THEN
-DebugBreak(_Str3);
 //END_REGION
 
 //REGION DIALOG_VAR_SETTING
+IF
+ObjectFlagSet("LLDT_TalentMenu_UnloadList", (CHARACTERGUID)_Player, _Instance)
+THEN
+ObjectClearFlag(_Player, "LLDT_TalentMenu_UnloadList");
+LLDT_TalentMenu_ClearTempListVars(_Instance);
+
+PROC
+LLDT_TalentMenu_ClearTempListVars((INTEGER)_Instance)
+AND
+DB_LLDT_TalentMenu_Temp_MaxPageIndex(_Instance, _MaxPageIndex)
+THEN
+NOT DB_LLDT_TalentMenu_Temp_MaxPageIndex(_Instance, _MaxPageIndex);
+
+PROC
+LLDT_TalentMenu_ClearTempListVars((INTEGER)_Instance)
+AND
+DB_LLDT_TalentMenu_Temp_TalentList(_Instance, _Index, _Talent, _DisplayName)
+THEN
+NOT DB_LLDT_TalentMenu_Temp_TalentList(_Instance, _Index, _Talent, _DisplayName);
+
 PROC
 LLDT_TalentMenu_ClearTalentList((INTEGER)_Instance)
 AND
@@ -414,6 +402,8 @@ AND
 DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
 AND
 DB_LLDT_TalentMenu_DialogVars(_Index, _DialogVar, _ToggleFlag, _EnabledFlag)
+AND
+ObjectGetFlag(_Player, _EnabledFlag, 1)
 THEN
 ObjectClearFlag(_Player, _EnabledFlag);
 
@@ -436,9 +426,9 @@ NOT DB_LLDT_TalentMenu_Temp_MaxPageIndex(_Instance, _MaxPageIndex);
 PROC
 LLDT_TalentMenu_LoadTalents((STRING)_ListID, (INTEGER)_PageIndex, (INTEGER)_Instance)
 AND
-DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _OtherPageIndex)
+DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PreviousPageIndex)
 THEN
-NOT DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _OtherPageIndex);
+NOT DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PreviousPageIndex);
 
 PROC
 LLDT_TalentMenu_LoadTalents((STRING)_ListID, (INTEGER)_PageIndex, (INTEGER)_Instance)
