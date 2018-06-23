@@ -1,5 +1,11 @@
 DebugTools Changelog
 =======
+# 1.2.0.0
+* Debug Menu
+	* Talent Menu
+		* Added a new Talent Menu, allowing you to add/remove talents (and racial talents) at will.
+		* Contains pages for every talent in the game, including unused talents and racial talents.
+
 # 1.1.5.0
 * Tweaked Waypoints Command
 	* Made waypoints teleport the party to other levels after unlocking them with the menu command.
