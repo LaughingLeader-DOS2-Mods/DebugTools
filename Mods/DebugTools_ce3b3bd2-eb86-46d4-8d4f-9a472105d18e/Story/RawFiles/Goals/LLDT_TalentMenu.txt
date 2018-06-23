@@ -162,7 +162,16 @@ AND
 SysCount("DB_LLDT_TalentMenu_RacialTalents", 3, _Index)
 THEN
 DB_LLDT_TalentMenu_RacialTalents(_Index, _DisplayName, _Talent);
+//END_REGION
 
+//REGION UPDATER
+PROC
+LLDT_System_UpdateAll()
+THEN
+DB_NOOP(1);
+//END_REGION
+
+//REGION PAGE_EVENTS
 PROC
 LLDT_TalentMenu_SetMaxPageIndex((INTEGER)_Instance, (INTEGER)_Index)
 AND
@@ -174,16 +183,19 @@ PROC
 LLDT_TalentMenu_SetMaxPageIndex((INTEGER)_Instance, (INTEGER)_Index)
 THEN
 DB_LLDT_TalentMenu_Temp_MaxPageIndex(_Instance, _Index);
-//END_REGION
 
-//REGION UPDATER
 PROC
-LLDT_System_UpdateAll()
+LLDT_TalentMenu_SetCurrentPage((INTEGER)_Instance, (STRING)_ListID, (INTEGER)_PageIndex)
+AND
+DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _OtherPageIndex)
 THEN
-DB_NOOP(1);
-//END_REGION
+NOT DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _OtherPageIndex);
 
-//REGION PAGE_LOADING_EVENTS
+PROC
+LLDT_TalentMenu_SetCurrentPage((INTEGER)_Instance, (STRING)_ListID, (INTEGER)_PageIndex)
+THEN
+DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PageIndex);
+
 IF
 ObjectFlagSet("LLDT_TalentMenu_LoadTalents", (CHARACTERGUID)_Player, _Instance)
 THEN
@@ -199,9 +211,9 @@ LLDT_TalentMenu_LoadInitialTalents("Race", _Instance);
 PROC
 LLDT_TalentMenu_LoadInitialTalents((STRING)_ListID, (INTEGER)_Instance)
 AND
-NOT DB_LLDT_TalentMenu_Temp_LoadingTalents(_Instance)
-AND
 DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PageIndex)
+AND
+NOT DB_LLDT_TalentMenu_Temp_LoadingTalents(_Instance)
 THEN
 DB_LLDT_TalentMenu_Temp_LoadingTalents(_Instance);
 LLDT_TalentMenu_LoadTalents(_ListID, _PageIndex, _Instance);
@@ -209,9 +221,9 @@ LLDT_TalentMenu_LoadTalents(_ListID, _PageIndex, _Instance);
 PROC
 LLDT_TalentMenu_LoadInitialTalents((STRING)_ListID, (INTEGER)_Instance)
 AND
-NOT DB_LLDT_TalentMenu_Temp_LoadingTalents(_Instance)
-AND
 NOT DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _)
+AND
+NOT DB_LLDT_TalentMenu_Temp_LoadingTalents(_Instance)
 THEN
 DB_LLDT_TalentMenu_Temp_LoadingTalents(_Instance);
 LLDT_TalentMenu_LoadTalents(_ListID, 0, _Instance);
@@ -256,8 +268,7 @@ DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PageIndex)
 AND
 _PageIndex != 0
 THEN
-NOT DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PageIndex);
-DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, 0);
+LLDT_TalentMenu_SetCurrentPage(_Instance, _ListID, 0);
 LLDT_TalentMenu_LoadTalents(_ListID, 0, _Instance);
 
 PROC
@@ -271,8 +282,7 @@ DB_LLDT_TalentMenu_Temp_MaxPageIndex(_Instance, _MaxPageIndex)
 AND
 _PageIndex != _MaxPageIndex
 THEN
-NOT DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PageIndex);
-DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _MaxPageIndex);
+LLDT_TalentMenu_SetCurrentPage(_Instance, _ListID, _MaxPageIndex);
 LLDT_TalentMenu_LoadTalents(_ListID, _MaxPageIndex, _Instance);
 
 PROC
@@ -291,8 +301,7 @@ AND
 _NextPage <= _MaxPageIndex
 THEN
 DB_LLDT_TalentMenu_Temp_PageTurnResolved(_Instance);
-NOT DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PageIndex);
-DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _NextPage);
+LLDT_TalentMenu_SetCurrentPage(_Instance, _ListID, _NextPage);
 LLDT_TalentMenu_LoadTalents(_ListID, _NextPage, _Instance);
 
 PROC
@@ -311,8 +320,7 @@ AND
 _NextPage > _MaxPageIndex
 THEN
 DB_LLDT_TalentMenu_Temp_PageTurnResolved(_Instance);
-NOT DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PageIndex);
-DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, 0);
+LLDT_TalentMenu_SetCurrentPage(_Instance, _ListID, 0);
 LLDT_TalentMenu_LoadTalents(_ListID, 0, _Instance);
 
 PROC
@@ -336,8 +344,7 @@ AND
 _NextPage >= 0
 THEN
 DB_LLDT_TalentMenu_Temp_PageTurnResolved(_Instance);
-NOT DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PageIndex);
-DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _NextPage);
+LLDT_TalentMenu_SetCurrentPage(_Instance, _ListID, _NextPage);
 LLDT_TalentMenu_LoadTalents(_ListID, _NextPage, _Instance);
 
 PROC
@@ -356,8 +363,7 @@ AND
 DB_LLDT_TalentMenu_Temp_MaxPageIndex(_Instance, _MaxPageIndex)
 THEN
 DB_LLDT_TalentMenu_Temp_PageTurnResolved(_Instance);
-NOT DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PageIndex);
-DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _MaxPageIndex);
+LLDT_TalentMenu_SetCurrentPage(_Instance, _ListID, _MaxPageIndex);
 LLDT_TalentMenu_LoadTalents(_ListID, _MaxPageIndex, _Instance);
 
 PROC
@@ -396,6 +402,7 @@ DB_LLDT_TalentMenu_Temp_TalentList(_Instance, _Index, _Talent, _DisplayName)
 THEN
 NOT DB_LLDT_TalentMenu_Temp_TalentList(_Instance, _Index, _Talent, _DisplayName);
 
+/*
 PROC
 LLDT_TalentMenu_ClearTalentList((INTEGER)_Instance)
 AND
@@ -406,6 +413,7 @@ AND
 ObjectGetFlag(_Player, _EnabledFlag, 1)
 THEN
 ObjectClearFlag(_Player, _EnabledFlag);
+*/
 
 PROC
 LLDT_TalentMenu_LoadTalents((STRING)_ListID, (INTEGER)_PageIndex, (INTEGER)_Instance)
@@ -418,24 +426,10 @@ NOT DB_LLDT_TalentMenu_Temp_CurrentList(_OtherListID);
 
 PROC
 LLDT_TalentMenu_LoadTalents((STRING)_ListID, (INTEGER)_PageIndex, (INTEGER)_Instance)
-AND
-DB_LLDT_TalentMenu_Temp_MaxPageIndex(_Instance, _MaxPageIndex)
-THEN
-NOT DB_LLDT_TalentMenu_Temp_MaxPageIndex(_Instance, _MaxPageIndex);
-
-PROC
-LLDT_TalentMenu_LoadTalents((STRING)_ListID, (INTEGER)_PageIndex, (INTEGER)_Instance)
-AND
-DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PreviousPageIndex)
-THEN
-NOT DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PreviousPageIndex);
-
-PROC
-LLDT_TalentMenu_LoadTalents((STRING)_ListID, (INTEGER)_PageIndex, (INTEGER)_Instance)
 THEN
 LLDT_TalentMenu_ClearTalentList(_Instance);
 DB_LLDT_TalentMenu_Temp_CurrentList(_ListID);
-DB_LLDT_TalentMenu_Temp_CurrentPage(_Instance, _ListID, _PageIndex);
+LLDT_TalentMenu_SetCurrentPage(_Instance, _ListID, _PageIndex);
 
 PROC
 LLDT_TalentMenu_LoadTalents("Default", (INTEGER)_PageIndex, (INTEGER)_Instance)
@@ -568,9 +562,11 @@ DB_LLDT_TalentMenu_Temp_TalentList(_Instance, _Index, _Talent, _DisplayName)
 AND
 CharacterHasTalent(_Player, _Talent, 0)
 AND
-StringConcatenate(_DisplayName, " Added", _Str)
+StringConcatenate(_DisplayName, "</font> <font color='#fe6e27' size='16'> Learned</font>", _Str)
+AND
+StringConcatenate("<font color='#00FF00' size='24'>", _Str, _Str2)
 THEN
-CharacterStatusText(_Player, _Str);
+CharacterStatusText(_Player, _Str2);
 CharacterAddTalent(_Player, _Talent);
 DB_LLDT_TalentMenu_Temp_ToggledTalent(_Player);
 
@@ -583,9 +579,11 @@ DB_LLDT_TalentMenu_Temp_TalentList(_Instance, _Index, _Talent, _DisplayName)
 AND
 CharacterHasTalent(_Player, _Talent, 1)
 AND
-StringConcatenate(_DisplayName, " Removed", _Str)
+StringConcatenate(_DisplayName, "</font> <font color='#DC143C' size='16'> Removed</font>", _Str)
+AND
+StringConcatenate("<font color='#00FF00' size='24'>", _Str, _Str2)
 THEN
-CharacterStatusText(_Player, _Str);
+CharacterStatusText(_Player, _Str2);
 CharacterRemoveTalent(_Player, _Talent);
 DB_LLDT_TalentMenu_Temp_ToggledTalent(_Player);
 
@@ -626,6 +624,12 @@ DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
 THEN
 LLDT_TalentMenu_ClearTempDatabases(_Instance);
 Proc_StartDialog(0, "LLDT_DebugMenu", _Player, _Player);
+ObjectClearFlag(_Player, "LeaderLib_BlockModMenuReopen");
+
+IF
+ObjectFlagSet("LLDT_OpenTalentMenu", (CHARACTERGUID)_Player, _Instance)
+THEN
+ObjectSetFlag(_Player, "LeaderLib_BlockModMenuReopen");
 
 IF
 DialogEnded("LLDT_DebugMenu", _Instance)

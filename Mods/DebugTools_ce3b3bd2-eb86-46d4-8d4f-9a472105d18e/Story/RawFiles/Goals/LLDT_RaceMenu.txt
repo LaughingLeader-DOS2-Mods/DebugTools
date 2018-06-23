@@ -72,6 +72,11 @@ DB_LLDT_RaceMenu_UndeadTags("Lizard", "UNDEAD_LIZARD");
 
 //REGION DIALOG
 IF
+ObjectFlagSet("LLDT_MENU_RACEMENU", (CHARACTERGUID)_Player, _Instance)
+THEN
+ObjectSetFlag(_Player, "LeaderLib_BlockModMenuReopen");
+
+IF
 DialogEnded("LLDT_DebugMenu", _Instance)
 AND
 DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
@@ -88,6 +93,7 @@ AND
 ObjectGetFlag(_Player, "LLDT_MENU_RACEMENU", 0)
 THEN
 Proc_StartDialog(0, "LLDT_DebugMenu", _Player, _Player);
+ObjectClearFlag(_Player, "LeaderLib_BlockModMenuReopen");
 //END_REGION
 
 //REGION SELECTION
