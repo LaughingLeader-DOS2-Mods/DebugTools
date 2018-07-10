@@ -2,7 +2,7 @@ INIT
 
 EVENTS
 
-EVENT LogMessage
+EVENT LLDT_LogMessage
 VARS
 	CHARACTER:_Player
 	FIXEDSTRING:_Message
