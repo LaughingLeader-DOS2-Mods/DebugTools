@@ -1,5 +1,9 @@
 DebugTools Changelog
 =======
+# 1.2.1.0
+* Tweaked waypoint teleporting - Should work for teleporting to all levels now.
+
+
 # 1.2.0.0
 * Debug Menu
 	* Talent Menu

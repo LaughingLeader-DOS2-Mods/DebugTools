@@ -101,6 +101,12 @@ DB_LLDT_WaypointInfo((ITEMGUID)ITEMGUID_S_CoS_Temples_Waypoint_LunarPuzzle_7a7da
 DB_LLDT_WaypointInfo((ITEMGUID)ITEMGUID_S_CoS_Academy_Waypoint_Central_2db50e45-a3f7-4f6f-bcef-d99df60617a0,(TRIGGERGUID)TRIGGERGUID_S_CoS_Academy_Waypoint_Central_Point_e28abb66-7361-4cb2-ae6e-eea182b05b46,"WAYP_CoS_Academy_Central");
 DB_LLDT_WaypointInfo((ITEMGUID)ITEMGUID_S_CoS_Temples_Waypoint_Wizard_d089a9bd-9f20-4710-826f-f3a719039861,(TRIGGERGUID)TRIGGERGUID_S_CoS_Temples_Waypoint_Wizard_Point_8908a5de-cbf1-4e8a-b272-56896fd670b1,"WAYP_CoS_Temples_Wizard");
 DB_LLDT_WaypointInfo((ITEMGUID)ITEMGUID_S_CoS_Temples_Waypoint_Imp_0f989a2f-6a3e-4123-be34-c84c4fe17744,(TRIGGERGUID)TRIGGERGUID_S_CoS_Temples_Waypoint_Imp_Point_2cb11394-785b-47ef-bdf9-f8c9134dde06,"WAYP_CoS_Temples_Imp");
+
+SysClear("DB_LLDT_WaypointRegion", 2);
+DB_LLDT_WaypointRegion("_FTJ_", "FJ_FortJoy_Main");
+DB_LLDT_WaypointRegion("_RC_", "RC_Main");
+DB_LLDT_WaypointRegion("_CoS_", "CoS_Main");
+DB_LLDT_WaypointRegion("_ARX_", "Arx_Main");
 //END_REGION
 
 //REGION POINTS
@@ -509,8 +515,10 @@ AND
 ObjectGetFlag(_Player, "LLDT_WaypointsUnlocked", 1)
 AND
 DB_WaypointInfo(_Item,_Trigger,_CurrentWP)
+AND
+LLDT_WaypointTravel_QRY_RegionMismatch(_CurrentWP)
 THEN
-LLDT_WaypointTravel_StartRegionCheck(_Player, _Item, _Trigger);
+CharacterTeleportPartiesToTrigger(_Trigger, "");
 
 IF
 CharacterTeleportToWaypoint(_Player, _Trigger)
@@ -518,40 +526,23 @@ AND
 ObjectGetFlag(_Player, "LLDT_WaypointsUnlocked", 1)
 AND
 DB_LLDT_WaypointInfo(_Item, _Trigger, _CurrentWP)
-THEN
-LLDT_WaypointTravel_StartRegionCheck(_Player, _Item, _Trigger);
-
-PROC
-LLDT_WaypointTravel_StartRegionCheck((CHARACTERGUID)_Player, (ITEMGUID)_Item, (TRIGGERGUID)_Trigger)
 AND
-GetUUID(_Player, _ID)
-AND
-GetUUID(_Item, _ItemID)
-AND
-StringConcatenate("LLDT_Timers_CheckWaypointRegion_", _ItemID, _Str1)
-AND
-StringConcatenate(_Str1, "_", _Str2)
-AND
-StringConcatenate(_Str2, _ID, _TimerName)
-THEN
-DB_LLDT_WaypointTravel_CheckRegion(_TimerName, _Player, _Item, _Trigger);
-TimerLaunch(_TimerName, 150);
-
-IF
-TimerFinished(_TimerName)
-AND
-DB_LLDT_WaypointTravel_CheckRegion(_TimerName, _Player, _Item, _Trigger)
-AND
-CharacterCanSee(_Player, _Item, 0)
+LLDT_WaypointTravel_QRY_RegionMismatch(_CurrentWP)
 THEN
 CharacterTeleportPartiesToTrigger(_Trigger, "");
 
-IF
-TimerFinished(_TimerName)
+QRY
+LLDT_WaypointTravel_QRY_RegionMismatch((STRING)_WaypointID)
 AND
-DB_LLDT_WaypointTravel_CheckRegion(_TimerName, _Player, _Item, _Trigger)
+DB_CurrentLevel(_CurrentRegion)
+AND
+DB_LLDT_WaypointRegion(_Keyword, _Region)
+AND
+StringContains(_WaypointID, _Keyword, 1)
+AND
+_CurrentRegion != _Region
 THEN
-NOT DB_LLDT_WaypointTravel_CheckRegion(_TimerName, _Player, _Item, _Trigger);
+DB_NOOP(1);
 //END_REGION
 
 //REGION IMMORTALITY
