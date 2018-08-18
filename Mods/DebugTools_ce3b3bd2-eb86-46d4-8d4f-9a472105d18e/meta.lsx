@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1534605063" />
+    <version major="3" minor="6" revision="0" build="3" />
+    <region id="Config">
+        <node id="root">
+            <children>
+                <node id="Dependencies" />
+                <node id="ModuleInfo">
+                    <attribute id="Author" value="LaughingLeader" type="30" />
+                    <attribute id="CharacterCreationLevelName" value="" type="22" />
+                    <attribute id="Description" value="Debug Tools contains a collection of helper skills that you can use to debug mods in a live environment. Includes cheats for adding character points, experience, unlocking waypoints, and more." type="30" />
+                    <attribute id="Folder" value="DebugTools_ce3b3bd2-eb86-46d4-8d4f-9a472105d18e" type="30" />
+                    <attribute id="GMTemplate" value="" type="22" />
+                    <attribute id="LobbyLevelName" value="" type="22" />
+                    <attribute id="MD5" value="" type="23" />
+                    <attribute id="MenuLevelName" value="" type="22" />
+                    <attribute id="Name" value="Debug Tools" type="22" />
+                    <attribute id="NumPlayers" value="2" type="1" />
+                    <attribute id="PhotoBooth" value="" type="22" />
+                    <attribute id="StartupLevelName" value="" type="22" />
+                    <attribute id="Tags" value="" type="30" />
+                    <attribute id="Type" value="Add-on" type="22" />
+                    <attribute id="UUID" value="5aadceff-65c8-756b-3fce-93490ab45936" type="22" />
+                    <attribute id="Version" value="302055424" type="4" />
+                    <children>
+                        <node id="PublishVersion">
+                            <attribute id="Version" value="268435456" type="4" />
+                        </node>
+                        <node id="Scripts">
+                            <children>
+                                <node id="Script">
+                                    <attribute id="UUID" value="90e2a816-0877-4b76-8fad-91c89186423a" type="22" />
+                                    <children>
+                                        <node id="Parameters">
+                                            <children>
+                                                <node id="Parameter">
+                                                    <attribute id="MapKey" value="HardcoreOnly" type="22" />
+                                                    <attribute id="Type" value="1" type="4" />
+                                                    <attribute id="Value" value="0" type="23" />
+                                                </node>
+                                            </children>
+                                        </node>
+                                    </children>
+                                </node>
+                            </children>
+                        </node>
+                        <node id="TargetModes">
+                            <children>
+                                <node id="Target">
+                                    <attribute id="Object" value="Story" type="22" />
+                                </node>
+                            </children>
+                        </node>
+                    </children>
+                </node>
+            </children>
+        </node>
+    </region>
+</save>

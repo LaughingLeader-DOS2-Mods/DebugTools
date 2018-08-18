@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1534605063" />
+    <version major="3" minor="6" revision="0" build="3" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="Module" value="5aadceff-65c8-756b-3fce-93490ab45936" type="23" />
+            <attribute id="Name" value="DebugTools" type="23" />
+            <attribute id="Type" value="Add-on" type="23" />
+            <attribute id="UUID" value="82c38f42-01e1-431c-9c65-777926a0ef3c" type="23" />
+        </node>
+    </region>
+</save>

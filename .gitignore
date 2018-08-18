@@ -1,49 +1,109 @@
-Projects/*
-#Story files that can be compiled by the user (only raw files needed).
-Mods/DebugTools_ce3b3bd2-eb86-46d4-8d4f-9a472105d18e/meta.lsx
-Mods/DebugTools_ce3b3bd2-eb86-46d4-8d4f-9a472105d18e/Story/log.txt
-Mods/DebugTools_ce3b3bd2-eb86-46d4-8d4f-9a472105d18e/Story/goals.div
-Mods/DebugTools_ce3b3bd2-eb86-46d4-8d4f-9a472105d18e/Story/goals.raw
-Mods/DebugTools_ce3b3bd2-eb86-46d4-8d4f-9a472105d18e/Story/story.div
-Mods/DebugTools_ce3b3bd2-eb86-46d4-8d4f-9a472105d18e/Story/story.div.osi
-Mods/DebugTools_ce3b3bd2-eb86-46d4-8d4f-9a472105d18e/Story/story_ac.dat
-Mods/DebugTools_ce3b3bd2-eb86-46d4-8d4f-9a472105d18e/Story/RawFiles/story_definitions.div
-Mods/DebugTools_ce3b3bd2-eb86-46d4-8d4f-9a472105d18e/Story/RawFiles/story_header.div
+# SourceControlGenerator #
+##########################
+SourceControlGenerator.json
 
-#Assets
+# Levels
+######################
+Mods/DebugTools_ce3b3bd2-eb86-46d4-8d4f-9a472105d18e/Levels/*
+Mods/DebugTools_ce3b3bd2-eb86-46d4-8d4f-9a472105d18e/Globals/*
+Editor/Mods/DebugTools_ce3b3bd2-eb86-46d4-8d4f-9a472105d18e/Levels/*
+
+# Story files        #
+######################
+*.div
+*.raw
+story_orphanqueries_ignore.txt
+
+# Asset Folders      #
+######################
 Public/DebugTools_ce3b3bd2-eb86-46d4-8d4f-9a472105d18e/Assets/*
-Editor/Mods/DebugTools_ce3b3bd2-eb86-46d4-8d4f-9a472105d18e/Assets/Effects/*
-Public/DebugTools_ce3b3bd2-eb86-46d4-8d4f-9a472105d18e/GUI/*
+#Public/DebugTools_ce3b3bd2-eb86-46d4-8d4f-9a472105d18e/GUI/*
 
-#Log files, etc
-*.log
+# Editor files       #
+######################
+RootTemplateSelectorConfig_*
+ResourceSelectorConfig_*
 StatsEditorConfig.xml
-COMBAT_LLLE_Humans_Trader.ailog
-DockPanel.config
-EditorBrowserMetadata_e19e4cc5-7fa7-45ed-8fbb-e5e02eb1d60e.xml
 EffectEditorConfig.xml
+DockPanel.config
+EditorBrowserMetadata_*
+EditorBrowserMetadata.xml
+Autosave/*
+Recovered/*
 
-#Binary Files
-*.bik
-*.bnk
-*.bshd
-*.bullet
-*.cur
-*.dat
-*.data
-*.dds
-*.fnt
+# Assets             #
+######################
 *.gr2
-*.iggy
-*.iggytex
+*.dae
+*.swf
+*.bullet
+*.dds
+*.tga
+*.png
+*.ttf
 *.lsb
 *.lsf
 *.lsfx
+*.lsefx
+#*.lsx
+*.lsmg
+
+# Logs               #
+######################
+*.log
+*.ailog
+log.txt
+errors.txt
+dialoglog.txt
+personallog.txt
+
+# Binary Files       #
+######################
+*.dat
+*.data
+*.bik
+*.bnk
+*.bshd
+*.cur
+*.fnt
+*.iggy
+*.iggytex
 *.osi
 *.patch
-*.png
-*.swf
-*.tga
 *.tmpl
-*.ttf
-Mods/DebugTools_ce3b3bd2-eb86-46d4-8d4f-9a472105d18e/Story/story_orphanqueries_ignore.txt
+
+# Dump files         #
+######################
+*.stackdump
+*.dmp
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages #
+############
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.lnk
