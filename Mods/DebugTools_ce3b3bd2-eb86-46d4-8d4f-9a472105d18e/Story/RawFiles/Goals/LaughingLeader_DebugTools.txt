@@ -6,7 +6,7 @@ KBSECTION
 PROC
 LLDT_Internal_StartDebugTools()
 THEN
-DebugBreak("[LLDT] Debug Tools starting.");
+DebugBreak("[LLDT] Starting Debug Tools.");
 GoalCompleted;
 
 IF
@@ -19,7 +19,7 @@ LLDT_Start_Internal_CompleteIfStarted()
 AND
 DB_StoryStarted(_)
 THEN
-DebugBreak("[LLDT] Existing save detected.");
+DebugBreak("[LLDT:CompleteIfStarted] Existing save detected.");
 LLDT_Internal_StartDebugTools();
 
 IF
@@ -27,7 +27,7 @@ SavegameLoaded(_,_,_,_)
 AND
 DB_StoryStarted(_)
 THEN
-DebugBreak("[LLDT] Existing save detected.");
+DebugBreak("[LLDT:SavegameLoaded] Existing save detected.");
 LLDT_Internal_StartDebugTools();
 EXITSECTION
 

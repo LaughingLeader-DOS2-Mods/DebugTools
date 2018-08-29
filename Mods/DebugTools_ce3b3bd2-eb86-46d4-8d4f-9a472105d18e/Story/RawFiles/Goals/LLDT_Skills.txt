@@ -5,20 +5,20 @@ INITSECTION
 KBSECTION
 //REGION TREASURE
 IF
-CharacterUsedSkillOnTarget(_Player, _Target, "Target_LLDT_GenerateTreasure", _)
+CharacterUsedSkillOnTarget(_Player, _Target, "Target_LLDT_GenerateTreasure", _, _)
 THEN
 //GenerateTreasure
 CharacterStatusText(_Player, "[DEBUG] Generate Treasure is not implemented yet!");
 DB_NOOP(1);
 
 IF
-CharacterUsedSkillOnTarget(_Player, (CHARACTERGUID)_Trader, "Target_LLDT_GenerateTradeTreasure", _)
+CharacterUsedSkillOnTarget(_Player, (CHARACTERGUID)_Trader, "Target_LLDT_GenerateTradeTreasure", _, _)
 THEN
 CharacterStatusText(_Trader, "[DEBUG] Generated trade items.");
 GenerateItems(_Player, _Trader);
 
 IF
-CharacterUsedSkillOnTarget(_Player, (CHARACTERGUID)_Trader, "Target_LLDT_ClearTradeTreasure", _)
+CharacterUsedSkillOnTarget(_Player, (CHARACTERGUID)_Trader, "Target_LLDT_ClearTradeTreasure", _, _)
 THEN
 CharacterStatusText(_Trader, "[DEBUG] Cleared generated trade items.");
 CharacterClearTradeGeneratedItems(_Trader);
@@ -26,14 +26,14 @@ CharacterClearTradeGeneratedItems(_Trader);
 
 //REGION CLEAR_ITEMS
 IF
-CharacterUsedSkillOnTarget(_Player, _Target, "Target_LLDT_ClearEquipment", _)
+CharacterUsedSkillOnTarget(_Player, _Target, "Target_LLDT_ClearEquipment", _, _)
 AND
 ItemTemplateIsInCharacterInventory(_Player, "LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e", 0)
 THEN
 ItemTemplateAddTo("LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e", _Player, 1);
 
 IF
-CharacterUsedSkillOnTarget(_Player, (ITEMGUID)_Target, "Target_LLDT_ClearItems", _)
+CharacterUsedSkillOnTarget(_Player, (ITEMGUID)_Target, "Target_LLDT_ClearItems", _, _)
 AND
 ItemIsContainer(_Target, 0)
 THEN
@@ -41,7 +41,7 @@ SetStoryEvent(_Target, "LLDT_Event_ItemDestroyed");
 ItemDestroy(_Target);
 
 IF
-CharacterUsedSkillOnTarget(_Player, _Target, "Target_LLDT_ClearItems", _)
+CharacterUsedSkillOnTarget(_Player, _Target, "Target_LLDT_ClearItems", _, _)
 AND
 GetItemForItemTemplateInInventory(_Player, "LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e", _Destroyer)
 THEN
@@ -49,7 +49,7 @@ CharacterStatusText(_Player, "[DEBUG] Destroyed all items.");
 MoveAllItemsTo(_Target, _Destroyer, 0, 0, 0);
 
 IF
-CharacterUsedSkillOnTarget(_Player, _Target, "Target_LLDT_ClearEquipment", _)
+CharacterUsedSkillOnTarget(_Player, _Target, "Target_LLDT_ClearEquipment", _, _)
 AND
 GetItemForItemTemplateInInventory(_Player, "LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e", _Destroyer)
 THEN
@@ -68,7 +68,7 @@ ItemDestroy(_Item);
 
 
 IF
-CharacterUsedSkillOnTarget(_Player, _Target, "Target_LLDT_ClearEquipment", _)
+CharacterUsedSkillOnTarget(_Player, _Target, "Target_LLDT_ClearEquipment", _, _)
 AND
 ItemTemplateIsInCharacterInventory(_Player, "LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e", 0)
 THEN
@@ -101,13 +101,13 @@ CharacterAddGold(_Char, 256);
 
 //REGION LEVEL_UP
 IF
-CharacterUsedSkillOnTarget(_Player, (CHARACTERGUID)_Target, "Target_LLDT_LevelUp", _)
+CharacterUsedSkillOnTarget(_Player, (CHARACTERGUID)_Target, "Target_LLDT_LevelUp", _, _)
 THEN
 CharacterStatusText(_Target, "[DEBUG] Level +1");
 CharacterLevelUp(_Target);
 
 IF
-CharacterUsedSkill(_Caster, "Shout_LLDT_LevelUpParty", _)
+CharacterUsedSkill(_Caster, "Shout_LLDT_LevelUpParty", _, _)
 AND
 DB_IsPlayer(_Player)
 THEN
@@ -124,7 +124,7 @@ CharacterEquipItem(_Player, _Item);
 
 //REGION FORK
 IF
-CharacterUsedSkill(_Player, "Shout_LLDT_EnableKillMode", _)
+CharacterUsedSkill(_Player, "Shout_LLDT_EnableKillMode", _, _)
 AND
 GetItemForItemTemplateInInventory(_Player, "LLDT_Debug_DebugTool_Kill_1955e0c9-3272-48d0-88b9-db356ab921a9", _Existing)
 AND
@@ -135,7 +135,7 @@ ItemDestroy(_Item);
 CharacterEquipItem(_Player, _Existing);
 
 IF
-CharacterUsedSkill(_Player, "Shout_LLDT_EnableKillMode", _)
+CharacterUsedSkill(_Player, "Shout_LLDT_EnableKillMode", _, _)
 AND
 ItemTemplateIsInCharacterInventory(_Player, "LLDT_Debug_DebugTool_Kill_1955e0c9-3272-48d0-88b9-db356ab921a9", _Count)
 AND
@@ -149,7 +149,7 @@ ItemTemplateAddTo("LLDT_Debug_DebugTool_Kill_1955e0c9-3272-48d0-88b9-db356ab921a
 LLDT_EquipTemplate(_Player, "LLDT_Debug_DebugTool_Kill_1955e0c9-3272-48d0-88b9-db356ab921a9");
 
 IF
-CharacterUsedSkill(_Player, "Shout_LLDT_DisableKillMode", _)
+CharacterUsedSkill(_Player, "Shout_LLDT_DisableKillMode", _, _)
 AND
 GetItemForItemTemplateInInventory(_Player, "LLDT_Debug_DebugTool_Peace_d53e549c-5003-47a8-b7cf-852f4711c076", _Existing)
 AND
@@ -160,7 +160,7 @@ ItemDestroy(_Item);
 CharacterEquipItem(_Player, _Existing);
 
 IF
-CharacterUsedSkill(_Player, "Shout_LLDT_DisableKillMode", _)
+CharacterUsedSkill(_Player, "Shout_LLDT_DisableKillMode", _, _)
 AND
 ItemTemplateIsInCharacterInventory(_Player, "LLDT_Debug_DebugTool_Peace_d53e549c-5003-47a8-b7cf-852f4711c076", _Count)
 AND
@@ -176,7 +176,7 @@ LLDT_EquipTemplate(_Player, "LLDT_Debug_DebugTool_Peace_d53e549c-5003-47a8-b7cf-
 
 //REGION MENU
 IF
-CharacterUsedSkill(_Player, "Shout_LLDT_OpenMenu", _)
+CharacterUsedSkill(_Player, "Shout_LLDT_OpenMenu", _, _)
 AND
 CharacterIsPlayer(_Player, 1)
 AND
@@ -187,7 +187,7 @@ THEN
 Proc_StartDialog(0, "LLDT_DebugMenu", _Player, _Player);
 
 IF
-CharacterUsedSkill(_Player, "Shout_LLDT_OpenMenu", _)
+CharacterUsedSkill(_Player, "Shout_LLDT_OpenMenu", _, _)
 AND
 CharacterIsPlayer(_Player, 1)
 AND
@@ -198,7 +198,7 @@ THEN
 Proc_StartDialog(0, "LLDT_RaceChangeMenu", _Player, _Player);
 
 IF
-CharacterUsedSkill(_Player, "Shout_LLDT_OpenMenu", _)
+CharacterUsedSkill(_Player, "Shout_LLDT_OpenMenu", _, _)
 AND
 CharacterIsPlayer(_Player, 1)
 AND
@@ -216,13 +216,13 @@ LLDT_Menu_ResetCommands(_Player);
 
 //REGION TELEPORT
 IF
-CharacterUsedSkillAtPosition(_Player, _X,_Y,_Z, "Target_LLDT_TeleportSelf", _)
+CharacterUsedSkillAtPosition(_Player, _X,_Y,_Z, "Target_LLDT_TeleportSelf", _, _)
 THEN
 TeleportToPosition(_Player, _X,_Y,_Z, "LLDT_Event_TeleportSelf", 0);
 PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01", _X,_Y,_Z);
 
 IF
-CharacterUsedSkillAtPosition(_Caster, _X,_Y,_Z, "Target_LLDT_TeleportParty", _)
+CharacterUsedSkillAtPosition(_Caster, _X,_Y,_Z, "Target_LLDT_TeleportParty", _, _)
 AND
 LLDT_QRY_PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01", _X,_Y,_Z)
 AND

@@ -15,31 +15,9 @@ PROC
 LLDT_LeaderLib_RegisterSettings()
 THEN
 DB_LeaderLib_ModApi_RegisterActiveGoal("DebugTools", "LaughingLeader", "LLDT_LeaderLib");
-DB_LeaderLib_ModApi_RegisterMenu("LaughingLeader_DebugTools", "[Debug Tools] Debug Menu", "LLDT_DebugMenu", "DebugTools", "LaughingLeader");
-DB_LLLIB_Treasure_TreasureItemTemplates("LLLIB_LeaderTrader_ModItems", "LLDT_Debug_DebugTool_Peace_d53e549c-5003-47a8-b7cf-852f4711c076", 1, "");
-DB_LLLIB_Treasure_ItemMaxAmount("LLLIB_LeaderTrader_ModItems", "LLDT_Debug_DebugTool_Peace_d53e549c-5003-47a8-b7cf-852f4711c076", 1);
-LLDT_LeaderLib_RegisterDatabases();
-
-PROC
-LLDT_LeaderLib_RegisterDatabases()
-THEN
-DB_LeaderLib_ModApi_RegisterDatabase("DebugTools", "LaughingLeader", "LeaderLib", "DB_LLDT_RegisteredLeaderLibSettings", 1);
-DB_LeaderLib_ModApi_RegisterDatabase("DebugTools", "LaughingLeader", "Helpers", "DB_LLDT_InitialTag", 3);
-DB_LeaderLib_ModApi_RegisterDatabase("DebugTools", "LaughingLeader", "Start", "DB_LLDT_DebugItems", 2);
-DB_LeaderLib_ModApi_RegisterDatabase("DebugTools", "LaughingLeader", "Menu", "DB_LLDT_CommandFlags", 1);
-DB_LeaderLib_ModApi_RegisterDatabase("DebugTools", "LaughingLeader", "Menu", "DB_LLDT_PartyCommandFlags", 1);
-DB_LeaderLib_ModApi_RegisterDatabase("DebugTools", "LaughingLeader", "Menu", "DB_LLDT_Skills_All", 1);
-DB_LeaderLib_ModApi_RegisterDatabase("DebugTools", "LaughingLeader", "Menu", "DB_LLDT_Skills_Essentials", 1);
-DB_LeaderLib_ModApi_RegisterDatabase("DebugTools", "LaughingLeader", "Menu", "DB_LLDT_Skills_Treasure", 1);
-DB_LeaderLib_ModApi_RegisterDatabase("DebugTools", "LaughingLeader", "Menu", "DB_LLDT_Menu_ModText", 1);
-DB_LeaderLib_ModApi_RegisterDatabase("DebugTools", "LaughingLeader", "RaceMenu", "DB_LLDT_RaceMenu_RaceTemplates", 3);
-DB_LeaderLib_ModApi_RegisterDatabase("DebugTools", "LaughingLeader", "RaceMenu", "DB_LLDT_RaceMenu_UndeadRaceTemplates", 3);
-DB_LeaderLib_ModApi_RegisterDatabase("DebugTools", "LaughingLeader", "RaceMenu", "DB_LLDT_RaceMenu_FlagToRace", 3);
-DB_LeaderLib_ModApi_RegisterDatabase("DebugTools", "LaughingLeader", "RaceMenu", "DB_LLDT_RaceMenu_RaceSkills", 2);
-DB_LeaderLib_ModApi_RegisterDatabase("DebugTools", "LaughingLeader", "RaceMenu", "DB_LLDT_RaceMenu_RaceTalents", 3);
-DB_LeaderLib_ModApi_RegisterDatabase("DebugTools", "LaughingLeader", "RaceMenu", "DB_LLDT_RaceMenu_UndeadTags", 2);
-DB_LeaderLib_ModApi_RegisterDatabase("DebugTools", "LaughingLeader", "RaceMenu", "DB_LLDT_RaceMenu_OriginalCharacterTemplate", 2);
-DB_LeaderLib_ModApi_RegisterDatabase("DebugTools", "LaughingLeader", "RaceMenu", "DB_LLDT_RaceMenu_Selected", 4);
+DB_LeaderLib_ModApi_RegisterMenu("LaughingLeader.DebugTools", "[Debug Tools] Debug Menu", "LLDT_DebugMenu", "DebugTools", "LaughingLeader");
+DB_LeaderLib_Treasure_TreasureItemTemplates("LeaderLib.LeaderTrade.ModItems", "LLDT_Debug_DebugTool_Peace_d53e549c-5003-47a8-b7cf-852f4711c076", 1, "");
+DB_LeaderLib_Treasure_ItemMaxAmount("LeaderLib.LeaderTrade.ModItems", "LLDT_Debug_DebugTool_Peace_d53e549c-5003-47a8-b7cf-852f4711c076", 1);
 EXITSECTION
 
 ENDEXITSECTION
