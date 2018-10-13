@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <save>
-    <header version="2" time="1529705275" />
-    <version major="3" minor="1" revision="8" build="0" />
+    <header version="2" />
+    <version major="3" minor="6" revision="1" build="0" />
     <region id="DialogVariables">
         <node id="root">
             <children>
@@ -10,6 +10,13 @@
                     <attribute id="Description" value="A list of registered mods (from LLAPI)" type="23" />
                     <attribute id="UUID" value="7cdc7329-d14b-452e-bfac-2e6cff9b5d50" type="31" />
                     <attribute id="name" value="LLDT_DebugMenu_RegisteredMods" type="22" />
+                    <attribute id="type" value="String" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="Self" type="23" />
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="UUID" value="7586ca67-dad0-498d-89d2-e189800c379b" type="31" />
+                    <attribute id="name" value="LLDT_PointsMenu_Mode" type="22" />
                     <attribute id="type" value="String" type="23" />
                 </node>
                 <node id="DialogVariable">

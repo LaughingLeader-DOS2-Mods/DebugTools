@@ -619,27 +619,9 @@ NOT DB_LLDT_TalentMenu_Temp_TalentList(_Instance, _Index, _Talent, _DisplayName)
 
 IF
 DialogEnded("LLDT_TalentMenu", _Instance)
-AND
-DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
 THEN
 LLDT_TalentMenu_ClearTempDatabases(_Instance);
-Proc_StartDialog(0, "LLDT_DebugMenu", _Player, _Player);
-ObjectClearFlag(_Player, "LeaderLib_BlockModMenuReopen");
-
-IF
-ObjectFlagSet("LLDT_OpenTalentMenu", (CHARACTERGUID)_Player, _Instance)
-THEN
-ObjectSetFlag(_Player, "LeaderLib_BlockModMenuReopen");
-
-IF
-DialogEnded("LLDT_DebugMenu", _Instance)
-AND
-DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
-AND
-ObjectGetFlag(_Player, "LLDT_OpenTalentMenu", 1)
-THEN
-ObjectClearFlag(_Player, "LLDT_OpenTalentMenu");
-Proc_StartDialog(0, "LLDT_TalentMenu", _Player, _Player);
+//ObjectClearFlag(_Player, "LeaderLib_BlockModMenuReopen");
 //END_REGION
 EXITSECTION
 

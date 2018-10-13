@@ -115,48 +115,11 @@ SysClear("DB_LLDT_DebugItems", 2);
 DB_LLDT_DebugItems("LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e", 1);
 //END_REGION
 
-//REGION PLAYER_DATABASE_FIX
-IF
-GameStarted(_,_)
-AND
-NOT SysIsActive("GLOBAL_CharacterCreation") // If Origins isn't running
-THEN
-TimerLaunch("LLDT_Debug_IteratePlayers", 1000);
-
-IF
-TimerFinished("LLDT_Debug_IteratePlayers")
-AND
-CharacterGetHostCharacter(_Player)
-AND
-NOT DB_IsPlayer(_Player)
-THEN
-DB_IsPlayer(_Player);
-
-IF
-TimerFinished("LLDT_Debug_IteratePlayers")
-THEN
-CharacterLaunchIterator("LLDT_Debug_AddPlayer");
-
-IF
-StoryEvent((CHARACTERGUID)_Player, "LLDT_Debug_AddPlayer")
-AND
-CharacterIsPlayer(_Player, 1)
-AND
-NOT DB_IsPlayer(_Player)
-THEN
-DB_IsPlayer(_Player);
-
-IF
-StoryEvent(NULL_00000000-0000-0000-0000-000000000000, "LLDT_Debug_AddPlayer")
-THEN
-DB_NOOP(1);
-//END_REGION
-
 //REGION PARTY_ITERATOR
 IF
 GameStarted(_Level,_)
 AND
-IsCharacterCreationLevel(_Level, 0)
+IsGameLevel(_Level, 1)
 THEN
 TimerLaunch("LLDT_Timers_StartPartyIterator", 25);
 

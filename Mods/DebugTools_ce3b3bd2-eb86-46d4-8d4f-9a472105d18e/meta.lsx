@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <save>
-    <header version="2" time="1535501079" />
-    <version major="3" minor="6" revision="0" build="4" />
+    <header version="2" />
+    <version major="3" minor="6" revision="1" build="0" />
     <region id="Config">
         <node id="root">
             <children>
@@ -15,17 +15,17 @@
                     <attribute id="LobbyLevelName" value="" type="22" />
                     <attribute id="MD5" value="" type="23" />
                     <attribute id="MenuLevelName" value="" type="22" />
-                    <attribute id="Name" value="Debug Tools" type="22" />
+                    <attribute id="Name" value="Debug Tools - Definitive Edition" type="22" />
                     <attribute id="NumPlayers" value="2" type="1" />
                     <attribute id="PhotoBooth" value="" type="22" />
                     <attribute id="StartupLevelName" value="" type="22" />
                     <attribute id="Tags" value="" type="30" />
                     <attribute id="Type" value="Add-on" type="22" />
                     <attribute id="UUID" value="5aadceff-65c8-756b-3fce-93490ab45936" type="22" />
-                    <attribute id="Version" value="302055424" type="4" />
+                    <attribute id="Version" value="318767104" type="4" />
                     <children>
                         <node id="PublishVersion">
-                            <attribute id="Version" value="907812438" type="4" />
+                            <attribute id="Version" value="907936416" type="4" />
                         </node>
                         <node id="Scripts">
                             <children>

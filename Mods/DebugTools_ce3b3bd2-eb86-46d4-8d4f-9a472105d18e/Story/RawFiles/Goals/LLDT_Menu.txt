@@ -66,22 +66,16 @@ DB_LLDT_CommandFlags("LLDT_ADD_CIVIL");
 DB_LLDT_CommandFlags("LLDT_ADD_TALENT");
 DB_LLDT_CommandFlags("LLDT_ADD_SOURCE");
 DB_LLDT_CommandFlags("LLDT_ADD_ALL");
-DB_LLDT_CommandFlags("LLDT_ADD_ATTRIBUTE_PARTY");
-DB_LLDT_CommandFlags("LLDT_ADD_ABILITY_PARTY");
-DB_LLDT_CommandFlags("LLDT_ADD_CIVIL_PARTY");
-DB_LLDT_CommandFlags("LLDT_ADD_TALENT_PARTY");
-DB_LLDT_CommandFlags("LLDT_ADD_SOURCE_PARTY");
-DB_LLDT_CommandFlags("LLDT_ADD_ALL_PARTY");
 DB_LLDT_CommandFlags("LLDT_ADD_SKILLS_MENU");
 DB_LLDT_CommandFlags("LLDT_ADD_SKILLS_ESSENTIALS");
 DB_LLDT_CommandFlags("LLDT_ADD_SKILLS_TREASURE");
 DB_LLDT_CommandFlags("LLDT_ADD_SKILLS");
-DB_LLDT_CommandFlags("LLDT_ADD_SKILLS_PARTY");
+DB_LLDT_CommandFlags("LLDT_ADD_SKILLS");
 DB_LLDT_CommandFlags("LLDT_REMOVE_SKILLS");
-DB_LLDT_CommandFlags("LLDT_REMOVE_SKILLS_PARTY");
-DB_LLDT_CommandFlags("LLDT_REMOVE_COLLAR_PARTY");
-DB_LLDT_CommandFlags("LLDT_RESURRECT_PARTY");
-DB_LLDT_CommandFlags("LLDT_FULLHEAL_PARTY");
+DB_LLDT_CommandFlags("LLDT_REMOVE_SKILLS");
+DB_LLDT_CommandFlags("LLDT_REMOVE_COLLAR");
+DB_LLDT_CommandFlags("LLDT_RESURRECT");
+DB_LLDT_CommandFlags("LLDT_FULLHEAL");
 
 //Waypoints not registered normally, unless the level is started
 SysClear("DB_LLDT_WaypointInfo", 3);
@@ -196,6 +190,8 @@ IF
 ObjectFlagSet("LLDT_ADD_ATTRIBUTE", (CHARACTERGUID)_Player, _Instance)
 AND
 LLDT_QRY_ClearFlag(_Player, "LLDT_ADD_ATTRIBUTE")
+AND
+ObjectGetFlag(_Player, "LLDT_PointsMode_Party", 0)
 THEN
 LLDT_Menu_Add_Point(_Player, "Attribute");
 
@@ -203,6 +199,8 @@ IF
 ObjectFlagSet("LLDT_ADD_ABILITY", (CHARACTERGUID)_Player, _Instance)
 AND
 LLDT_QRY_ClearFlag(_Player, "LLDT_ADD_ABILITY")
+AND
+ObjectGetFlag(_Player, "LLDT_PointsMode_Party", 0)
 THEN
 LLDT_Menu_Add_Point(_Player, "Ability");
 
@@ -210,6 +208,8 @@ IF
 ObjectFlagSet("LLDT_ADD_CIVIL", (CHARACTERGUID)_Player, _Instance)
 AND
 LLDT_QRY_ClearFlag(_Player, "LLDT_ADD_CIVIL")
+AND
+ObjectGetFlag(_Player, "LLDT_PointsMode_Party", 0)
 THEN
 LLDT_Menu_Add_Point(_Player, "Civil");
 
@@ -217,6 +217,8 @@ IF
 ObjectFlagSet("LLDT_ADD_TALENT", (CHARACTERGUID)_Player, _Instance)
 AND
 LLDT_QRY_ClearFlag(_Player, "LLDT_ADD_TALENT")
+AND
+ObjectGetFlag(_Player, "LLDT_PointsMode_Party", 0)
 THEN
 LLDT_Menu_Add_Point(_Player, "Talent");
 
@@ -224,6 +226,8 @@ IF
 ObjectFlagSet("LLDT_ADD_ALL", (CHARACTERGUID)_Player, _Instance)
 AND
 LLDT_QRY_ClearFlag(_Player, "LLDT_ADD_ALL")
+AND
+ObjectGetFlag(_Player, "LLDT_PointsMode_Party", 0)
 THEN
 LLDT_Menu_Add_Point(_Player, "All");
 
@@ -231,6 +235,8 @@ IF
 ObjectFlagSet("LLDT_ADD_SOURCE", (CHARACTERGUID)_Player, _Instance)
 AND
 LLDT_QRY_ClearFlag(_Player, "LLDT_ADD_SOURCE")
+AND
+ObjectGetFlag(_Player, "LLDT_PointsMode_Party", 0)
 THEN
 LLDT_Menu_Add_Point(_Player, "Source");
 
@@ -238,93 +244,113 @@ IF
 ObjectFlagSet("LLDT_ADD_SOURCE_MAX", (CHARACTERGUID)_Player, _Instance)
 AND
 LLDT_QRY_ClearFlag(_Player, "LLDT_ADD_SOURCE_MAX")
+AND
+ObjectGetFlag(_Player, "LLDT_PointsMode_Party", 0)
 THEN
 LLDT_Menu_Add_Point(_Player, "SourceMax");
 
 IF
 ObjectFlagSet("LLDT_REMOVE_SOURCE_MAX", (CHARACTERGUID)_Player, _Instance)
 AND
-CharacterGetMaxSourcePoints(_Player, _Max)
+LLDT_QRY_ClearFlag(_Player, "LLDT_REMOVE_SOURCE_MAX")
 AND
-IntegerSubtract(_Max, 1, _NewMax)
-AND
-_NewMax >= 0
-AND
-IntegertoString(_NewMax, _MaxStr)
+ObjectGetFlag(_Player, "LLDT_PointsMode_Party", 0)
 THEN
-CharacterOverrideMaxSourcePoints(_Player, _NewMax);
-LLDT_Print(_Player, "<font color='#FE2E2E'>-1 Max Source Points (<font color='#00FF00'>", _MaxStr, "</font>)</font>");
-ObjectClearFlag(_Player, "LLDT_REMOVE_SOURCE_MAX");
+SetStoryEvent(_Player, "LLDT_Commands_LowerSourceMax");
 
 IF
-ObjectFlagSet("LLDT_ADD_ATTRIBUTE_PARTY", (CHARACTERGUID)_Speaker, _Instance)
+ObjectFlagSet("LLDT_ADD_ATTRIBUTE", (CHARACTERGUID)_Speaker, _Instance)
 AND
-LLDT_QRY_ClearFlag(_Speaker, "LLDT_ADD_ATTRIBUTE_PARTY")
+ObjectGetFlag(_Speaker, "LLDT_PointsMode_Party", 1)
+THEN
+IterateParty(_Speaker, "LLDT_Commands_AddAttributePoint");
+
+IF
+ObjectFlagSet("LLDT_ADD_ABILITY", (CHARACTERGUID)_Speaker, _Instance)
 AND
-DB_IsPlayer(_Player)
+ObjectGetFlag(_Speaker, "LLDT_PointsMode_Party", 1)
+THEN
+IterateParty(_Speaker, "LLDT_Commands_AddAbilityPoint");
+
+IF
+ObjectFlagSet("LLDT_ADD_CIVIL", (CHARACTERGUID)_Speaker, _Instance)
+AND
+ObjectGetFlag(_Speaker, "LLDT_PointsMode_Party", 1)
+THEN
+IterateParty(_Speaker, "LLDT_Commands_AddCivilPoint");
+
+IF
+ObjectFlagSet("LLDT_ADD_TALENT", (CHARACTERGUID)_Speaker, _Instance)
+AND
+ObjectGetFlag(_Speaker, "LLDT_PointsMode_Party", 1)
+THEN
+IterateParty(_Speaker, "LLDT_Commands_AddTalentPoint");
+
+IF
+ObjectFlagSet("LLDT_ADD_ALL", (CHARACTERGUID)_Speaker, _Instance)
+AND
+ObjectGetFlag(_Speaker, "LLDT_PointsMode_Party", 1)
+THEN
+IterateParty(_Speaker, "LLDT_Commands_AddAllPoints");
+
+IF
+ObjectFlagSet("LLDT_ADD_SOURCE", (CHARACTERGUID)_Speaker, _Instance)
+AND
+ObjectGetFlag(_Speaker, "LLDT_PointsMode_Party", 1)
+THEN
+IterateParty(_Speaker, "LLDT_Commands_AddSourcePoint");
+
+IF
+ObjectFlagSet("LLDT_ADD_SOURCE_MAX", (CHARACTERGUID)_Speaker, _Instance)
+AND
+ObjectGetFlag(_Speaker, "LLDT_PointsMode_Party", 1)
+THEN
+IterateParty(_Speaker, "LLDT_Commands_RaiseSourceMax");
+
+IF
+ObjectFlagSet("LLDT_REMOVE_SOURCE_MAX", (CHARACTERGUID)_Speaker, _Instance)
+AND
+ObjectGetFlag(_Speaker, "LLDT_PointsMode_Party", 1)
+THEN
+IterateParty(_Speaker, "LLDT_Commands_LowerSourceMax");
+
+IF
+StoryEvent((CHARACTERGUID)_Player, "LLDT_Commands_AddAttributePoint")
 THEN
 LLDT_Menu_Add_Point(_Player, "Attribute");
 
 IF
-ObjectFlagSet("LLDT_ADD_ABILITY_PARTY", (CHARACTERGUID)_Speaker, _Instance)
-AND
-LLDT_QRY_ClearFlag(_Speaker, "LLDT_ADD_ABILITY_PARTY")
-AND
-DB_IsPlayer(_Player)
+StoryEvent((CHARACTERGUID)_Player, "LLDT_Commands_AddAbilityPoint")
 THEN
 LLDT_Menu_Add_Point(_Player, "Ability");
 
 IF
-ObjectFlagSet("LLDT_ADD_CIVIL_PARTY", (CHARACTERGUID)_Speaker, _Instance)
-AND
-LLDT_QRY_ClearFlag(_Speaker, "LLDT_ADD_CIVIL_PARTY")
-AND
-DB_IsPlayer(_Player)
+StoryEvent((CHARACTERGUID)_Player, "LLDT_Commands_AddCivilPoint")
 THEN
 LLDT_Menu_Add_Point(_Player, "Civil");
 
 IF
-ObjectFlagSet("LLDT_ADD_TALENT_PARTY", (CHARACTERGUID)_Speaker, _Instance)
-AND
-LLDT_QRY_ClearFlag(_Speaker, "LLDT_ADD_TALENT_PARTY")
-AND
-DB_IsPlayer(_Player)
+StoryEvent((CHARACTERGUID)_Player, "LLDT_Commands_AddTalentPoint")
 THEN
 LLDT_Menu_Add_Point(_Player, "Talent");
 
 IF
-ObjectFlagSet("LLDT_ADD_ALL_PARTY", (CHARACTERGUID)_Speaker, _Instance)
-AND
-LLDT_QRY_ClearFlag(_Speaker, "LLDT_ADD_ALL_PARTY")
-AND
-DB_IsPlayer(_Player)
+StoryEvent((CHARACTERGUID)_Player, "LLDT_Commands_AddAllPoints")
 THEN
 LLDT_Menu_Add_Point(_Player, "All");
 
 IF
-ObjectFlagSet("LLDT_ADD_SOURCE_PARTY", (CHARACTERGUID)_Speaker, _Instance)
-AND
-LLDT_QRY_ClearFlag(_Speaker, "LLDT_ADD_SOURCE_PARTY")
-AND
-DB_IsPlayer(_Player)
+StoryEvent((CHARACTERGUID)_Player, "LLDT_Commands_AddSourcePoint")
 THEN
 LLDT_Menu_Add_Point(_Player, "Source");
 
 IF
-ObjectFlagSet("LLDT_ADD_SOURCE_MAX_PARTY", (CHARACTERGUID)_Speaker, _Instance)
-AND
-LLDT_QRY_ClearFlag(_Speaker, "LLDT_ADD_SOURCE_MAX_PARTY")
-AND
-DB_IsPlayer(_Player)
+StoryEvent((CHARACTERGUID)_Player, "LLDT_Commands_RaiseSourceMax")
 THEN
 LLDT_Menu_Add_Point(_Player, "SourceMax");
 
 IF
-ObjectFlagSet("LLDT_REMOVE_SOURCE_MAX_PARTY", (CHARACTERGUID)_Speaker, _Instance)
-AND
-LLDT_QRY_ClearFlag(_Speaker, "LLDT_REMOVE_SOURCE_MAX_PARTY")
-AND
-DB_IsPlayer(_Player)
+StoryEvent((CHARACTERGUID)_Player, "LLDT_Commands_LowerSourceMax")
 AND
 CharacterGetMaxSourcePoints(_Player, _Max)
 AND
@@ -431,9 +457,9 @@ CharacterAddSkill(_Player, _Skill);
 LLDT_Print(_Player, "[DT] Added skill ", _Skill);
 
 IF
-ObjectFlagSet("LLDT_ADD_SKILLS_PARTY", (CHARACTERGUID)_Speaker, _Instance)
+ObjectFlagSet("LLDT_ADD_SKILLS", (CHARACTERGUID)_Speaker, _Instance)
 AND
-LLDT_QRY_ClearFlag(_Speaker, "LLDT_ADD_SKILLS_PARTY")
+LLDT_QRY_ClearFlag(_Speaker, "LLDT_ADD_SKILLS")
 AND
 DB_IsPlayer(_Player)
 AND
@@ -457,9 +483,9 @@ CharacterRemoveSkill(_Player, _Skill);
 LLDT_Print(_Player, "[DT] Removed skill ", _Skill);
 
 IF
-ObjectFlagSet("LLDT_REMOVE_SKILLS_PARTY", (CHARACTERGUID)_Speaker, _Instance)
+ObjectFlagSet("LLDT_REMOVE_SKILLS", (CHARACTERGUID)_Speaker, _Instance)
 AND
-LLDT_QRY_ClearPartyFlag(_Speaker, "LLDT_REMOVE_SKILLS_PARTY", _Instance)
+LLDT_QRY_ClearPartyFlag(_Speaker, "LLDT_REMOVE_SKILLS", _Instance)
 AND
 DB_IsPlayer(_Player)
 AND
@@ -572,18 +598,18 @@ PlayAnimation(_Player, "emotion_sad", "");
 
 //REGION QUICK_COMMANDS
 IF
-ObjectFlagSet("LLDT_REMOVE_COLLAR_PARTY", (CHARACTERGUID)_Speaker, _Instance)
+ObjectFlagSet("LLDT_REMOVE_COLLAR", (CHARACTERGUID)_Speaker, _Instance)
 AND
-LLDT_QRY_ClearFlag(_Speaker, "LLDT_REMOVE_COLLAR_PARTY")
+LLDT_QRY_ClearFlag(_Speaker, "LLDT_REMOVE_COLLAR")
 AND
 DB_IsPlayer(_Player)
 THEN
 ObjectSetFlag(_Player, "FTJ_RemoveSourceCollar");
 
 IF
-ObjectFlagSet("LLDT_RESURRECT_PARTY", (CHARACTERGUID)_Speaker, _Instance)
+ObjectFlagSet("LLDT_RESURRECT", (CHARACTERGUID)_Speaker, _Instance)
 AND
-LLDT_QRY_ClearFlag(_Speaker, "LLDT_RESURRECT_PARTY")
+LLDT_QRY_ClearFlag(_Speaker, "LLDT_RESURRECT")
 AND
 DB_IsPlayer(_Player)
 AND
@@ -593,9 +619,9 @@ CharacterResurrect(_Player);
 CharacterSetHitpointsPercentage(_Player, 100.0);
 
 IF
-ObjectFlagSet("LLDT_FULLHEAL_PARTY", (CHARACTERGUID)_Speaker, _Instance)
+ObjectFlagSet("LLDT_FULLHEAL", (CHARACTERGUID)_Speaker, _Instance)
 AND
-LLDT_QRY_ClearFlag(_Speaker, "LLDT_FULLHEAL_PARTY")
+LLDT_QRY_ClearFlag(_Speaker, "LLDT_FULLHEAL")
 AND
 DB_IsPlayer(_Player)
 THEN
@@ -646,6 +672,33 @@ DB_LLDT_Menu_ModText(_RegisteredMods)
 THEN
 DialogSetVariableString("LLDT_DebugMenu", "LLDT_DebugMenu_RegisteredMods_7cdc7329-d14b-452e-bfac-2e6cff9b5d50", _RegisteredMods);
 NOT DB_LLDT_Menu_ModText(_RegisteredMods);
+
+IF
+DialogStarted("LLDT_PointsMenu", _Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, _Player)
+AND
+ObjectGetFlag(_Player, "LLDT_PointsMode_Party", 1)
+THEN
+DialogSetVariableStringForInstance(_Instance, "LLDT_PointsMenu_Mode_7586ca67-dad0-498d-89d2-e189800c379b", "Self");
+
+IF
+DialogStarted("LLDT_PointsMenu", _Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, _Player)
+AND
+ObjectGetFlag(_Player, "LLDT_PointsMode_Party", 0)
+THEN
+DialogSetVariableStringForInstance(_Instance, "LLDT_PointsMenu_Mode_7586ca67-dad0-498d-89d2-e189800c379b", "Self");
+
+IF
+DialogEnded("LLDT_PointsMenu", _Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, _Player)
+AND
+ObjectGetFlag(_Player, "LLDT_PointsMode_Party", 1)
+THEN
+ObjectClearFlag(_Player, "LLDT_PointsMode_Party");
 //END_REGION
 
 //REGION MOD_UPDATE
