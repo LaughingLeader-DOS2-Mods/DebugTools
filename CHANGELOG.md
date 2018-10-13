@@ -1,8 +1,11 @@
 DebugTools Changelog
 =======
+# 1.3.0.0
+* Updated to the DE.
+* Cleaned up / re-organized dialog files. Menus like the Race Change Menu and Talent Editor are now started as dual-dialogs, which works better overall.
+
 # 1.2.1.0
 * Tweaked waypoint teleporting - Should work for teleporting to all levels now.
-
 
 # 1.2.0.0
 * Debug Menu
