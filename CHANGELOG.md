@@ -1,7 +1,7 @@
 DebugTools Changelog
 =======
 # 1.3.0.1
-* Fixed the "Full Heal Party" and "Resurrect Party" commands no longer working.
+* Fixed the "Full Heal Party" and "Resurrect Party" commands.
 
 # 1.3.0.0
 * Updated to the DE.
