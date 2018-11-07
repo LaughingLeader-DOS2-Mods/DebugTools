@@ -73,9 +73,9 @@ DB_LLDT_CommandFlags("LLDT_ADD_SKILLS");
 DB_LLDT_CommandFlags("LLDT_ADD_SKILLS");
 DB_LLDT_CommandFlags("LLDT_REMOVE_SKILLS");
 DB_LLDT_CommandFlags("LLDT_REMOVE_SKILLS");
-DB_LLDT_CommandFlags("LLDT_REMOVE_COLLAR");
-DB_LLDT_CommandFlags("LLDT_RESURRECT");
-DB_LLDT_CommandFlags("LLDT_FULLHEAL");
+DB_LLDT_CommandFlags("LLDT_REMOVE_COLLAR_PARTY");
+DB_LLDT_CommandFlags("LLDT_RESURRECT_PARTY");
+DB_LLDT_CommandFlags("LLDT_FULLHEAL_PARTY");
 
 //Waypoints not registered normally, unless the level is started
 SysClear("DB_LLDT_WaypointInfo", 3);
@@ -598,18 +598,18 @@ PlayAnimation(_Player, "emotion_sad", "");
 
 //REGION QUICK_COMMANDS
 IF
-ObjectFlagSet("LLDT_REMOVE_COLLAR", (CHARACTERGUID)_Speaker, _Instance)
+ObjectFlagSet("LLDT_REMOVE_COLLAR_PARTY", (CHARACTERGUID)_Speaker, _Instance)
 AND
-LLDT_QRY_ClearFlag(_Speaker, "LLDT_REMOVE_COLLAR")
+LLDT_QRY_ClearFlag(_Speaker, "LLDT_REMOVE_COLLAR_PARTY")
 AND
 DB_IsPlayer(_Player)
 THEN
 ObjectSetFlag(_Player, "FTJ_RemoveSourceCollar");
 
 IF
-ObjectFlagSet("LLDT_RESURRECT", (CHARACTERGUID)_Speaker, _Instance)
+ObjectFlagSet("LLDT_RESURRECT_PARTY", (CHARACTERGUID)_Speaker, _Instance)
 AND
-LLDT_QRY_ClearFlag(_Speaker, "LLDT_RESURRECT")
+LLDT_QRY_ClearFlag(_Speaker, "LLDT_RESURRECT_PARTY")
 AND
 DB_IsPlayer(_Player)
 AND
@@ -619,14 +619,29 @@ CharacterResurrect(_Player);
 CharacterSetHitpointsPercentage(_Player, 100.0);
 
 IF
-ObjectFlagSet("LLDT_FULLHEAL", (CHARACTERGUID)_Speaker, _Instance)
-AND
-LLDT_QRY_ClearFlag(_Speaker, "LLDT_FULLHEAL")
+ObjectFlagSet("LLDT_FULLHEAL_PARTY", (CHARACTERGUID)_Speaker, _Instance)
 AND
 DB_IsPlayer(_Player)
+AND
+CharacterIsDead(_Player, 0)
 THEN
 CharacterSetHitpointsPercentage(_Player, 100.0);
+CharacterStatusText(_Player, "<font color='#00FF00'>Fully Healed</font>");
 
+IF
+ObjectFlagSet("LLDT_FULLHEAL_PARTY", (CHARACTERGUID)_Speaker, _Instance)
+AND
+DB_IsPlayer(_Player)
+AND
+CharacterIsDead(_Player, 1)
+THEN
+CharacterResurrect(_Player);
+CharacterStatusText(_Player, "<font color='#00FF00'>Fully Healed</font>");
+
+IF
+ObjectFlagSet("LLDT_FULLHEAL_PARTY", (CHARACTERGUID)_Speaker, _Instance)
+THEN
+ObjectClearFlag(_Speaker, "LLDT_FULLHEAL_PARTY");
 //END_REGION
 
 //REGION ON_OPEN

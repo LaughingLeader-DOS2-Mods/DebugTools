@@ -1,5 +1,8 @@
 DebugTools Changelog
 =======
+# 1.3.0.1
+* Fixed the "Full Heal Party" and "Resurrect Party" commands no longer working.
+
 # 1.3.0.0
 * Updated to the DE.
 * Cleaned up / re-organized dialog files. Menus like the Race Change Menu and Talent Editor are now started as dual-dialogs, which works better overall.
