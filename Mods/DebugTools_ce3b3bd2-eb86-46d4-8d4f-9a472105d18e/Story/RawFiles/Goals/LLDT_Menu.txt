@@ -716,6 +716,75 @@ THEN
 ObjectClearFlag(_Player, "LLDT_PointsMode_Party");
 //END_REGION
 
+//REGION AVATAR_TAG
+IF
+ObjectFlagSet("LLDT_AVATAR_TAG_SET", (CHARACTERGUID)_Player, _Instance)
+THEN
+ObjectClearFlag(_Player, "LLDT_AVATAR_TAG_SET", 0);
+LLDT_MakeAvatar(_Player);
+
+/*
+IF
+ObjectFlagSet("LLDT_AVATAR_TAG_SET", (CHARACTERGUID)_Player, _Instance)
+AND
+CharacterGetReservedUserID(_Player, _UserID)
+AND
+GetUserProfileID(_UserID, _UserProfileID)
+THEN
+ObjectClearFlag(_Player, "LLDT_AVATAR_TAG_SET", 0);
+LLDT_MakeAvatar(_Player);
+ProcSetSelectedCharCreationPlayer(_Player, _UserProfileID);
+*/
+
+PROC
+LLDT_MakeAvatar((CHARACTERGUID)_Companion)
+AND
+DB_CompanionAvatarBond(_Companion, (CHARACTERGUID)_Player)
+THEN
+NOT DB_CompanionAvatarBond(_Companion, _Player);
+DB_LLDT_LastCompanionAvatarBond(_Companion, _Player);
+
+PROC
+LLDT_MakeAvatar((CHARACTERGUID)_Companion)
+THEN
+SetTag(_Companion, "AVATAR");
+
+PROC
+LLDT_MakeAvatar((CHARACTERGUID)_Companion)
+AND
+DB_CurrentLevel(_Region)
+THEN
+//Quest flags
+ProcRegionStarted(_Region);
+
+/*
+PROC
+LLDT_MakeAvatar((CHARACTERGUID)_Companion)
+THEN
+DB_Avatars(_Companion);
+*/
+
+IF
+ObjectFlagSet("LLDT_AVATAR_TAG_CLEARED", (CHARACTERGUID)_Player, _Instance)
+THEN
+ObjectClearFlag(_Player, "LLDT_AVATAR_TAG_CLEARED", 0);
+LLDT_MakeCompanion(_Player);
+ClearTag(_Player, "AVATAR");
+
+PROC
+LLDT_MakeCompanion((CHARACTERGUID)_Companion)
+AND
+DB_LLDT_LastCompanionAvatarBond(_Companion, _Player)
+THEN
+NOT DB_LLDT_LastCompanionAvatarBond(_Companion, _Player);
+DB_CompanionAvatarBond(_Companion, _Player);
+
+PROC
+LLDT_MakeCompanion((CHARACTERGUID)_Companion)
+THEN
+ClearTag(_Companion, "AVATAR");
+//END_REGION
+
 //REGION MOD_UPDATE
 PROC
 LLDT_System_UpdateAll()
