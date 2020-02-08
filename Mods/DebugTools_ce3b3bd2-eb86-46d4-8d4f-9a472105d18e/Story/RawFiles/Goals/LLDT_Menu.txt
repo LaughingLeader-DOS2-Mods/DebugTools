@@ -525,6 +525,9 @@ LLDT_Menu_UnlockAllWaypoints((CHARACTERGUID)_Player)
 THEN
 //2: the button is visible, enabled, and flashes to indicate a new waypoint is available
 SetHomesteadKeyState(2, _Player);
+SysClear("DB_HomesteadKeyState", 2);
+DB_HomesteadKeyState(_Player, 2);
+PROC_UnblockWaypointUsage(_Player);
 
 IF
 ObjectFlagSet("LLDT_ADD_WAYPOINTS", (CHARACTERGUID)_Player, _Instance)
