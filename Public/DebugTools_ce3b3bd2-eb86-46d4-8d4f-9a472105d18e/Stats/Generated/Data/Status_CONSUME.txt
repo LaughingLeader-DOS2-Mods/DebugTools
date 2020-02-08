@@ -12,4 +12,4 @@ data "FormatColor" "Gold"
 data "StatsId" "Stats_LLDT_GoldMult"
 data "StackId" "Stack_LLDT_GoldMult"
 data "SoundStart" "Item_Coin_Big_Pickup"
-
+data "ForceStackOverwrite" "Yes"

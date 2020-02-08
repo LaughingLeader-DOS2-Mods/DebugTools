@@ -97,6 +97,14 @@ _Amount <= 0
 THEN
 CharacterStatusText(_Char, "[DEBUG] Added Gold");
 CharacterAddGold(_Char, 256);
+
+IF
+CharacterStatusApplied(_Char, "LLDT_GOLD_MULTIPLIER", _)
+AND
+NOT CharacterGetInventoryGoldValue(_Char, _)
+THEN
+CharacterStatusText(_Char, "[DEBUG] Added Gold");
+CharacterAddGold(_Char, 256);
 //END_REGION
 
 //REGION LEVEL_UP
