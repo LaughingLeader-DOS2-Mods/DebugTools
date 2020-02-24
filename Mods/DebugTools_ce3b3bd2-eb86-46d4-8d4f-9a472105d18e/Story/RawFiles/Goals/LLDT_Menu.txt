@@ -682,7 +682,7 @@ DB_LLDT_Menu_ModText(_RegisteredMods);
 IF
 DialogStarted("LLDT_DebugMenu", _Instance)
 AND
-NOT GlobalGetFlag("LeaderLib_Active", 1) // LeaderLib provides its own mod list
+NOT GlobalGetFlag("LeaderLib_IsActive", 1) // LeaderLib provides its own mod list
 AND
 LLDT_QRY_Menu_BuildModList()
 AND
