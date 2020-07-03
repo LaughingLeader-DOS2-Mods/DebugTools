@@ -1,0 +1,9 @@
+{
+    "RequiredExtensionVersion": 49,
+    "ModTable": "DebugTools",
+    "FeatureFlags": [
+        "OsirisExtensions",
+        "Lua",
+        "Preprocessor"
+    ]
+}

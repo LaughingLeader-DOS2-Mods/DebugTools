@@ -1,0 +1,15 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+KBSECTION
+
+/* [OSITOOLS_ONLY]
+IF
+StoryEvent(_Obj, "Iterator_LLDT_PrintCharacterInfo")
+THEN
+NRD_ModCall("DebugTools", "PrintCharacterInfo", (STRING)_Obj);
+*/
+
+EXITSECTION
+ENDEXITSECTION
+ParentTargetEdge "LaughingLeader_DebugTools"

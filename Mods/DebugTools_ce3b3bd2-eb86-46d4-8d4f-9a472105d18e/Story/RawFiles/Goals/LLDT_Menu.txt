@@ -365,6 +365,7 @@ LLDT_Print(_Player, "<font color='#FE2E2E'>-1 Max Source Points (<font color='#0
 //END_REGION
 
 //REGION DISPLAY_FLAGS
+/*
 IF
 ObjectFlagSet(_Flag, (CHARACTERGUID)_Player, _Instance)
 AND
@@ -400,6 +401,7 @@ AND
 ObjectGetFlag(_Player, _Flag, _Val)
 THEN
 LLDT_PrintFlag(_Player, _Flag, _Val);
+*/
 //END_REGION
 
 //REGION LOG_SETTINGS
