@@ -25,6 +25,31 @@ Ext.RegisterConsoleCommand("help", function(radius)
 	print("==========================")
 end)
 
+---@param uuid string An item's GUIDSTRING/ITEMGUID.
+local function PrintItemStats(uuid)
+	Ext.Print("Item:", uuid)
+	---@type EsvItem
+	local item = Ext.GetItem(uuid)
+	Ext.Print("Stats:")
+	Ext.Print("------")
+	---@type StatItemDynamic[]
+	local stats = item.Stats.DynamicStats
+	for i,stat in ipairs(stats) do
+		Ext.Print(string.format("[%i] = (%s)", i, stat))
+	end
+	Ext.Print("------")
+	Ext.Print("")
+end
+
+Ext.RegisterConsoleCommand("printitemstats", function()
+	local target = CharacterGetHostCharacter()
+	---@type EsvCharacter
+	local characterObject = Ext.GetCharacter(target)
+	for i,item in ipairs(characterObject:GetInventoryItems()) do
+		PrintItemStats(item)
+	end
+end)
+
 Ext.RegisterConsoleCommand("printid", function()
 	local target = CharacterGetHostCharacter()
 	print("[DebugTools] Host GUID is", target)
