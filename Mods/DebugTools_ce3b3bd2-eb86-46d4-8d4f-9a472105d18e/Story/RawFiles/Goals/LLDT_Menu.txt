@@ -609,7 +609,23 @@ LLDT_QRY_ClearFlag(_Speaker, "LLDT_REMOVE_COLLAR_PARTY")
 AND
 DB_IsPlayer(_Player)
 THEN
-ObjectSetFlag(_Player, "FTJ_RemoveSourceCollar");
+ObjectSetFlag(_Player, "FTJ_RemoveSourceCollar", 0);
+LLDT_Collar_CheckCollarCrime(_Player);
+
+IF
+ObjectFlagSet("LLDT_CheckCollarCrime", (CHARACTERGUID)_Player, _)
+THEN
+ObjectClearFlag(_Player, "LLDT_CheckCollarCrime", 0);
+LLDT_Collar_CheckCollarCrime(_Player);
+
+PROC
+LLDT_Collar_CheckCollarCrime((CHARACTERGUID)_Player)
+AND
+ObjectGetFlag(_Player,"QuestUpdate_FTJ_Escape_EnterDunes",0)
+THEN
+CharacterRegisterCrime(_Player,"FTJCollarlessADs",NULL_00000000-0000-0000-0000-000000000000,NULL_00000000-0000-0000-0000-000000000000,0);
+CharacterRegisterCrime(_Player,"FTJCollarless",NULL_00000000-0000-0000-0000-000000000000,NULL_00000000-0000-0000-0000-000000000000,0);
+DB_FTJ_NoCollarCrime(_Player);
 
 IF
 ObjectFlagSet("LLDT_RESURRECT_PARTY", (CHARACTERGUID)_Speaker, _Instance)
