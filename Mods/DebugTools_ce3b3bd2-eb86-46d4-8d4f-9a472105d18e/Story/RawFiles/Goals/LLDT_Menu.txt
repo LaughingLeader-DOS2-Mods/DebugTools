@@ -44,13 +44,11 @@ DB_LLDT_Skills_All("Target_LLDT_TeleportParty");
 DB_LLDT_Skills_All("Teleportation_LLDT_TeleportTarget");
 
 SysClear("DB_LLDT_Skills_Essentials", 1);
-DB_LLDT_Skills_Essentials("Shout_LLDT_OpenMenu");
-DB_LLDT_Skills_Essentials("Target_LLDT_GenGold");
-DB_LLDT_Skills_Essentials("Target_LLDT_LevelUp");
-DB_LLDT_Skills_Essentials("Shout_LLDT_LevelUpParty");
 DB_LLDT_Skills_Essentials("Target_LLDT_TeleportSelf");
 DB_LLDT_Skills_Essentials("Target_LLDT_TeleportParty");
-DB_LLDT_Skills_Essentials("Teleportation_LLDT_TeleportTarget");
+DB_LLDT_Skills_Essentials("Shout_LLDT_LevelUpParty");
+DB_LLDT_Skills_Essentials("Shout_LLDT_OpenMenu");
+DB_LLDT_Skills_Essentials("Target_LLDT_GenGold");
 
 SysClear("DB_LLDT_Skills_Treasure", 1);
 DB_LLDT_Skills_Treasure("Shout_LLDT_OpenMenu");
