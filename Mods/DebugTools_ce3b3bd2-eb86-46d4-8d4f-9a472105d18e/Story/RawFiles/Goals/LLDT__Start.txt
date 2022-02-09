@@ -1,7 +1,7 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-DB_LLDT_DebugItems("LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e", 1);
+//DB_LLDT_DebugItems("LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e", 1);
 //DB_LLDT_DebugItems("LLDT_Debug_DebugTool_Peace_d53e549c-5003-47a8-b7cf-852f4711c076", 1);
 //DB_LLDT_DebugItems("LLDT_Debug_DebugTool_Kill_1955e0c9-3272-48d0-88b9-db356ab921a9", 1);
 KBSECTION
@@ -9,82 +9,25 @@ KBSECTION
 IF
 StoryEvent((CHARACTERGUID)_Player, "LLDT_Events_OnInitPlayer")
 AND
-DB_LLDT_DebugItems(_Item, _Amount)
-AND
-ItemTemplateIsInCharacterInventory(_Player, _Item, _Count)
-AND
-_Count < _Amount
-AND
-IntegerSubtract(_Amount, _Count, _AddAmount)
+ItemTemplateIsInCharacterInventory(_Player, "LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e", 0)
 THEN
-ItemTemplateAddTo(_Item, _Player, _AddAmount, 1);
+ItemTemplateAddTo("LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e", _Player, 1);
 
 IF
-StoryEvent((CHARACTERGUID)_Player, "LLDT_Events_OnInitPlayer")
-AND
-GetItemForItemTemplateInInventory(_Player, "LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e", _Item)
-THEN
-SetVarObject(_Item, "Owner", _Player);
-
-IF
-ItemAddedToCharacter(_Item, _Player)
+ItemTemplateAddedToCharacter(LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e, _Item, _Player)
 AND
 CharacterIsPlayer(_Player, 1)
-AND
-GetTemplate(_Item, _Template)
-AND
-_Template == "LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e"
 THEN
-SetVarObject(_Item, "Owner", _Player);
-
+SetVarObject(_Item, "DestroyerOwner", _Player);
 //END_REGION
 
 //REGION FORK
 IF
-ItemEquipped(_Item, _Player)
-AND
-GetTemplate(_Item, "LLDT_Debug_DebugTool_Peace_d53e549c-5003-47a8-b7cf-852f4711c076")
-AND
-ItemTemplateIsInCharacterInventory(_Player, "LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e", _Count)
-AND
-_Count <= 0
-THEN
-ItemTemplateAddTo("LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e", _Player, 1);
-
-IF
-ItemEquipped(_Item, _Player)
-AND
-GetTemplate(_Item, "LLDT_Debug_DebugTool_Kill_1955e0c9-3272-48d0-88b9-db356ab921a9")
-AND
-ItemTemplateIsInCharacterInventory(_Player, "LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e", _Count)
-AND
-_Count <= 0
-THEN
-ItemTemplateAddTo("LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e", _Player, 1);
-
-IF
 StoryEvent((CHARACTERGUID)_Player, "LLDT_Events_OnInitPlayer")
 AND
-ItemTemplateIsInCharacterInventory(_Player, "LLDT_Debug_DebugTool_Peace_d53e549c-5003-47a8-b7cf-852f4711c076", _Count)
+ItemTemplateIsInCharacterInventory(_Player, "LLDT_Debug_DebugTool_Peace_d53e549c-5003-47a8-b7cf-852f4711c076", 0)
 AND
-_Count <= 0
-AND
-ItemTemplateIsInCharacterInventory(_Player, "LLDT_Debug_DebugTool_Kill_1955e0c9-3272-48d0-88b9-db356ab921a9", _Count2)
-AND
-_Count2 <= 0
-THEN
-ItemTemplateAddTo("LLDT_Debug_DebugTool_Peace_d53e549c-5003-47a8-b7cf-852f4711c076", _Player, 1);
-
-IF
-StoryEvent((CHARACTERGUID)_Player, "LLDT_Events_OnInitPlayer")
-AND
-ItemTemplateIsInCharacterInventory(_Player, "LLDT_Debug_DebugTool_Peace_d53e549c-5003-47a8-b7cf-852f4711c076", _Count)
-AND
-_Count <= 0
-AND
-ItemTemplateIsInCharacterInventory(_Player, "LLDT_Debug_DebugTool_Kill_1955e0c9-3272-48d0-88b9-db356ab921a9", _Count2)
-AND
-_Count2 <= 0
+ItemTemplateIsInCharacterInventory(_Player, "LLDT_Debug_DebugTool_Kill_1955e0c9-3272-48d0-88b9-db356ab921a9", 0)
 THEN
 ItemTemplateAddTo("LLDT_Debug_DebugTool_Peace_d53e549c-5003-47a8-b7cf-852f4711c076", _Player, 1);
 //END_REGION
@@ -107,21 +50,14 @@ THEN
 CharacterAddSkill(_Player, "Shout_LLDT_OpenMenu");
 //END_REGION
 
-//REGION MOD_UPDATE
-PROC
-LLDT_System_UpdateAll()
-THEN
-SysClear("DB_LLDT_DebugItems", 2);
-DB_LLDT_DebugItems("LLDT_DestroyerPack_bf47c251-0e5d-456c-bf7d-511cb055bb4e", 1);
-//END_REGION
-
 //REGION PARTY_ITERATOR
 IF
 GameStarted(_Level,_)
 AND
 IsGameLevel(_Level, 1)
 THEN
-TimerLaunch("LLDT_Timers_StartPartyIterator", 25);
+TimerCancel("LLDT_Timers_StartPartyIterator");
+TimerLaunch("LLDT_Timers_StartPartyIterator", 2500);
 
 IF
 TimerFinished("LLDT_Timers_StartPartyIterator")
