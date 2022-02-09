@@ -1,6 +1,6 @@
 INIT
 	ITEM:__Me
-	CHARACTER:%Owner = null
+	CHARACTER:%DestroyerOwner = null
 EVENTS
 EVENT SetOwner
 VARS
@@ -10,7 +10,7 @@ ON
 	OnCharacterMovedItem(_Char, __Me)
 	OnUseItem(_Char, __Me)
 ACTIONS
-	Set(%Owner, _Char)
+	Set(%DestroyerOwner, _Char)
 
 EVENT UnsetOwner
 VARS
@@ -19,7 +19,7 @@ VARS
 ON
 	OnItemDropped(__Me, _Template)
 ACTIONS
-	Set(%Owner, null)
+	Set(%DestroyerOwner, null)
 
 EVENT ItemDestroyed
 VARS
@@ -31,12 +31,12 @@ ON
 ACTIONS
 	Print(_PrintStr, "(DEBUG) Destroyed [1]", _Item)
 	Cast(_LogStr, _PrintStr)
-	//CombatLogText(%Owner, LLDT_DEBUG_MESSAGE, 1, 2)
+	//CombatLogText(%DestroyerOwner, LLDT_DEBUG_MESSAGE, 1, 2)
 IF "!c1"
-	IsEqual(%Owner, null)
+	IsEqual(%DestroyerOwner, null)
 THEN
-	DisplayCombatInfoText(%Owner, _LogStr, 0.0)
-	DisplayText(%Owner, "", 0.0)
+	DisplayCombatInfoText(%DestroyerOwner, _LogStr, 0.0)
+	DisplayText(%DestroyerOwner, "", 0.0)
 ELSE
 	//DisplayCombatInfoText(__Me, _LogStr, 1)
 	//CombatLogText(__Me, _LogStr, 0, 2)
