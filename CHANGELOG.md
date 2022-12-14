@@ -1,5 +1,8 @@
 DebugTools Changelog
 =======
+# 1.3.2.2
+* Updated localization, added untranslated PR-BR localization xml file.
+* Made the debug skills unuseable by the AI. This should fix an issue where a controlled party member may get stuck spamming the menu skill.
 # 1.3.0.1
 * Fixed the "Full Heal Party" and "Resurrect Party" commands.
 
