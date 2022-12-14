@@ -10,6 +10,8 @@
                     <attribute id="Author" value="LaughingLeader" type="30" />
                     <attribute id="CharacterCreationLevelName" value="" type="22" />
                     <attribute id="Description" value="Debug Tools contains a collection of helper skills that you can use to debug mods in a live environment. Includes cheats for adding character points, experience, unlocking waypoints, and more." type="30" />
+                    <attribute id="DescriptionName" value="Debug Tools contains a collection of helper skills that you can use to debug mods in a live environment. Includes cheats for adding character points, experience, unlocking waypoints, and more." handle="h01d36a46gd770g4507g8729g645132555daa" type="28" />
+                    <attribute id="DisplayName" value="Debug Tools" handle="h4b073150gc932g401cgb3feg59dd8e223115" type="28" />
                     <attribute id="Folder" value="DebugTools_ce3b3bd2-eb86-46d4-8d4f-9a472105d18e" type="30" />
                     <attribute id="GMTemplate" value="" type="22" />
                     <attribute id="LobbyLevelName" value="" type="22" />
@@ -22,7 +24,7 @@
                     <attribute id="Tags" value="" type="30" />
                     <attribute id="Type" value="Add-on" type="22" />
                     <attribute id="UUID" value="5aadceff-65c8-756b-3fce-93490ab45936" type="22" />
-                    <attribute id="Version" value="318898177" type="4" />
+                    <attribute id="Version" value="318898178" type="4" />
                     <children>
                         <node id="PublishVersion">
                             <attribute id="Version" value="908338577" type="4" />

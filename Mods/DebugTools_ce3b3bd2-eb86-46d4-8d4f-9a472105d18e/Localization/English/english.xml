@@ -1,4 +1,5 @@
 <contentList>
+	<content contentuid="h01d36a46gd770g4507g8729g645132555daa">Debug Tools contains a collection of helper skills that you can use to debug mods in a live environment. Includes cheats for adding character points, experience, unlocking waypoints, and more.</content>
 	<content contentuid="h04083696g547dg48c7g87c4g48b76e870cd9">Cancel</content>
 	<content contentuid="h046a91c2g2d94g4b83g933fg50e82387fc1b">[LLDT_TalentMenu_Talent5_7808cdc0-5e47-4ba9-a950-459740eda643]</content>
 	<content contentuid="h04b25bdag6f42g475egb2e1gd1bbfe1cb921">[Next Page]</content>
@@ -50,6 +51,7 @@
 	<content contentuid="h48b737a3g7c5ag489eg9eafg705106fa1deb">Remove AVATAR tag, and update related databases.</content>
 	<content contentuid="h49f2d926g0a68g4437g96a3g1d6e1afa1496">[Back]</content>
 	<content contentuid="h4af3350ag5ef6g40b5ga96cga091876fd262">Debug Tools Debug Menu</content>
+	<content contentuid="h4b073150gc932g401cgb3feg59dd8e223115">Debug Tools</content>
 	<content contentuid="h4ba0f963g8844g4892ga822g940d72515382">[Exit]</content>
 	<content contentuid="h4bed8627g3b69g41d6gb961g7a5da7a52a6a">Skills Menu</content>
 	<content contentuid="h4d232c24g36c6g4ae8g8b09g25b90a01366e">Add Attribute Point</content>
